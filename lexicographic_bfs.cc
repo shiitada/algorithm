@@ -3,7 +3,7 @@
 
   Complexity:
     Time Complexity O(n + m)
-    Space Complexity ?
+    Space Complexity O(n + m)
 
   References:
     Derek G. Corneil : Lexicographic Breadth First Search -- A Survey.
