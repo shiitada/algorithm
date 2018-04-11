@@ -21,6 +21,8 @@ using namespace std;
 
 using Graph = vector<vector<int>>;
 
+
+// --------------------------------8<------- start of library -------8<---------------------------------------
 vector<int> LexBfs(const Graph &g) {
     struct Data {
         Data(int _s) : prev(nullptr), nxt(nullptr), size(_s), size_new(0), item(_s) {}
@@ -94,7 +96,7 @@ vector<int> LexBfs(const Graph &g) {
 
     return order;
 }
-// -------------------------------------------------------------8<------- end of library -------8<---------------------------------------------------
+// --------------------------------8<------- end of library -------8<----------------------------------------
 
 
 int main() {
