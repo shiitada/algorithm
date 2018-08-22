@@ -1,16 +1,31 @@
 /*
   Lexicographic Breadth First Search (Rose, Tarjan, Lueker 1976)
+  ==============================================================
 
-  Complexity:
-    Time Complexity O(n + m)
-    Space Complexity O(n + m)
+  # Algorithm
+    Input: Undirected Graph G = (V, E)
+    Output: V上の線形順序
 
-  References:
+  # Complexity
+    Time and Space: O(|V| + |E|)
+
+  # Usage
+    vector<int> LexBfs(vector<vector<int>> G)
+
+  # Description
+    G の Lexicographic Bradth First Search(LexBfs) とは BFS の一種である．
+    ある頂点を始点としてBFSを行うが，次に訪れる頂点は，未訪問の頂点で，その頂点に隣接している
+    訪問済みの頂点らの訪れた順番の辞書式順序が最も小さいものが選ばれる．
+    例えば，未訪問の頂点が2つあり，それぞれの隣接している訪問済み頂点の訪れた順番が 1,3,4 と
+    1,3,6 のときは前者が次に選ばれる．
+    線形時間で実行するために Partition Refinement を実装した．
+
+  # References
     Derek G. Corneil : Lexicographic Breadth First Search -- A Survey.
     International Workshop on Graph-Theoretic Concepts in Computer Science,
     Bad Honnef, Germany, June 21-23, 2004, pp. 1--19.
 
-  Verified:
+  # Verified
 
 */
 
@@ -21,8 +36,7 @@ using namespace std;
 
 using Graph = vector<vector<int>>;
 
-
-// --------------------------------8<------- start of library -------8<---------------------------------------
+// ------------8<------- start of library -------8<-------------------------------
 vector<int> LexBfs(const Graph &g) {
     struct Data {
         Data(int _s) : prev(nullptr), nxt(nullptr), size(_s), size_new(0), item(_s) {}
@@ -96,7 +110,7 @@ vector<int> LexBfs(const Graph &g) {
 
     return order;
 }
-// --------------------------------8<------- end of library -------8<----------------------------------------
+// -------------8<------- end of library -------8<-----------------------------
 
 
 int main() {

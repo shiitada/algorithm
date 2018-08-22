@@ -19,7 +19,5 @@ inline void INITIOS() {
 int main() {
     INITIOS();
 
-    
-
     return 0;
 }

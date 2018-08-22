@@ -1,3 +1,29 @@
+/*
+  Chordal Graph Recognition
+  =========================
+
+  # Algorithm
+    Input: Undirected Graph G = (V, E)
+    Output: Is G chordal graph?
+
+  # Complexity
+    Time and Space: O(|V| + |E|)
+
+  # Usage
+    bool IsChordal(vector<vector<int>> G)
+
+  # Description
+    LexBfsで頂点の線形順序oを得る．o が perfect elimination ordering(PEO)
+    ならば，G は chordal graph である．o が PEO であるとは，任意の v \in V に対して，
+    {u \in V : o(u) < o(v) and {u, v} \in E} がクリークである．
+
+  # Note
+  # References
+
+  # Verified
+    いくつかのグラフに対して Python の NetworkX の is_chordal(G) と比較をした
+*/
+
 #include <iostream>
 #include <vector>
 
@@ -5,9 +31,7 @@ using namespace std;
 
 using Graph = vector<vector<int>>;
 
-
-/* 👇 Please paste LexBfs library (lexicographic_bfs.cc) 👇 */
-
+//  @require ./lexicographic_bfs.cc 👇👇
 
 // --------------8<------- start of library -------8<--------------------
 bool IsChordal(const Graph &g) {
