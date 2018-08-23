@@ -31,7 +31,7 @@ struct Prime {
                     is_p[j] = false;
         }
     }
-    bool operator[](const int idx) const { return is_p[idx]; }
+    constexpr bool operator[](const int idx) const { return is_p[idx]; }
 };
 // -------------8<------- end of library ---------8-------------------------
 
@@ -40,7 +40,7 @@ int main() {
     constexpr Prime<n> p;
 
     // Primeクラスがコンパイル時定数ならばエラーを出力
-    std::static_assert(p.is_p[5] == false, "5 is prime number");
+    static_assert(p[5] == false, "5 is prime number");
 
     for (int i = 0; i <= n; ++i)
         if (p[i]) std::cout << i << std::endl;
