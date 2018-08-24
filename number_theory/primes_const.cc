@@ -11,6 +11,9 @@
     Time: O(N log log N)
     Space: O(N)
 
+  # Note
+    limitation of N is about 46300 in gcc version 7.3.0
+
   # Verified
     comprision with wikipedia ``List of prime numbers''
 */
@@ -36,7 +39,7 @@ struct Prime {
 // -------------8<------- end of library ---------8-------------------------
 
 int main() {
-    constexpr int n = 100;
+    constexpr int n = 46300;
     constexpr Prime<n> p;
 
     // Primeクラスがコンパイル時定数ならばエラーを出力
