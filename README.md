@@ -11,5 +11,8 @@ C++ implementations of algorithms
 - [recognition of chordal graph](graph/is_chordal.cc)
 - [lexicographic breadth first search](graph/lexicographic_bfs.cc)
 
+# Data Structure
+- [fenwick tree](data_structure/fenwick_tree.cc)
+
 # Number Theory
 - [generate primes at compile time](number_theory/primes_const.cc)
