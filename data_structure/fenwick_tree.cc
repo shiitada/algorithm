@@ -33,8 +33,10 @@
 
 // -------------8<------- start of library -------8<------------------------
 template <class T>
-class FenwickTree {
-public:
+struct FenwickTree {
+    const int n;
+    std::vector<T> bit;
+
     FenwickTree(int _n = 0) : n(_n), bit(n + 1, 0) {}
 
     T sum(int r) const {
@@ -45,10 +47,6 @@ public:
     T sum(int l, int r) const { return sum(r) - sum(l); }
     void add(int idx, const T &w) { for (; idx < n; idx |= idx + 1) bit[idx] += w; }
     int size() const { return n; }
-
-private:
-    const int n;
-    std::vector<T> bit;
 };
 // -------------8<------- end of library ---------8-------------------------
 
