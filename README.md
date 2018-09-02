@@ -13,6 +13,7 @@ C++ implementations of algorithms
 
 # Data Structure
 - [fenwick tree](data_structure/fenwick_tree.cc)
+- [union find](data_structure/union_find.cc)
 
 # Number Theory
 - [generate primes at compile time](number_theory/primes_const.cc)
