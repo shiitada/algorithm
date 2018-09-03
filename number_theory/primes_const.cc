@@ -12,8 +12,8 @@
     Space: O(N)
 
   # Note
-    limitation of N is about 46300 in gcc version 7.3.0
-
+    limitation of N is about 262140 in gcc version 7.3.0
+    (constexpr loop iteration count must be less than 262144)
   # Verified
     comprision with wikipedia ``List of prime numbers''
 */
@@ -28,9 +28,9 @@ struct Prime {
     constexpr Prime() : is_p() {
         for (int i = 2; i <= N; ++i) is_p[i] = true;
         is_p[0] = is_p[1] = false;
-        for (int i = 2; i <= N; ++i) {
+        for (long long i = 2; i <= N; ++i) {
             if (is_p[i])
-                for (int j = i * i; j <= N; j += i)
+                for (long long j = i * i; j <= N; j += i)
                     is_p[j] = false;
         }
     }
@@ -39,7 +39,7 @@ struct Prime {
 // -------------8<------- end of library ---------8-------------------------
 
 int main() {
-    constexpr int n = 46300;
+    constexpr int n = 262140;
     constexpr Prime<n> p;
 
     // Primeクラスがコンパイル時定数ならばエラーを出力
