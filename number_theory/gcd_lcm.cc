@@ -36,14 +36,12 @@ using ll = long long;
 
 inline ll gcd(ll a, ll b) { return b ? gcd(b, a % b) : a; }
 inline ll lcm(ll a, ll b) { return a / gcd(a, b) * b; }
-
 // -------------8<------- end of library ---------8-------------------------
 
 int main() {
-    ll a, b;
-    cin >> a >> b;
-    cout << gcd(a, b) << endl;
-    cout << lcm(a, b) << endl;
+    ll a = 8, b = 12;
+    cout << gcd(a, b) << endl; // 4
+    cout << lcm(a, b) << endl; // 24
 
     return 0;
 }
