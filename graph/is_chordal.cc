@@ -2,7 +2,7 @@
   Chordal Graph Recognition
   =========================
 
-  # Algorithm
+  # Problem
     Input: Undirected Graph G = (V, E)
     Output: Is G chordal graph?
 

@@ -2,7 +2,7 @@
   Fenwick Tree (Peter M. Fenwick 1994)
   ===============================
 
-  # Algorithm
+  # Problem
     Input: n個の変数 v_0, ..., v_{n-1}
     Query:
       1. v_i に w を加える : v_i += w        : O(1) 時間

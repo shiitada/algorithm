@@ -2,7 +2,7 @@
   Generate primes at compile time
   ===============================
 
-  # Algorithm
+  # Problem
     Sieve of Eratosthenes
     Input: integer N
     Output: i <= N is prime number? (boolean array)

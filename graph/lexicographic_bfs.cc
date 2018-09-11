@@ -2,9 +2,9 @@
   Lexicographic Breadth First Search (Rose, Tarjan, Lueker 1976)
   ==============================================================
 
-  # Algorithm
+  # Problem
     Input: Undirected Graph G = (V, E)
-    Output: V上の線形順序
+    Output: V上の線形順序 (LexBfs)
 
   # Complexity
     Time and Space: O(|V| + |E|)

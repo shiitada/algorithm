@@ -1,8 +1,8 @@
 /*
   Algorithm Name (Author)
   =======================
-
-  # Algorithm
+  
+  # Problem
     Input:
     Output:
 

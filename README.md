@@ -16,5 +16,5 @@ C++ implementations of algorithms
 - [union find](data_structure/union_find.cc)
 
 # Number Theory
-- [gcd(greatest common divisor) and lcm(least common multiple)](number_theory/gcd_lcm.cc)
+- [GCD (greatest common divisor) and LCM (least common multiple)](number_theory/gcd_lcm.cc)
 - [generate primes at compile time](number_theory/primes_const.cc)
