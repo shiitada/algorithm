@@ -13,7 +13,7 @@ C++ implementations of algorithms
 - [Lexicographic breadth first search](graph/lexicographic_bfs.cc)
 
 # Data Structure
-- [Fenwick tree](data_structure/fenwick_tree.cc)
+- [Fenwick tree (Binary Indexed Tree)](data_structure/fenwick_tree.cc)
 - [Union find](data_structure/union_find.cc)
 
 # Number Theory
