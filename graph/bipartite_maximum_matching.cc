@@ -18,8 +18,8 @@
     For-Fulkersonのように増加道をDfsで見つけてくる
 
   # References
-    - [@tmaehara spagetthi-source/algorithm/graph/bipartite_matching]
-      (https://github.com/spaghetti-source/algorithm/blob/master/graph/bipartite_matching.cc)
+    [@tmaehara spagetthi-source/algorithm/graph/bipartite_matching]
+    (https://github.com/spaghetti-source/algorithm/blob/master/graph/bipartite_matching.cc)
 
   # Verified
     [AOJ GRL_7_A Matching - Bipartite Matching]
