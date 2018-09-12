@@ -29,8 +29,6 @@
 
 #include <iostream>
 
-using namespace std;
-
 // -------------8<------- start of library -------8<------------------------
 using ll = long long;
 
@@ -40,8 +38,8 @@ inline ll lcm(ll a, ll b) { return a / gcd(a, b) * b; }
 
 int main() {
     ll a = 8, b = 12;
-    cout << gcd(a, b) << endl; // 4
-    cout << lcm(a, b) << endl; // 24
+    std::cout << gcd(a, b) << std::endl; // 4
+    std::cout << lcm(a, b) << std::endl; // 24
 
     return 0;
 }

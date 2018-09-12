@@ -32,26 +32,24 @@
 #include <iostream>
 #include <vector>
 
-using namespace std;
-
-using Graph = vector<vector<int>>;
+using Graph = std::vector<std::vector<int>>;
 
 // ------------8<------- start of library -------8<-------------------------------
-vector<int> LexBfs(const Graph &g) {
+std::vector<int> LexBfs(const Graph &g) {
     struct Data {
         Data(int _s) : prev(nullptr), nxt(nullptr), size(_s), size_new(0), item(_s) {}
         Data *prev, *nxt;
         int size, size_new;
-        vector<int> item;
+        std::vector<int> item;
     };
 
     const int n = g.size();
-    vector<int> order(n, -1);
-    vector<bool> visited(n, false);
-    vector<pair<Data*, int>> ptr(n);
+    std::vector<int> order(n, -1);
+    std::vector<bool> visited(n, false);
+    std::vector<std::pair<Data*, int>> ptr(n);
     Data data(n);
     for (int i = 0;  i < n; ++i) {
-        ptr[i] = make_pair(&data, i);
+        ptr[i] = std::make_pair(&data, i);
         data.item[i] = i;
     }
 
@@ -61,8 +59,8 @@ vector<int> LexBfs(const Graph &g) {
         // choosing a pivot
         const int pivot = order[size_order++] = head->item[0];
         visited[pivot] = true;
-        swap(head->item[0], head->item[head->size - 1]);
-        swap(ptr[head->item[0]].second, ptr[head->item[head->size - 1]].second);
+        std::swap(head->item[0], head->item[head->size - 1]);
+        std::swap(ptr[head->item[0]].second, ptr[head->item[head->size - 1]].second);
         --(head->size);
         if (head->size == 0) head = head->nxt;
 
@@ -74,8 +72,8 @@ vector<int> LexBfs(const Graph &g) {
             if (cur->size == 1) continue;
 
             const int idx = ptr[u].second;
-            swap(cur->item[idx], cur->item[cur->size - cur->size_new - 1]);
-            swap(ptr[u].second, ptr[cur->item[idx]].second);
+            std::swap(cur->item[idx], cur->item[cur->size - cur->size_new - 1]);
+            std::swap(ptr[u].second, ptr[cur->item[idx]].second);
             ++(cur->size_new);
         }
 
@@ -114,15 +112,14 @@ vector<int> LexBfs(const Graph &g) {
 
 
 int main() {
-    cin.tie(0); ios::sync_with_stdio(false);
-
     // Input Undirected Graph G = (V, E)
     // n := |V|, m := |E|
     int n, m, v[2];
-    cin >> n >> m;
+    std::cin >> n >> m;
+
     Graph g(n);
     for (int i = 0; i < m; ++i) {
-        cin >> v[0] >> v[1];
+        std::cin >> v[0] >> v[1];
         for (int j = 0; j <= 1; ++j)
             g[v[j]].push_back(v[1 - j]);
     }
@@ -130,7 +127,7 @@ int main() {
     // Output LBFS ordering of vertices V
     auto ord = LexBfs(g);
     for (int i = 0; i < n; ++i)
-        cout << ord[i] << " \n"[i == n - 1];
+        std::cout << ord[i] << " \n"[i == n - 1];
 
     return 0;
 }

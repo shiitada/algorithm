@@ -26,17 +26,16 @@
 
 #include <iostream>
 #include <vector>
+#include <algorithm>
 
-using namespace std;
-
-using Graph = vector<vector<int>>;
+using Graph = std::vector<std::vector<int>>;
 
 //  @require ./lexicographic_bfs.cc 👇👇
 
 // --------------8<------- start of library -------8<--------------------
 bool IsChordal(const Graph &g) {
     const int n = g.size();
-    vector<int> idx(n), adj(n, -1), order = LexBfs(g);
+    std::vector<int> idx(n), adj(n, -1), order = LexBfs(g);
 
     for (int i = 0; i < n; ++i) idx[order[i]] = i;
 
@@ -47,7 +46,7 @@ bool IsChordal(const Graph &g) {
             if (idx[u] < idx[v]) {
                 adj[u] = v;
                 ++size;
-                p = max(p, idx[u]);
+                p = std::max(p, idx[u]);
             }
         }
         for (const int u : g[order[p]])
@@ -62,21 +61,20 @@ bool IsChordal(const Graph &g) {
 
 
 int main() {
-    cin.tie(0); ios::sync_with_stdio(false);
-
     // Input Undirected Graph G = (V, E)
     // n := |V|, m := |E|
     int n, m, v[2];
-    cin >> n >> m;
+    std::cin >> n >> m;
+
     Graph g(n);
     for (int i = 0; i < m; ++i) {
-        cin >> v[0] >> v[1];
+        std::cin >> v[0] >> v[1];
         for (int j = 0; j <= 1; ++j)
             g[v[j]].push_back(v[1 - j]);
     }
 
     // Output LBFS ordering of vertices V
-    cout << (IsChordal(g) ? "Yes " : "No ") << "Chordal Graph\n";
+    std::cout << (IsChordal(g) ? "Yes " : "No ") << "Chordal Graph\n";
 
     return 0;
 }

@@ -34,7 +34,7 @@ struct UnionFind {
     bool unite(int x, int y) {
         x = root(x); y = root(y);
         if (x != y) {
-            if (data[y] < data[x]) swap(x, y);
+            if (data[y] < data[x]) std::swap(x, y);
             data[x] += data[y]; data[y] = x;
         }
         return x != y;

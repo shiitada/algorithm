@@ -29,14 +29,12 @@
 #include <iostream>
 #include <vector>
 
-using namespace std;
-
 // -------------8<------- start of library -------8<------------------------
 class BipariteGraph {
 public:
     // Bipartite Graph G = (A; B, E), A = [0, L), B = [L, L + R)
     BipariteGraph(int _L, int _R)
-        : L(_L), R(_R), adj(L + R), match_to(L + R, -1), visited(L + R), size_match(0) {}
+        : L(_L), R(_R), adj(L + R), match(L + R, -1), visited(L + R), size_match(0) {}
 
     void add_edge(const int v1, const int v2) {
         adj[v1].push_back(L + v2);
@@ -52,25 +50,25 @@ public:
         /* もし解が必要ならばコメントアウト */
         // vector<pair<int, int>> matching(size_match);
         // for (int v = 0, idx = 0; v < L; ++v)
-        //     if (0 <= match_to[v])
-        //         matching[idx++] = {v, match_to[v] - L};
+        //     if (0 <= match[v])
+        //         matching[idx++] = {v, match[v] - L};
 
         return size_match;
     }
 
 private:
     const int L, R;
-    vector<vector<int>> adj;
-    vector<int> match_to;
-    vector<bool> visited;
+    std::vector<std::vector<int>> adj;
+    std::vector<int> match;
+    std::vector<bool> visited;
     int size_match;
 
     bool Augment(const int cur) {
         for (const int dst : adj[cur])
             if (!visited[dst]) {
                 visited[dst] = true;
-                if (match_to[dst] < 0 || Augment(match_to[dst])) {
-                    match_to[cur] = dst; match_to[dst] = cur;
+                if (match[dst] < 0 || Augment(match[dst])) {
+                    match[cur] = dst; match[dst] = cur;
                     return true;
                 }
             }
@@ -80,19 +78,17 @@ private:
 // -------------8<------- end of library ---------8-------------------------
 
 int main() {
-    cin.tie(0); ios::sync_with_stdio(false);
-
     int L, R, m;
-    cin >> L >> R >> m;
+    std::cin >> L >> R >> m;
 
     // prtite sets : A = [0, L), B = [0, R)
     BipariteGraph g(L, R);
     for (int i = 0, v[2]; i < m; ++i) {
-        cin >> v[0] >> v[1];
+        std::cin >> v[0] >> v[1];
         g.add_edge(v[0], v[1]);
     }
 
-    cout << g.MaximumMatching() << endl;
+    std::cout << g.MaximumMatching() << std::endl;
 
     return 0;
 }
