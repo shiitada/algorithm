@@ -35,7 +35,8 @@ using namespace std;
 class BipariteGraph {
 public:
     // Bipartite Graph G = (A; B, E), A = [0, L), B = [L, L + R)
-    BipariteGraph(int _L, int _R) : L(_L), R(_R), adj(L + R), match_to(L + R, -1), visited(L + R), size_match(0) {}
+    BipariteGraph(int _L, int _R) :
+        L(_L), R(_R), adj(L + R), match_to(L + R, -1), visited(L + R), size_match(0) {}
 
     void add_edge(const int v1, const int v2) {
         adj[v1].push_back(L + v2);
@@ -51,7 +52,8 @@ public:
         /* もし解が必要ならばコメントアウト */
         // vector<pair<int, int>> matching(size_match);
         // for (int v = 0, idx = 0; v < L; ++v)
-        //     if (0 <= match_to[v]) matching[idx] = make_pair(v, match_to[v]);
+        //     if (0 <= match_to[v])
+        //         matching[idx++] = {v, match_to[v] - L};
 
         return size_match;
     }
