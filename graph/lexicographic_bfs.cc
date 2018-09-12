@@ -45,7 +45,7 @@ std::vector<int> LexBfs(const Graph &g) {
 
     const int n = g.size();
     std::vector<int> order(n, -1);
-    std::vector<bool> visited(n, false);
+    std::vector<char> visited(n, false); // vector<bool> is slow
     std::vector<std::pair<Data*, int>> ptr(n);
     Data data(n);
     for (int i = 0;  i < n; ++i) {

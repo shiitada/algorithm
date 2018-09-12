@@ -43,7 +43,7 @@ public:
 
     int MaximumMatching() {
         for (int v = 0; v < L; ++v) {
-            fill(visited.begin(), visited.end(), false);
+            visited.assign(L + R, false);
             if (Augment(v)) ++size_match;
         }
 
@@ -60,7 +60,7 @@ private:
     const int L, R;
     std::vector<std::vector<int>> adj;
     std::vector<int> match;
-    std::vector<bool> visited;
+    std::vector<char> visited; // vector<bool> is slow
     int size_match;
 
     bool Augment(const int cur) {
