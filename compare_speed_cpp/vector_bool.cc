@@ -1,6 +1,7 @@
 /*
   Is it true that std::vector<bool> is slow?
   ==========================================
+  * Assumed usage is only like a flag (access, assignment, negation)
 
   Comparing the execution time in 4 data structures
     1. boost::dynamic_bitset<>
