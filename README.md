@@ -21,4 +21,4 @@ C++ implementations of algorithms
 - [Generate primes at compile time](number_theory/primes_const.cc)
 
 # Comparing speed in C++
-- [Is it true that std::vector<bool> is slow?](compare_speed_cpp/vector_bool.cc)
+- [Is it true that std::vector\<bool\> is slow?](compare_speed_cpp/vector_bool.cc)
