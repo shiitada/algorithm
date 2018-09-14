@@ -4,7 +4,7 @@
 
   # Problem
     Input: integer sequence v = v_1, v_2, ..., v_n (k = max(v) - min(v) + 1)
-    Output: v_i1 <= v_i2 <= ... <= v_it
+    Output: v_i1 <= v_i2 <= ... <= v_in
 
   # Complexity
     Time : O(n + k)
