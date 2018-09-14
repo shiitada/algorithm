@@ -21,7 +21,7 @@ C++ implementations of algorithms
 - [Generate primes at compile time](number_theory/primes_const.cc)
 
 # Other
-- [Counting sort（計数ソート）](other/counting_sort.cc)
+- [Counting sort （計数ソート）](other/counting_sort.cc)
 
 # Comparing speed in C++
 - [Is it true that std::vector\<bool\> is slow?](compare_speed_cpp/vector_bool.cc)
