@@ -3,7 +3,7 @@
   ======================
 
   # Problem
-    Input: (v_1, v_2, ..., v_n) (0 <= v_i <= k)
+    Input: integer sequence v = v_1, v_2, ..., v_n (k = max(v) - min(v) + 1)
     Output: v_i1 <= v_i2 <= ... <= v_it
 
   # Complexity
@@ -26,21 +26,22 @@
 template<class RandomIt>
 constexpr void CountingSort(RandomIt first, RandomIt last) {
     const std::size_t size = distance(first, last);
-    if (size == 0) return ;
+    if (size <= 1) return ;
 
-    const auto k = *max_element(first, last);
-    std::vector<int> cnt(k + 1);
-    for (auto it = first; it != last; ++it) ++cnt[*it];
-    for (int i = 1; i <= k; ++i) cnt[i] += cnt[i - 1];
+    const auto lb = *min_element(first, last), ub = *max_element(first, last);
+    std::vector<int> cnt(ub - lb + 1);
+    for (auto it = first; it != last; ++it) ++cnt[*it - lb];
+    for (int i = 1; i <= ub - lb; ++i) cnt[i] += cnt[i - 1];
 
     // the reverse iteration keeps stability
     using vt = typename std::iterator_traits<RandomIt>::value_type;
     std::vector<vt> tmp(size);
     std::reverse_iterator<RandomIt> fst(last);
     std::reverse_iterator<RandomIt> lst(first);
+
     std::for_each(fst, lst, [&](auto x) {
-            tmp[cnt[x] - 1] = x;
-            --cnt[x];
+            tmp[cnt[x - lb] - 1] = x;
+            --cnt[x - lb];
     });
 
     int idx = 0;
