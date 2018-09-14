@@ -24,4 +24,4 @@ C++ implementations of algorithms
 - [Counting sort （計数ソート）](other/counting_sort.cc)
 
 # Comparing speed in C++
-- [Is it true that std::vector\<bool\> is slow?](compare_speed_cpp/vector_bool.cc)
+- [Is it true that std::vector\<bool\> is slow? (only flag usage)](compare_speed_cpp/vector_bool.cc)
