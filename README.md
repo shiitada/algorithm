@@ -11,6 +11,7 @@ C++ implementations of algorithms
 - [Bipartite maximum matching](graph/bipartite_maximum_matching.cc)
 - [Recognition of chordal graph](graph/is_chordal.cc)
 - [Lexicographic breadth first search](graph/lexicographic_bfs.cc)
+- [Tree isomorphism](graph/tree_isomorphism.cc)
 
 # Data Structure
 - [Fenwick tree (Binary Indexed Tree)](data_structure/fenwick_tree.cc)
