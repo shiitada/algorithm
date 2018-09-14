@@ -17,41 +17,41 @@
     - OS : Ubuntu 18.04.1 LTS (Bionic Beaver)
     - Compiler : gcc version 7.3.0
   --------------------------------------------------------------
-  n = 100                   sequcence     random
+  n = 1000                  sequcence     random
   boost::dynamic_bitset<> :         1,         1 [ms]
-        std::vector<bool> :         1,         1 [ms]
+        std::vector<bool> :         1,         0 [ms]
         std::vector<char> :         0,         0 [ms]
          std::vector<int> :         0,         0 [ms]
 
-  n = 1000                  sequcence     random
-  boost::dynamic_bitset<> :        12,        12 [ms]
-        std::vector<bool> :        14,        13 [ms]
-        std::vector<char> :         4,        10 [ms]
-         std::vector<int> :         5,        12 [ms]
-
   n = 10000                 sequcence     random
-  boost::dynamic_bitset<> :       147,       189 [ms]
-        std::vector<bool> :       144,       181 [ms]
-        std::vector<char> :        56,       145 [ms]
-         std::vector<int> :        57,       157 [ms]
+  boost::dynamic_bitset<> :        11,        14 [ms]
+        std::vector<bool> :        10,        13 [ms]
+        std::vector<char> :         4,        10 [ms]
+         std::vector<int> :         4,        11 [ms]
 
   n = 100000                sequcence     random
-  boost::dynamic_bitset<> :      1622,      2218 [ms]
-        std::vector<bool> :      1631,      2270 [ms]
-        std::vector<char> :       825,      2379 [ms]
-         std::vector<int> :       931,      3433 [ms]
-
-  n = 500000                sequcence     random
-  boost::dynamic_bitset<> :      8458,     13553 [ms]
-        std::vector<bool> :      8302,     13195 [ms]
-        std::vector<char> :      3148,     16827 [ms]
-         std::vector<int> :      4609,     27012 [ms]
+  boost::dynamic_bitset<> :       130,       162 [ms]
+        std::vector<bool> :       123,       160 [ms]
+        std::vector<char> :        49,       158 [ms]
+         std::vector<int> :        53,       197 [ms]
 
   n = 1000000               sequcence     random
-  boost::dynamic_bitset<> :     16623,     28676 [ms]
-        std::vector<bool> :     15989,     27766 [ms]
-        std::vector<char> :      6918,     31131 [ms]
-         std::vector<int> :      6210,     37054 [ms]
+  boost::dynamic_bitset<> :      1373,      1898 [ms]
+        std::vector<bool> :      1311,      1913 [ms]
+        std::vector<char> :       518,      2318 [ms]
+         std::vector<int> :       597,      3144 [ms]
+
+  n = 5000000               sequcence     random
+  boost::dynamic_bitset<> :      6659,     12744 [ms]
+        std::vector<bool> :      6586,     12707 [ms]
+        std::vector<char> :      2750,     17679 [ms]
+         std::vector<int> :      3219,     37739 [ms]
+
+  n = 10000000              sequcence     random
+  boost::dynamic_bitset<> :     13317,     28555 [ms]
+        std::vector<bool> :     13491,     29274 [ms]
+        std::vector<char> :      5721,     64872 [ms]
+         std::vector<int> :      6604,     88075 [ms]
   -----------------------------------------------------------------
 
 */
@@ -60,7 +60,7 @@
 #include <boost/dynamic_bitset.hpp>
 
 void Solve(const bool flag, const int n, auto &d, const auto &idx) {
-    constexpr int size_loop = 1000;
+    constexpr int size_loop = 100;
 
     if (flag) { // sequence iteration
         for (int i = 0; i < size_loop; ++i) {
@@ -105,8 +105,10 @@ int main() {
         { std::vector<int> d(n); Solve(flag, n, d, idx); },
     };
 
-    const int size_algo = name.size(), size_loop = 5;
-    const std::vector<int> size_data = {100, 1000, 10000, 100000, 500000, 1000000};
+    // parameter
+    const int size_algo = name.size(), size_loop = 20;
+    const std::vector<int> size_data = {1000, 10000, 100000, 1000000,
+                                        5000000, 10000000};
 
     using namespace std::chrono;
 
@@ -116,30 +118,32 @@ int main() {
 
         // make random access iterator
         std::vector<int> idx(n); std::iota(idx.begin(), idx.end(), 0);
-        std::shuffle(idx.begin(), idx.end(), std::mt19937(0));
 
-        for (int i = 0; i < size_algo; ++i) {
-            auto sum_time1 = 0, sum_time2 = 0;
+        // measure average execution time
+        std::vector<milliseconds> sum_time1(size_algo), sum_time2(size_algo);
+        for (int i = 0; i < size_loop; ++i) {
+            std::shuffle(idx.begin(), idx.end(), std::mt19937(0));
 
-            // measure average execution time
-            for (int j = 0; j < size_loop; ++j) {
+            for (int j = 0; j < size_algo; ++j) {
                 // count time : sequcence access
                 auto start = high_resolution_clock::now();
-                func[i](true, n, idx);
+                func[j](true, n, idx);
                 auto end = high_resolution_clock::now();
-                sum_time1 += duration_cast<milliseconds>(end - start).count();
+                sum_time1[j] += duration_cast<milliseconds>(end - start);
 
                 // count time : random access
                 start = high_resolution_clock::now();
-                func[i](false, n, idx);
+                func[j](false, n, idx);
                 end = high_resolution_clock::now();
-                sum_time2 += duration_cast<milliseconds>(end - start).count();
+                sum_time2[j] += duration_cast<milliseconds>(end - start);
             }
+        }
 
-            // Output
-            std::cout << name[i] << " : "
-                      << std::setw(9) << std::right << sum_time1 / size_loop << ", "
-                      << std::setw(9) << std::right << sum_time2 / size_loop << " [ms]\n";
+        // Output average execution times
+        for (int i = 0; i < size_algo; ++i) {
+            std::cout << name[i] << " : " << std::setw(9) << std::right
+                      << sum_time1[i].count() / size_loop << ", " << std::setw(9)
+                      << std::right << sum_time2[i].count() / size_loop << " [ms]\n";
         }
         std::cout << std::endl;
     }
