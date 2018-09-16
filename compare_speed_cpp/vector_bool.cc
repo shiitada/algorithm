@@ -110,7 +110,7 @@ int main() {
     const std::vector<int> size_data = {1000, 10000, 100000, 1000000,
                                         5000000, 10000000};
 
-    using namespace std::chrono;
+    namespace cn = std::chrono;
 
     for (const int n : size_data) {
         std::cout << "n = " << n << std::string(21 - (int)log10(n), ' ')
@@ -120,22 +120,22 @@ int main() {
         std::vector<int> idx(n); std::iota(idx.begin(), idx.end(), 0);
 
         // measure average execution time
-        std::vector<milliseconds> sum_time1(size_algo), sum_time2(size_algo);
+        std::vector<cn::milliseconds> sum_time1(size_algo), sum_time2(size_algo);
         for (int i = 0; i < size_loop; ++i) {
             std::shuffle(idx.begin(), idx.end(), std::mt19937(0));
 
             for (int j = 0; j < size_algo; ++j) {
                 // count time : sequcence access
-                auto start = high_resolution_clock::now();
+                auto start = cn::high_resolution_clock::now();
                 func[j](true, n, idx);
-                auto end = high_resolution_clock::now();
-                sum_time1[j] += duration_cast<milliseconds>(end - start);
+                auto end = cn::high_resolution_clock::now();
+                sum_time1[j] += cn::duration_cast<cn::milliseconds>(end - start);
 
                 // count time : random access
-                start = high_resolution_clock::now();
+                start = cn::high_resolution_clock::now();
                 func[j](false, n, idx);
-                end = high_resolution_clock::now();
-                sum_time2[j] += duration_cast<milliseconds>(end - start);
+                end = cn::high_resolution_clock::now();
+                sum_time2[j] += cn::duration_cast<cn::milliseconds>(end - start);
             }
         }
 
