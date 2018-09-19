@@ -23,6 +23,7 @@ C++ implementations of algorithms
 
 # Other
 - [Counting sort （計数ソート）](other/counting_sort.cc)
+- [0-1 Knapsack problem (branch and bound method)](other/01knapsack_problem_branch_and_bound.cc)
 
 # Comparing speed in C++
 - [Is it true that std::vector\<bool\> is slow? (only flag usage)](compare_speed_cpp/vector_bool.cc)
