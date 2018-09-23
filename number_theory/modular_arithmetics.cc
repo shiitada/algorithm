@@ -42,12 +42,14 @@ using Int = long long;
 struct ModInt {
     static constexpr Int mod = 1e9 + 7; // assume mod is prime
     Int v;
-    ModInt(Int _v = 0) : v(_v % mod) {}
+
+    ModInt(Int _v = 0) : v((_v % mod + mod) % mod) {}
 
     bool operator<(ModInt r) const { return v < r.v; }
     bool operator>(ModInt r) const { return r.v < v; }
     bool operator==(ModInt r) const { return v == r.v; }
     bool operator!= (ModInt r) const { return v != r.v; }
+
     ModInt operator-() const { return ModInt(v ? mod - v : v); }
     ModInt &operator+=(ModInt r) { (v += r.v) %= mod; return *this; }
     ModInt &operator-=(ModInt r) { (v -= r.v - mod) %= mod; return *this; }
