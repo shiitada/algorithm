@@ -18,6 +18,7 @@ C++ implementations of algorithms
 - [Union find](data_structure/union_find.cc)
 
 # Number Theory
+- [Modular arithmetics (剰余演算の基本演算)](number_theory/modular_arithmetics.cc)
 - [GCD (greatest common divisor) and LCM (least common multiple)](number_theory/gcd_lcm.cc)
 - [Generate primes at compile time](number_theory/primes_const.cc)
 - [Extended Euclid's Algorithm （拡張ユークリッドの互除法）](number_theory/extgcd.cc)
