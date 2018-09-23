@@ -21,6 +21,7 @@ C++ implementations of algorithms
 - [GCD (greatest common divisor) and LCM (least common multiple)](number_theory/gcd_lcm.cc)
 - [Generate primes at compile time](number_theory/primes_const.cc)
 - [Extended Euclid's Algorithm （拡張ユークリッドの互除法）](number_theory/extgcd.cc)
+- [Prime factorization - Trial division (素因数分解)](number_theory/prime_fact.cc)
 
 # Other
 - [Counting sort （計数ソート）](other/counting_sort.cc)
