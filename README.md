@@ -19,7 +19,8 @@ C++ implementations of algorithms
 
 # Number Theory
 - [Basic Modular arithmetics](number_theory/modular_arithmetics.cc)
-- [Binomial coefficient modulo prime in O(n) preprocessing time and O(1) query time](number_theory/choose_mod_memo.cc)
+- [Binomial coefficient modulo prime (memorization)](number_theory/choose_mod_memo.cc)
+- [Binomial coefficient modulo prime (naive method)](number_theory/choose_mod.cc)
 - [GCD (greatest common divisor) and LCM (least common multiple)](number_theory/gcd_lcm.cc)
 - [Generate primes at compile time](number_theory/primes_const.cc)
 - [Extended Euclid's Algorithm](number_theory/extgcd.cc)

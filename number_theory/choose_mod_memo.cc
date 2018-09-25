@@ -1,6 +1,6 @@
 /*
-  Binomial coefficient modulo prime
-  素数を法とした二項係数
+  Binomial coefficient modulo prime (memorization)
+  素数を法とした二項係数（メモ化）
   =================================
 
   # Description
@@ -50,18 +50,18 @@ struct Combination {
         for (int i = N; 1 <= i; --i) inv_f[i - 1] = inv_f[i] * i;
     }
 
-    ModInt Fact(const int &n) const { return fact[n]; }
-    ModInt InvFact(const int &n) const { return inv_f[n]; }
+    ModInt Fact(const int n) const { return fact[n]; }
+    ModInt InvFact(const int n) const { return inv_f[n]; }
 
-    ModInt Perm(const int &n, const int &k) const {
+    ModInt Permutation(const int n, const int k) const {
         if (k < 0 || n < k) return ModInt(0);
         else return fact[n] * inv_f[n - k];
     }
-    ModInt Choose(const int &n, const int &k) const {
+    ModInt Choose(const int n, const int k) const {
         if (n < 0 || k < 0 || n < k) return ModInt(0);
         else return fact[n] * inv_f[k] * inv_f[n - k];
     }
-    ModInt MultiChoose(const int &n, const int &k) const {
+    ModInt MultiChoose(const int n, const int k) const {
         if (n < 0 || k < 0) return ModInt(0);
         else return k == 0 ? 1 : Choose(n + k - 1, k);
     }
