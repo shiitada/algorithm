@@ -19,6 +19,7 @@ C++ implementations of algorithms
 
 # Number Theory
 - [Modular arithmetics (基本的な剰余演算)](number_theory/modular_arithmetics.cc)
+- [Binomial coefficient modulo prime (素数を法とした二項係数・階乗)](number_theory/comb.cc)
 - [GCD (greatest common divisor) and LCM (least common multiple)](number_theory/gcd_lcm.cc)
 - [Generate primes at compile time](number_theory/primes_const.cc)
 - [Extended Euclid's Algorithm （拡張ユークリッドの互除法）](number_theory/extgcd.cc)

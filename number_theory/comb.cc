@@ -1,12 +1,13 @@
 /*
-  Combination
-  ===========
+  Combination modulo prime
+  ========================
 
   # Description
+    除数 ModInt::mod は素数で N < ModInt::mod とする（∵ 素数でないと逆元が存在しない場合がある）
+
     Combination cm(N); : 0 から N までの階乗とその逆元を O(N) 時間で求める（0! = 1）
       + ModInt fact[i]  : iの階乗 i! = 1 * 2 * ... * i  (0 <= i <= N)
       + ModInt inv_f[i] : iの階乗の逆元 (i!)^-1  (0 <= i <= N)
-    ModInt型で，N は除数 ModInt::mod 以下とする（多重集合係数を使用するときはサイズを2倍にする）
 
     各メソッドは定数時間で呼び出し可能
       + Factorial(n) : nの階乗(factorial) n!
@@ -17,7 +18,7 @@
 
   # Note
     - ./modular_arithmetics.cc をインクルードする
-    - 多重集合係数を使用するときはサイズを2倍にする
+    - 多重集合係数を使用するときはサイズを2倍にする(n + k - 1 <= 2n - 1)
 
   # References
     - [@保坂和宏 プログラミングコンテストでの数え上げ&整数論テクニック]
@@ -39,7 +40,7 @@ struct Combination {
     const Int N, mod = ModInt::mod;
     std::vector<ModInt> fact, inv_f;
 
-    // MultisetCoefficient を使用する場合は N = 2 * _n とする
+    // MultiChoose を使用する場合は N = 2 * _n とする
     Combination(int _n) : N(_n < mod ? _n : mod - 1), fact(N + 1), inv_f(N + 1) {
         fact[0] = 1;
         for (int i = 1; i <= N; ++i) fact[i] = fact[i - 1] * i;
