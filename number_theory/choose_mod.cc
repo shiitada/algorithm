@@ -38,7 +38,7 @@
 
 // -------------8<------- start of library -------8<------------------------
 struct Combination {
-    const Int N, mod = ModInt::mod;
+    const Int mod = ModInt::mod, N;
     std::vector<ModInt> fact, inv_f;
 
     // MultiChoose を使用する場合は N = 2 * _n とする
