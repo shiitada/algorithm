@@ -16,6 +16,7 @@
                 O(log m) 時間．除算 / はこの演算を呼び出している．
     - x.pow(e) : 冪乗の剰余 x^e mod m を計算．
                  O(log e) 時間．繰り返し２乗法を用いている．
+    - vector<ModInt> Inverse(n) : 1, 2, ..., n までの逆元をO(n)時間で求める
 
   # Note
     C/C++ での /, % の仕様
@@ -28,6 +29,9 @@
     ModInt同士の積はInt型ではオーバーフローするので，一時的にgcc拡張の __uint128_t へキャストしている．
       + long long: 10^18 < 2^63 - 1 < 10^19
       + __int128_t: 10^38 < 2^127 - 1 < 10^39
+    実際は，__uint128_t は約2倍ぐらい遅いので unsigned long long型へキャストしている．
+    競プロでは mod <= int型(2 * 10^9) なので unsigned long long型で収まる．
+    もし，mod^2 が long long型からオーバーフローするなら __uint128_t型を使う．
 
     法mに関するaの逆元は拡張ユークリッドの互除法を非再帰で求めている
       拡張ユーリッドの互除法は，整数a, bに対して ax + by = gcd(a, y) を満たす整数x,yを求める問題
@@ -35,6 +39,11 @@
       この等式に対して，法mをとると ax = 1 mod m となり，xがmを法とするaの逆元となる
       逆元が存在するためには，aとmが互い素であることが必要十分条件である
 
+    Inverse(n)は m = i * (m / i) + (m % i) から，1 < i に対して，
+      0    ≡ i * (m / i) + (m % i) \mod m  <==>
+      i    ≡ -(m / i)^-1 * (m % i) \mod m  <==>
+      i^-1 ≡ -(m / i) * (m % i)^-1 \mod m
+    となり，(m % i) < i より，再帰的に i の逆元を求める
 
   # References
     - [@保坂和宏 プログラミングコンテストでの数え上げ&整数論テクニック]
@@ -49,20 +58,21 @@
 
 */
 
-#include <bits/stdc++.h> // Replace needed headers for speed up
+#include <iostream>
+#include <vector>
 
 // -------------8<------- start of library -------8<------------------------
-using Int = long long;
+using Int = int;
 
 struct ModInt {
     static constexpr Int mod = 1e9 + 7;
     Int v;
 
-    ModInt(Int _v = 0) : v(set(_v)) {}
+    ModInt(long long _v = 0) : v(set(_v)) {}
     ModInt(const ModInt &r) : v(set(r.v)) {}
 
-    inline Int set(const Int x) { return (x < 0 ? (x % mod) + mod : x % mod); }
-    inline Int set() { return v = set(v); }
+    inline static Int set(const auto x) { return x < 0 ? (x % mod) + mod : x % mod; }
+    inline void set() { v = set(v); }
 
     bool operator<(ModInt r) const { return v < r.v; }
     bool operator>(ModInt r) const { return r.v < v; }
@@ -70,20 +80,25 @@ struct ModInt {
     bool operator!= (ModInt r) const { return v != r.v; }
 
     ModInt operator-() const { return ModInt(v ? mod - v : v); }
+    ModInt &operator=(const ModInt &r) { if (this != &r) v = set(r.v); return *this; }
     ModInt &operator+=(ModInt r) { (v += r.v) %= mod; return *this; }
     ModInt &operator-=(ModInt r) { (v -= r.v - mod) %= mod; return *this; }
-    ModInt &operator*=(ModInt r) { v = (__uint128_t(v) * r.v) % mod; return *this; }
+    // ModInt &operator*=(ModInt r) { v = (__uint128_t(v) * r.v) % mod; return *this; }
+    ModInt &operator*=(ModInt r) { v = 1ULL * v * r.v % mod; return *this; }
     ModInt &operator/=(ModInt r) { *this *= r.inv(); return *this; }
-    ModInt &operator=(const ModInt &r) { if (this != &r) v = set(r.v); return *this; }
+    ModInt operator+(ModInt r) const { return ModInt(*this) += r; }
+    ModInt operator-(ModInt r) const { return ModInt(*this) -= r; }
+    ModInt operator*(ModInt r) const { return ModInt(*this) *= r; }
+    ModInt operator/(ModInt r) const { return ModInt(*this) /= r; }
 
     ModInt inv() const {
-        Int u = 1, tv = v, s = 0, t = mod;
-        while (t) {
-            Int q = tv / t;
-            std::swap(tv -= q * t, t);
-            std::swap(u -= q * s, s);
+        long long a = v, b = mod, u = 1, w = 0;
+        while (b) {
+            long long t = a / b;
+            std::swap(a -= t * b, b);
+            std::swap(u -= t * w, w);
         }
-        return ModInt(u < 0 ? u + mod : u);
+        return ModInt(u);
     }
 
     ModInt pow(Int e) {
@@ -91,32 +106,26 @@ struct ModInt {
         for ( ; 0 < e; e >>= 1) { if (e & 1) x *= a; a *= a; }
         return x;
     }
+    inline ModInt pow(ModInt &e) { return pow(e.v); }
 };
-ModInt operator+(ModInt l, ModInt r) { return l += r; }
-ModInt operator-(ModInt l, ModInt r) { return l -= r; }
-ModInt operator*(ModInt l, ModInt r) { return l *= r; }
-ModInt operator/(ModInt l, ModInt r) { return l /= r; }
 std::ostream &operator<<(std::ostream &os, const ModInt &r) { return os << r.v; }
 std::istream &operator>>(std::istream &is, ModInt &r) { is >> r.v; r.set();return is; }
+
+std::vector<ModInt> Inverse(const Int n = ModInt::mod - 1) {
+    constexpr Int mod = ModInt::mod;
+    std::vector<ModInt> inv(n + 1);
+    inv[1].v = 1;
+    for (Int a = 2; a <= n; ++a)
+        inv[a] = inv[mod % a] * ModInt(mod - mod / a);
+    return inv;
+}
 // -------------8<------- end of library ---------8-------------------------
 
 int main() {
-    // Int n;
-    // ModInt m;
-    // std::cin >> m >> n;
-    // std::cout << m.pow(n) << std::endl;
-
     Int n;
-    ModInt x;
-
-    std::cin >> n;
-    while (n--) {
-        std::cin >> x;
-        ModInt y(x);
-        std::cout << "x.v = " << x.v << std::endl;
-        std::cout << "y = " << y << ", y^-1 = " << y.inv() << ", y * y^-1 = "
-                  << y * y.inv() << std::endl;
-    }
+    ModInt m;
+    std::cin >> m >> n;
+    std::cout << m.pow(n) << std::endl;
 
     return 0;
 }
