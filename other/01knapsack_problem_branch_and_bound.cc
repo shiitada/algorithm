@@ -1,5 +1,6 @@
 /*
   0-1 Knapsack Problem (branching and bound)
+  0-1ナップサック問題（分枝限定法）
   ==========================================
 
   # Problem

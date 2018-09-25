@@ -1,5 +1,6 @@
 /*
   Maximum Bipartite Matching (using Ford-Fulkerson)
+  二部グラフの最大マッチング（フォード・ファルカーソン法を使用）
   =================================================
 
   # Problem

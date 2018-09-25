@@ -1,5 +1,6 @@
 /*
-  Extended Euclid's Algorithm（拡張ユークリッドの互除法）
+  Extended Euclid's Algorithm
+  拡張ユークリッドの互除法
   ==============================================
 
   # Problem

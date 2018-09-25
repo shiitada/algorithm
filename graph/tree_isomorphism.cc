@@ -1,5 +1,6 @@
 /*
-  Tree Isomorphism (Aho, Hopcroft, Ullman)
+  Tree Isomorphism Problem (Aho, Hopcroft, Ullman)
+  木の同型性判定問題
   ========================================
 
   # Problem

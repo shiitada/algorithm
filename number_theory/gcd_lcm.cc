@@ -1,6 +1,7 @@
 /*
-  最大公約数・最小公倍数
-  =======================
+  GCD and LCM
+  最大公約数と最小公倍数
+  =================
 
   # Problem
     最大公約数(GCD; greatest common divisor)

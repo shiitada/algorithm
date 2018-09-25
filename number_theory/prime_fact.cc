@@ -1,5 +1,6 @@
 /*
   Prime factorization (Trial division)
+  素因数分解（自明な分割）
   ====================================
 
   # Problem

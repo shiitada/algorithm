@@ -1,6 +1,8 @@
 /*
   Counting Sort (stable)
-  ======================
+  計数ソート（安定）
+  =================================
+
 
   # Problem
     Input: integer sequence v = v_1, v_2, ..., v_n (k = max(v) - min(v) + 1)

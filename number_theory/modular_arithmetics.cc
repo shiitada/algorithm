@@ -1,6 +1,7 @@
 /*
-  Modular Arithmetics
-  ===================
+  Basic Modular Arithmetics
+  基本的な剰余演算
+  =========================
 
   # Description
     ここでは，ModInt::mod による剰余の基本的な演算を扱う（@tmaeharaさんの実装を参考）

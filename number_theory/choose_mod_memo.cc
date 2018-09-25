@@ -1,5 +1,6 @@
 /*
   Binomial coefficient modulo prime
+  素数を法とした二項係数
   =================================
 
   # Description

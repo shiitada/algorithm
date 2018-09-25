@@ -1,5 +1,6 @@
 /*
   Chordal Graph Recognition
+  弦グラフの同型性判定問題
   =========================
 
   # Problem

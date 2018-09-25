@@ -1,5 +1,6 @@
 /*
   Lexicographic Breadth First Search (Rose, Tarjan, Lueker 1976)
+  辞書順幅優先探索
   ==============================================================
 
   # Problem

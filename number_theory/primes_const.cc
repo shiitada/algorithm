@@ -1,5 +1,6 @@
 /*
   Generate primes at compile time
+  コンパイル時に素数表を生成
   ===============================
 
   # Problem
