@@ -50,8 +50,8 @@ struct Combination {
         for (int i = N; 1 <= i; --i) inv_f[i - 1] = inv_f[i] * i;
     }
 
-    ModInt Fact(const int n) const { return fact[n]; }
-    ModInt InvFact(const int n) const { return inv_f[n]; }
+    ModInt Factorial(const int n) const { return fact[n]; }
+    ModInt InvFactorial(const int n) const { return inv_f[n]; }
 
     ModInt Permutation(const int n, const int k) const {
         if (k < 0 || n < k) return ModInt(0);

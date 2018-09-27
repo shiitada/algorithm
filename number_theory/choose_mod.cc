@@ -35,12 +35,12 @@
 //  @require ./modular_arithmetics.cc 👇👇
 
 // -------------8<------- start of library -------8<------------------------
-ModInt Fact(int n) {
+ModInt Factorial(int n) {
     ModInt fact = n;
     while (--n) fact *= n;
     return fact;
 }
-inline ModInt InvFact(int n) { return Fact(n).inv(); }
+inline ModInt InvFactorial(int n) { return Fact(n).inv(); }
 
 ModInt Permutation(int n, int k) {
     if (k < 0 || n < k) return ModInt(0);

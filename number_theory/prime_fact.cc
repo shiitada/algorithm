@@ -26,7 +26,7 @@
 
 // -------------8<------- start of library -------8<------------------------
 template<class T>
-std::vector<std::pair<T, T>> PrimeFact(T n) {
+std::vector<std::pair<T, T>> PrimeFactorization(T n) {
     std::vector<std::pair<T, T>> pf;
     T m = n;
     for (T i = 2; i * i <= n; ++i) {
@@ -46,7 +46,7 @@ int main() {
     std::cin >> n;
     std::cout << n << ":";
 
-    auto pf = PrimeFact<int>(n);
+    auto pf = PrimeFactorization<int>(n);
     for (auto p : pf) {
         for (int i = 0; i < std::get<1>(p); ++i)
             std::cout << ' ' << std::get<0>(p);
