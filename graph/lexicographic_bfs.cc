@@ -25,12 +25,14 @@
   # Note
     - スマートポインタ(std::shared_ptr)を使うと遅くなるけど使用
     - 何故か遅いので調査(|V| = 10000, |E| = 30000000 ぐらいで 6.5 [s])
-      -> 多分定数倍が重い
+      -> 多分定数倍が重いはず（∵ antaさんのライブラリと比較しても同程度の速度）
 
   # References
     Derek G. Corneil : Lexicographic Breadth First Search -- A Survey.
     International Workshop on Graph-Theoretic Concepts in Computer Science,
     Bad Honnef, Germany, June 21-23, 2004, pp. 1--19.
+
+    [@anta ChordalGraph.cpp](https://www.dropbox.com/sh/9lknvq4xay709cn/AAC4CXtIHvzPoIJjJuZbYfZKa?preview=%23ChordalGraph.cpp)
 
   # Verified
 
