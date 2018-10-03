@@ -1,7 +1,7 @@
 /*
-  Single Source Shortest Path Problem (Bellman Ford)
+  Single Source Shortest Path Problem (Bellman-Ford Algorithm)
   単一始点全終点最短路問題（ベルマン・フォード法）
-  ===================================================
+  ============================================================
 
   # Problem
     Input: 有向グラフ G = (V, E), 辺重み w : E -> R, 始点 s
