@@ -12,6 +12,9 @@ C++ implementations of algorithms
 - [Recognition of chordal graph](graph/is_chordal.cc)
 - [Lexicographic breadth first search](graph/lexicographic_bfs.cc)
 - [Tree isomorphism](graph/tree_isomorphism.cc)
+- [Single Source Shortest Path Problem (Dijkstra): only distance](graph/dijkstra.cc)
+- [Single Source Shortest Path Problem (Dijkstra with heap): only distance](graph/dijkstra_heap.cc)
+- [Single Source Shortest Path Problem (Dijkstra with heap): distance and path](graph/dijkstra_heap_sol.cc)
 
 # Data Structure
 - [Fenwick tree (Binary Indexed Tree)](data_structure/fenwick_tree.cc)
