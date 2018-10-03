@@ -21,7 +21,7 @@ C++ implementations of algorithms
 - [Bellman-Ford algorithm: only distance and check for negative cycles](graph/bellman_ford.cc)
 
 ## All Pairs Shortest Path Problem
-- [Floyd Warshall algorithm: only distance](graph/floyd_warshall.cc)
+- [Floyd-Warshall algorithm: only distance](graph/floyd_warshall.cc)
 
 
 # Data Structure
