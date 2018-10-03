@@ -64,7 +64,7 @@ struct Graph {
     bool CheckNegativeCycle() {
         std::fill(d.begin(), d.end(), 0);
         BellmanFord();
-        return IsNegativeCycleFromS();
+        return is_neg_cycle;
     }
 
     void BellmanFord() {
