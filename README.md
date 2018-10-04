@@ -14,13 +14,14 @@ C++ implementations of algorithms
 - [Lexicographic breadth first search](graph/lexicographic_bfs.cc)
 - [Tree isomorphism](graph/tree_isomorphism.cc)
 
-## Single Source Shortest Path Problem
+## Shortest Path Problem
+### Single Source Shortest Path Problem
 - [Dijkstra's algorithm: only distance](graph/dijkstra.cc)
 - [Dijkstra's algorithm with heap: only distance](graph/dijkstra_heap.cc)
 - [Dijkstra's algorithm with heap: distance and path](graph/dijkstra_heap_sol.cc)
 - [Bellman-Ford algorithm: only distance and check for negative cycles](graph/bellman_ford.cc)
 
-## All Pairs Shortest Path Problem
+### All Pairs Shortest Path Problem
 - [Floyd-Warshall algorithm: only distance](graph/floyd_warshall.cc)
 
 
