@@ -22,7 +22,7 @@
     - Graph g(n): 頂点数 n の無向グラフを構成
     - g.add_edge(u, v): g に辺 {u, v} を追加
     - g.BiconnectedComponent(): g を2辺連結成分分解して橋の数を返す
-    - e = g.bridge[i]: i番目の橋 {e[0], e[1]}  // pairで実装するか悩みどころ
+    - e = g.bridge[i]: i番目の橋 {e.first, e.second}
     - g.ord[v]: 頂点 v のDfsで訪れた順番
     - g.low[v]: 頂点 v の lowlink (lowlink が同じ値の頂点は同じ2辺連結成分に属する)
 
@@ -48,34 +48,21 @@
 
 // -------------8<------- start of library -------8<------------------------
 struct Graph {
-    struct Edge {
-        int v[2];
-        Edge(int _u, int _v) : v{_u, _v} {}
-        int &operator[](int idx) { return v[idx]; }
-        int operator[](int idx) const { return v[idx]; }
-        bool operator<(const Edge &r) {
-            return v[0] < r[0] or (v[0] == r[0] and v[1] < r[1]);
-        }
-    };
-
     const int n;
     std::vector<std::vector<int>> adj;
     std::vector<int> ord, low;
-    std::vector<Edge> bridge;
+    std::vector<std::pair<int, int>> bridge;
 
     Graph(int _n) : n(_n), adj(n), ord(n, -1), low(n, -1) {}
 
-    void add_edge(int u, int v) {
-        adj[u].push_back(v);
-        adj[v].push_back(u);
-    }
+    void add_edge(int u, int v) { adj[u].push_back(v); adj[v].push_back(u); }
 
     int BiconnectedComponent() {
         for (int v = 0, idx = 0; v < n; ++v)
             if (ord[v] == -1) Dfs(-1, v, idx);
 
         for (int v = 0; v < n; ++v)
-            for (auto u : adj[v])
+            for (int u : adj[v])
                 if (ord[v] < low[u])
                     bridge.push_back({v, u});
         return bridge.size();
@@ -83,7 +70,7 @@ struct Graph {
 
     void Dfs(const int prev, const int cur, int &idx) {
         low[cur] = ord[cur] = idx++;
-        for (auto v : adj[cur]) {
+        for (int v : adj[cur]) {
             if (ord[v] == -1) {
                 Dfs(cur, v, idx);
                 low[cur] = std::min(low[cur], low[v]);
@@ -109,9 +96,9 @@ int main() {
     g.BiconnectedComponent();
 
     // Output for AOJ GRL_3_B: Bridge
-    for (auto &e : g.bridge) if (e[1] < e[0]) std::swap(e[0], e[1]);
+    for (auto &e : g.bridge) if (e.second < e.first) std::swap(e.first, e.second);
     std::sort(g.bridge.begin(), g.bridge.end());
-    for (auto e : g.bridge) std::cout << e[0] << ' ' << e[1] << '\n';
+    for (auto e : g.bridge) std::cout << e.first << ' ' << e.second << '\n';
 
     return 0;
 }

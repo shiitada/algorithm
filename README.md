@@ -13,7 +13,7 @@ C++ implementations of algorithms
 - [Recognition of chordal graph](graph/is_chordal.cc)
 - [Lexicographic breadth first search](graph/lexicographic_bfs.cc)
 - [Tree isomorphism](graph/tree_isomorphism.cc)
-- [2-Edge connected components (enumerating all bridges) by Hopcroft and Tarjan](graph/bridge.cc)
+- [2-edge connected components (enumerating all bridges) by Hopcroft and Tarjan](graph/bridge.cc)
 
 ## Shortest Path Problem
 ### Single Source Shortest Path Problem
