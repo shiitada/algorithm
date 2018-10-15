@@ -44,7 +44,7 @@ C++ implementations of algorithms
 - [Counting sort](other/counting_sort.cc)
 - [0-1 Knapsack problem (branch and bound method)](other/01knapsack_problem_branch_and_bound.cc)
 
-## Pseudorandom Numbers
+## Pseudorandom Number Generator
 - [XorShift128 plus by Blackman, Vigna](other/xor_shift128_plus.cc)
 
 
