@@ -10,11 +10,13 @@ C++ implementations of algorithms
 
 # Graph
 - [Bipartite maximum matching](graph/bipartite_maximum_matching.cc)
-- [Recognition of chordal graph](graph/is_chordal.cc)
 - [Lexicographic breadth first search](graph/lexicographic_bfs.cc)
-- [Tree isomorphism](graph/tree_isomorphism.cc)
 - [2-edge connected components (enumerating all bridges) by Hopcroft and Tarjan](graph/bridge.cc)
 - [2-vertex connected components (enumerating all articulation points)](graph/articulation_point.cc)
+
+## Recognition Problem
+- [Tree isomorphism](graph/tree_isomorphism.cc)
+- [Recognition of chordal graph](graph/is_chordal.cc)
 
 ## Shortest Path Problem
 ### Single Source Shortest Path Problem
