@@ -33,6 +33,7 @@
 struct UnionFind {
     std::vector<int> data;
 
+    UnionFind() {}
     UnionFind(int size) : data(size, -1) {}
 
     bool unite(int x, int y) {
