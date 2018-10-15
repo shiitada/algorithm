@@ -52,24 +52,6 @@
 #include <algorithm>
 
 //  @require ./data_structure/union_find.cc 👇👇
-struct UnionFind {
-    std::vector<int> data;
-
-    UnionFind() {}
-    UnionFind(int size) : data(size, -1) {}
-
-    bool unite(int x, int y) {
-        x = root(x); y = root(y);
-        if (x != y) {
-            if (data[y] < data[x]) std::swap(x, y);
-            data[x] += data[y]; data[y] = x;
-        }
-        return x != y;
-    }
-    bool find(int x, int y) { return root(x) == root(y); }
-    int size(int x) { return -data[root(x)]; }
-    int root(int x) { return data[x] < 0 ? x : data[x] = root(data[x]); }
-};
 
 // -------------8<------- start of library -------8<------------------------
 struct Graph {
@@ -114,8 +96,7 @@ struct Graph {
         for (int idx : art) is_art[idx] = true;
         for (int v = 0; v < n; ++v) {
             if (is_art[v]) continue;
-            for (auto u : adj[v])
-                if (!is_art[u]) comp.unite(u, v);
+            for (auto u : adj[v]) if (!is_art[u]) comp.unite(u, v);
         }
     }
 };

@@ -21,7 +21,7 @@
   # Usage
     - Graph g(n): 頂点数 n の無向グラフを構成
     - g.add_edge(u, v): g に辺 {u, v} を追加
-    - g.BiconnectedComponent(): g を2辺連結成分分解して橋の数を返す
+    - g.Bridge(): g を2辺連結成分分解して橋の数を返す
     - e = g.bridge[i]: i番目の橋 {e.first, e.second}
     - g.ord[v]: 頂点 v のDfsで訪れた順番
     - g.low[v]: 頂点 v の lowlink (lowlink が同じ値の頂点は同じ2辺連結成分に属する)
@@ -57,7 +57,7 @@ struct Graph {
 
     void add_edge(int u, int v) { adj[u].push_back(v); adj[v].push_back(u); }
 
-    int BiconnectedComponent() {
+    int Bridge() {
         for (int v = 0, idx = 0; v < n; ++v)
             if (ord[v] == -1) Dfs(-1, v, idx);
 
@@ -93,7 +93,7 @@ int main() {
         g.add_edge(v[0], v[1]);
     }
 
-    g.BiconnectedComponent();
+    g.Bridge();
 
     // Output for AOJ GRL_3_B: Bridge
     for (auto &e : g.bridge) if (e.second < e.first) std::swap(e.first, e.second);
