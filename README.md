@@ -18,14 +18,14 @@ C++ implementations of algorithms
 - [Tree isomorphism](graph/tree_isomorphism.cc)
 - [Recognition of chordal graph](graph/is_chordal.cc)
 
-## Shortest Path Problem
-### Single Source Shortest Path Problem
+## Shortest Paths Problem
+### Single Source Shortest Paths Problem
 - [Dijkstra's algorithm: only distance](graph/dijkstra.cc)
 - [Dijkstra's algorithm with heap: only distance](graph/dijkstra_heap.cc)
 - [Dijkstra's algorithm with heap: distance and path](graph/dijkstra_heap_sol.cc)
 - [Bellman-Ford algorithm: only distance and check for negative cycles](graph/bellman_ford.cc)
 
-### All Pairs Shortest Path Problem
+### All Pairs Shortest Paths Problem
 - [Floyd-Warshall algorithm: only distance](graph/floyd_warshall.cc)
 
 
