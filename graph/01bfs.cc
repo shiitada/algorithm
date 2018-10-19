@@ -1,7 +1,7 @@
 /*
-  Single Source Shortest Paths in a Binary Weight Problem (0-1 BFS)
+  Single Source Shortest Paths Problem in a Binary Weighted Digraph (0-1 BFS)
   0-1 重み付きグラフの単一始点全終点最短路問題（0-1 BFS）
-  =================================================================
+  ==========================================================================
 
   # Problem
     Input: 有向グラフ G = (V, E), 辺重み w : E -> {0, 1}, 始点 s
@@ -19,7 +19,7 @@
     - g.ShortestDistance(t): s から t への最短距離を返す. 経路が存在しない場合は -1 を返す
 
   # Description
-    重みが 1 だけの最短路問題は幅優先探索(Breadth First Search; BFS)を用いると O(n + m)時間で
+    重みが 1 だけの最短路問題は幅優先探索(Breadth First Search; BFS)を用いて O(n + m)時間で
     解くことができるが，重みに 0 が含まれると工夫が必要である．
     重みが 0, 1 の最短路問題は double-ended queue (二重終端キュー; デック) を用いる．
     デックとは先頭と末尾の要素へのアクセス・削除・追加が O(1)時間で可能なデータ構造である．
