@@ -24,6 +24,7 @@ C++ implementations of algorithms
 - [Dijkstra's algorithm with heap: only distance](graph/dijkstra_heap.cc)
 - [Dijkstra's algorithm with heap: distance and path](graph/dijkstra_heap_sol.cc)
 - [Bellman-Ford algorithm: only distance and check for negative cycles](graph/bellman_ford.cc)
+- [0-1 BFS algorithm in a binary weighted graph](graph/01bfs.cc)
 
 ### All Pairs Shortest Paths Problem
 - [Floyd-Warshall algorithm: only distance](graph/floyd_warshall.cc)
