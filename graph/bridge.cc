@@ -40,6 +40,8 @@
   # Verified
     - [AOJ GRL_3_B Connected Components - Bridges]
       (http://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=GRL_3_B)
+    - [Atcoder Beginner Contest 075 C - Bridges]
+      (https://beta.atcoder.jp/contests/abc075/tasks/abc075_c)
 */
 
 #include <iostream>
