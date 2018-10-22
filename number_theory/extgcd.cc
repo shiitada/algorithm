@@ -23,17 +23,17 @@
 #include <bits/stdc++.h> // Replace needed headers for speed up
 
 // -------------8<------- start of library -------8<------------------------
-using ll = long long;
+using Int = long long;
 
-ll ExtGcd(ll a, ll b, ll &x, ll &y) {
-    ll g = a; x = 1ll; y = 0ll;
+Int ExtGcd(Int a, Int b, Int &x, Int &y) {
+    Int g = a; x = 1; y = 0;
     if (b != 0) { g = ExtGcd(b, a % b, y, x); y-= (a / b) * x; }
     return g;
 }
 // -------------8<------- end of library ---------8-------------------------
 
 int main() {
-    ll a, b, x, y;
+    Int a, b, x, y;
     std::cin >> a >> b;
 
     ExtGcd(a, b, x, y);
