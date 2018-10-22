@@ -112,6 +112,7 @@ struct ModInt {
 std::ostream &operator<<(std::ostream &os, const ModInt &r) { return os << r.v; }
 std::istream &operator>>(std::istream &is, ModInt &r) { is >> r.v; r.set();return is; }
 
+ModInt pow(const Int p, const Int e) { return ModInt(p).pow(e); }
 std::vector<ModInt> Inverse(const Int n = ModInt::mod - 1) {
     constexpr Int mod = ModInt::mod;
     std::vector<ModInt> inv(n + 1);

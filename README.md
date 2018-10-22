@@ -13,7 +13,7 @@ C++ implementations of algorithms
 - [Lexicographic breadth first search](graph/lexicographic_bfs.cc)
 - [2-edge connected components (enumerating all bridges) by Hopcroft and Tarjan](graph/bridge.cc)
 - [2-vertex connected components (enumerating all articulation points)](graph/articulation_point.cc)
-- [Lowest Common Ancestor by doubling](graph/lca_doubling.cc)
+- [Lowest common ancestor by doubling](graph/lca_doubling.cc)
 
 ## Recognition Problem
 - [Tree isomorphism](graph/tree_isomorphism.cc)

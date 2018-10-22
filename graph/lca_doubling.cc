@@ -64,7 +64,7 @@ struct LowestCommonAncestor {
         root(_r), UB(log2(_n) + 1), n(_n), adj(n),
         par(UB, std::vector<int>(n)), dep(n) {}
 
-    void add_edge(int v1, int v2) { adj[v1].push_back(v2); adj[v2].push_back(v1); }
+    void add_edge(int u, int v) { adj[u].push_back(v); adj[v].push_back(u); }
 
     void Preprocessing() {
         Dfs(root, -1, 0);
