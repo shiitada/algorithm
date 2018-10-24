@@ -42,21 +42,17 @@
 // -------------8<------- start of library -------8<------------------------
 template<class T>
 struct Graph {
-    struct Edge {
-        int dst; T w;
-        Edge(int _d, T _w) : dst(_d), w(_w) {}
-    };
-
-    const int n, s, INF;
+    const T INF;
+    const int n, s;
     bool is_neg_cycle;
-    std::vector<std::vector<Edge>> adj;
+    std::vector<std::vector<std::pair<int, T>>> adj;
     std::vector<T> d;
 
     Graph(int _n, int _s)
-        : n(_n), s(_s), INF(std::numeric_limits<T>::max()),
+        : INF(std::numeric_limits<T>::max()), n(_n), s(_s),
           is_neg_cycle(false), adj(n), d(n, INF) { }
 
-    void add_edge(int u, int v, T w) { adj[u].emplace_back(Edge(v, w)); }
+    void add_edge(int u, int v, T w) { adj[u].emplace_back(std::make_pair(v, w)); }
     T ShortestDistance(const int t) const { return d[t]; }
     bool IsNegativeCycleFromS() const { return is_neg_cycle; }
 
@@ -72,8 +68,8 @@ struct Graph {
             bool update = false;
             for (int v = 0; v < n; ++v)
                 for (const auto &e : adj[v])
-                    if (d[v] < INF && d[v] + e.w < d[e.dst]) {
-                        d[e.dst] = d[v] + e.w;
+                    if (d[v] < INF && d[v] + e.second < d[e.first]) {
+                        d[e.first] = d[v] + e.second;
                         update = true;
                     }
             if (!update) break;
