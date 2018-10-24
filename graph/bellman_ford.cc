@@ -12,20 +12,23 @@
     Memory: O(n + m)
 
   # Usage
-    - Graph<T> g(n, s): 辺重みの型T，頂点数 n, 始点 s のグラフを構築．
-                        2点間最短距離で終点 t が決まっている場合は g(n, s, t) とする
+    - Graph<T> g(n, src): 辺重みの型T，頂点数 n, 始点 src のグラフを構築．
+                        2点間最短距離で終点 t が決まっている場合は g(n, src, t) とする
     - g.add_edge(u, v, w): 重み w の弧 (u, v) を追加
     - g.BellmanFord(): ベルマン・フォード法で最短距離を求める
-    - g.ShortestDistance(t): s から t への最短距離を返す. g.INF と等しい場合は最短距離は存在しない
-    - g.IsNegativeCycle(): s から到達可能な負閉路が存在するとき true を返す
+    - g.ShortestDistance(t): src から t への最短距離を返す. g.INF と等しい場合は最短距離は存在しない
+    - g.IsNegativeCycle(): src から到達可能な負閉路が存在するとき true を返す
 
     - g.CheckNegativeCycle(): g に負閉路が存在するか判定する（d は最短距離とは限らない値となる）
 
   # Note
-    - d[s] = 0 として初期化すると，s から到達可能な負閉路の検出ができる．
+    - d[src] = 0 として初期化すると，src から到達可能な負閉路の検出ができる．
      （d[v] = min_{(u, v) \in E} d[u] を各ステップ毎に計算．n回目に更新されたら負閉路が存在する）
     - 負閉路の検出を行いたい場合は各頂点 v に対して d[v] = 0 としてベルマン・フォード法を実行する
       そのとき，d[v] は最短距離を表していないので注意
+    - src からある頂点 v への最短距離が有界かどうかを判定するには，ベルマン・フォード法を実行した後に，
+      再度 n 回ループを回す．このとき，更新されるすべての頂点の最短距離は有界ではない．
+      (cf. AtCoder Beginner Contest 061 D - Score Attack)
 
   # References
     - あり本 pp. 95--96
@@ -43,13 +46,13 @@
 template<class T>
 struct Graph {
     const T INF;
-    const int n, s;
+    const int n, src;
     bool is_neg_cycle;
     std::vector<std::vector<std::pair<int, T>>> adj;
     std::vector<T> d;
 
     Graph(int _n, int _s)
-        : INF(std::numeric_limits<T>::max()), n(_n), s(_s),
+        : INF(std::numeric_limits<T>::max()), n(_n), src(_s),
           is_neg_cycle(false), adj(n), d(n, INF) { }
 
     void add_edge(int u, int v, T w) { adj[u].emplace_back(std::make_pair(v, w)); }
@@ -63,7 +66,7 @@ struct Graph {
     }
 
     void BellmanFord() {
-        d[s] = 0;
+        d[src] = 0;
         for (int i = 0; ; ++i) {
             bool update = false;
             for (int v = 0; v < n; ++v)
