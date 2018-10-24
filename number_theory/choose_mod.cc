@@ -40,7 +40,7 @@ ModInt Factorial(int n) {
     while (--n) fact *= n;
     return fact;
 }
-inline ModInt InvFactorial(int n) { return Fact(n).inv(); }
+inline ModInt InvFactorial(int n) { return Factorial(n).inv(); }
 
 ModInt Permutation(int n, int k) {
     if (k < 0 || n < k) return ModInt(0);
