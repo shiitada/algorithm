@@ -14,6 +14,7 @@ C++ implementations of algorithms
 - [2-edge connected components (enumerating all bridges) by Hopcroft and Tarjan](graph/bridge.cc)
 - [2-vertex connected components (enumerating all articulation points)](graph/articulation_point.cc)
 - [Lowest common ancestor by doubling](graph/lca_doubling.cc)
+- [Diameter of a tree](graph/tree_diameter.cc)
 
 ## Recognition Problem
 - [Tree isomorphism](graph/tree_isomorphism.cc)
