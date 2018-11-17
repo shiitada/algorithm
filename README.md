@@ -11,8 +11,6 @@ C++ implementations of algorithms
 # Graph
 - [Bipartite maximum matching](graph/bipartite_maximum_matching.cc)
 - [Lexicographic breadth first search](graph/lexicographic_bfs.cc)
-- [2-edge connected components (enumerating all bridges) by Hopcroft and Tarjan](graph/bridge.cc)
-- [2-vertex connected components (enumerating all articulation points)](graph/articulation_point.cc)
 - [Lowest common ancestor by doubling](graph/lca_doubling.cc)
 - [Diameter of a tree](graph/tree_diameter.cc)
 
@@ -30,6 +28,11 @@ C++ implementations of algorithms
 
 ### All Pairs Shortest Paths Problem
 - [Floyd-Warshall algorithm: only distance](graph/floyd_warshall.cc)
+
+## Connected Components
+- [Strongly Connected Components by kosaraju](graph/strongly_connected_components_kosaraju.cc)
+- [2-edge connected components (enumerating all bridges) by Hopcroft and Tarjan](graph/bridge.cc)
+- [2-vertex connected components (enumerating all articulation points)](graph/articulation_point.cc)
 
 
 # Data Structure
