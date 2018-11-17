@@ -50,19 +50,19 @@
 #include <vector>
 
 // -------------8<------- start of library -------8<------------------------
-template<class T>
+template<class W>
 struct Tree {
     int n;
-    std::vector<std::vector<std::pair<int, T>>> adj;
+    std::vector<std::vector<std::pair<int, W>>> adj;
 
     Tree(int _n) : n(_n), adj(_n) {}
-    void add_edge(const int v1, const int v2, const T w) {
+    void add_edge(const int v1, const int v2, const W w) {
         adj[v1].emplace_back(std::make_pair(v2, w));
         adj[v2].emplace_back(std::make_pair(v1, w));
     }
 
-    std::pair<int, T> Dfs(const int prev, const int cur) {
-        std::pair<int, T> res(cur, 0);
+    std::pair<int, W> Dfs(const int prev, const int cur) {
+        std::pair<int, W> res(cur, 0);
         for (const auto &e : adj[cur]) {
             if (prev == e.first) continue;
             auto nxt = Dfs(cur, e.first); nxt.second += e.second;
@@ -72,7 +72,7 @@ struct Tree {
     }
 
     std::pair<int, int> farthest_pair;
-    T Diameter() {
+    W Diameter() {
         const auto v1 = Dfs(-1, 0), v2 = Dfs(-1, v1.first);
         farthest_pair = std::make_pair(v1.first, v2.first);
         return v2.second;
