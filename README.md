@@ -1,14 +1,14 @@
 C++ implementations of algorithms
 ===========================================
 
-# Template
+# 1. Template
 - [Template for competitive programming](template/template.cc)
 - [Simple template](template/short_template.cc)
 - [Template for algorithm](template/algorithm_template.cc)
 - [Template for marathon](template/marathon_template.cc)
 
 
-# Graph
+# 2. Graph
 - [Bipartite maximum matching](graph/bipartite_maximum_matching.cc)
 - [Lexicographic breadth first search](graph/lexicographic_bfs.cc)
 - [Lowest common ancestor by doubling](graph/lca_doubling.cc)
@@ -30,17 +30,17 @@ C++ implementations of algorithms
 - [Floyd-Warshall algorithm: only distance](graph/floyd_warshall.cc)
 
 ## Connected Components
-- [Strongly Connected Components by kosaraju](graph/strongly_connected_components_kosaraju.cc)
+- [Strongly connected components by kosaraju](graph/strongly_connected_components_kosaraju.cc)
 - [2-edge connected components (enumerating all bridges) by Hopcroft and Tarjan](graph/bridge.cc)
 - [2-vertex connected components (enumerating all articulation points)](graph/articulation_point.cc)
 
 
-# Data Structure
+# 3. Data Structure
 - [Fenwick tree (Binary Indexed Tree)](data_structure/fenwick_tree.cc)
 - [Union find](data_structure/union_find.cc)
 
 
-# Number Theory
+# 4. Number Theory
 - [Basic Modular arithmetics](number_theory/modular_arithmetics.cc)
 - [Binomial coefficient modulo prime (memorization)](number_theory/choose_mod_memo.cc)
 - [Binomial coefficient modulo prime (naive method)](number_theory/choose_mod.cc)
@@ -50,7 +50,7 @@ C++ implementations of algorithms
 - [Prime factorization - Trial division](number_theory/prime_fact.cc)
 
 
-# Other
+# 5. Other
 - [Counting sort](other/counting_sort.cc)
 - [0-1 Knapsack problem (branch and bound method)](other/01knapsack_problem_branch_and_bound.cc)
 
@@ -58,5 +58,5 @@ C++ implementations of algorithms
 - [XorShift128 plus by Blackman and Vigna](other/xor_shift128_plus.cc)
 
 
-# Comparing speed in C++
+# 6. Comparing speed in C++
 - [Is it true that std::vector\<bool\> is slow? (only flag usage)](compare_speed_cpp/vector_bool.cc)
