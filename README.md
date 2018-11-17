@@ -30,7 +30,7 @@ C++ implementations of algorithms
 - [Floyd-Warshall algorithm: only distance](graph/floyd_warshall.cc)
 
 ## Connected Components
-- [Strongly connected components by kosaraju](graph/strongly_connected_components_kosaraju.cc)
+- [Strongly connected components by kosaraju](graph/strongly_connected_component_kosaraju.cc)
 - [2-edge connected components (enumerating all bridges) by Hopcroft and Tarjan](graph/bridge.cc)
 - [2-vertex connected components (enumerating all articulation points)](graph/articulation_point.cc)
 
