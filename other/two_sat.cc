@@ -44,6 +44,7 @@
 
   # References
     - あり本．pp. 288-290.
+    - [CP-Algorithms 2-SAT](https://cp-algorithms.com/graph/2SAT.html)
 
   # Verified
     - [yukicoder No.274 The Wall](https://yukicoder.me/problems/no/274)
