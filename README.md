@@ -59,5 +59,8 @@ C++ implementations of algorithms
 - [XorShift128 plus by Blackman and Vigna](other/xor_shift128_plus.cc)
 
 
-# 6. Comparing speed in C++
+# 6. Complexity Theory
+
+
+# 7. Comparing speed in C++
 - [Is it true that std::vector\<bool\> is slow? (only flag usage)](compare_speed_cpp/vector_bool.cc)
