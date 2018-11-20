@@ -43,6 +43,8 @@
   # Verified
     - [AOJ GRL_5_A Tree - Diameter of a Tree]
       (http://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=GRL_5_A)
+    - [AOJ1196 Brdige Removal]
+      (http://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=1196)
 
 */
 
