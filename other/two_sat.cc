@@ -29,6 +29,12 @@
     - sat.Check(): 充足可能性かどうか（事前に sat.Solve() を行う）
     - sat.val[i]: x_i の真偽値割当（充足可能の場合のみ意味を持つ）
 
+  # Note
+    次の論理演算は 2SAT を保ちながら同値変形可能
+    　・含意 x => y: !x v y
+    　・同値 x <=> y: (!x v y) ^ (x v !y)
+    　・二重否定 !!x: x
+
   # Description
     k-SAT問題 (k >= 3) はNP完全だが，2-SAT問題は線形時間で解くことができる．
 
@@ -48,6 +54,7 @@
 
   # Verified
     - [yukicoder No.274 The Wall](https://yukicoder.me/problems/no/274)
+    - [POJ3905 Perfect Election](http://poj.org/problem?id=3905)
 */
 
 #include <iostream>
@@ -64,8 +71,8 @@ struct TwoSat {
     TwoSat(int _n) : n(_n), val(n + 1), g(2 * n) {}
 
     void add_clause(int lt1, bool ng1, int lt2, bool ng2) {
-        g.add_edge(lt1 + (ng1 ? 0 : n), lt2 + (ng2 ? n : 0));
-        g.add_edge(lt2 + (ng2 ? 0 : n), lt1 + (ng1 ? n : 0));
+        g.add_edge(lt1 + (ng1 ? n : 0), lt2 + (ng2 ? 0 : n));
+        g.add_edge(lt2 + (ng2 ? n : 0), lt1 + (ng1 ? 0 : n));
     }
 
     bool Check() const { return val[n]; }
@@ -76,7 +83,7 @@ struct TwoSat {
             if (g.scc[x] == g.scc[x + n]) return val[n] = false;
             val[x] = (g.scc[x] > g.scc[x + n]);
         }
-        return val[n];
+        return val[n] = true;
     }
 };
 // -------------8<------- end of library ---------8-------------------------
