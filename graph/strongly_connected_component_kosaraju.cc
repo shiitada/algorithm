@@ -75,7 +75,7 @@ struct Graph {
     }
 
     void StronglyConnectedComponents() {
-        std::vector<int> ord;
+      std::vector<int> ord; ord.reserve(n);
         for (int v = 0; v < n; ++v)
             if (!scc[v]) Dfs(v, ord);
 
