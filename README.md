@@ -64,3 +64,12 @@ C++ implementations of algorithms
 
 # 7. Comparing speed in C++
 - [Is it true that std::vector\<bool\> is slow? (only flag usage)](compare_speed_cpp/vector_bool.cc)
+
+
+# TODO Lists
++ []: Strongly connected components by Tarjan
++ []: Eulerian path (Fleury's algorithm)
++ []: Eulerian path (Hierholzer's algorithm)
++ []: Max cut prolbme on planar graph by F. Hadlock (1975)
++ []: The Random Walk Construction of Uniform Spanning Trees and Uniform Labelled Trees
+
