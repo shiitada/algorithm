@@ -67,9 +67,9 @@ C++ implementations of algorithms
 
 
 # TODO Lists
-+ []: Strongly connected components by Tarjan
-+ []: Eulerian path (Fleury's algorithm)
-+ []: Eulerian path (Hierholzer's algorithm)
-+ []: Max cut prolbme on planar graph by F. Hadlock (1975)
-+ []: The Random Walk Construction of Uniform Spanning Trees and Uniform Labelled Trees
++ Strongly connected components by Tarjan
++ Eulerian path (Fleury's algorithm)
++ Eulerian path (Hierholzer's algorithm)
++ Max cut prolbme on planar graph by F. Hadlock (1975)
++ The Random Walk Construction of Uniform Spanning Trees and Uniform Labelled Trees
 
