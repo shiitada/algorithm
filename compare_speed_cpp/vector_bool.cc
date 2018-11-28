@@ -16,45 +16,45 @@
   Result executed this code on my computer.
     - OS : Ubuntu 18.04.1 LTS (Bionic Beaver)
     - Compiler : gcc version 7.3.0, clang version 6.0.0
-  ================================================================================
+  ==============================================================================
                                gcc version 7.3.0        clang version 6.0.0
-  ================================================================================
+  ==============================================================================
   n = 1000                  sequcence     random       sequcence     random
-  boost::dynamic_bitset<> :         1,         1 [ms]	         0,         1 [ms]
-        std::vector<bool> :         1,         1 [ms]	         0,         1 [ms]
-        std::vector<char> :         0,         0 [ms]	         0,         0 [ms]
-         std::vector<int> :         0,         0 [ms]	         0,         0 [ms]
+  boost::dynamic_bitset<> :         1,         1 [ms]          0,         1 [ms]
+        std::vector<bool> :         1,         1 [ms]          0,         1 [ms]
+        std::vector<char> :         0,         0 [ms]          0,         0 [ms]
+         std::vector<int> :         0,         0 [ms]          0,         0 [ms]
 
   n = 10000                 sequcence     random       sequcence     random
-  boost::dynamic_bitset<> :        10,        13 [ms]	         9,        17 [ms]
-        std::vector<bool> :        11,        14 [ms]	         9,        17 [ms]
-        std::vector<char> :         4,        11 [ms]	         3,         9 [ms]
-         std::vector<int> :         4,        11 [ms]	         2,        10 [ms]
+  boost::dynamic_bitset<> :        10,        13 [ms]          9,        17 [ms]
+        std::vector<bool> :        11,        14 [ms]          9,        17 [ms]
+        std::vector<char> :         4,        11 [ms]          3,         9 [ms]
+         std::vector<int> :         4,        11 [ms]          2,        10 [ms]
 
   n = 100000                sequcence     random       sequcence     random
-  boost::dynamic_bitset<> :       117,       150 [ms]	       106,       211 [ms]
-        std::vector<bool> :       116,       148 [ms]	       110,       209 [ms]
-        std::vector<char> :        48,       151 [ms]	        43,       161 [ms]
-         std::vector<int> :        44,       173 [ms]	        29,       187 [ms]
+  boost::dynamic_bitset<> :       117,       150 [ms]        106,       211 [ms]
+        std::vector<bool> :       116,       148 [ms]        110,       209 [ms]
+        std::vector<char> :        48,       151 [ms]         43,       161 [ms]
+         std::vector<int> :        44,       173 [ms]         29,       187 [ms]
 
   n = 1000000               sequcence     random       sequcence     random
-  boost::dynamic_bitset<> :      1113,      1636 [ms]	       972,      2051 [ms]
-        std::vector<bool> :      1162,      1615 [ms]	       975,      2066 [ms]
-        std::vector<char> :       475,      2706 [ms]	       366,      2632 [ms]
-         std::vector<int> :       485,      2647 [ms]	       303,      2639 [ms]
+  boost::dynamic_bitset<> :      1113,      1636 [ms]        972,      2051 [ms]
+        std::vector<bool> :      1162,      1615 [ms]        975,      2066 [ms]
+        std::vector<char> :       475,      2706 [ms]        366,      2632 [ms]
+         std::vector<int> :       485,      2647 [ms]        303,      2639 [ms]
 
   n = 5000000               sequcence     random       sequcence     random
-  boost::dynamic_bitset<> :      5563,     12924 [ms]	      4823,     14937 [ms]
-        std::vector<bool> :      6635,     12717 [ms]	      5617,     14985 [ms]
-        std::vector<char> :      2837,     16630 [ms]	      2277,     16864 [ms]
-         std::vector<int> :      2606,     36168 [ms]	      2410,     37181 [ms]
+  boost::dynamic_bitset<> :      5563,     12924 [ms]       4823,     14937 [ms]
+        std::vector<bool> :      6635,     12717 [ms]       5617,     14985 [ms]
+        std::vector<char> :      2837,     16630 [ms]       2277,     16864 [ms]
+         std::vector<int> :      2606,     36168 [ms]       2410,     37181 [ms]
 
   n = 10000000              sequcence     random       sequcence     random
-  boost::dynamic_bitset<> :     11938,     27350 [ms]	     10334,     30573 [ms]
-        std::vector<bool> :     13275,     27192 [ms]	     11431,     30518 [ms]
-        std::vector<char> :      5723,     58778 [ms]	      4470,     57117 [ms]
-         std::vector<int> :      5404,     82234 [ms]	      4745,     81819 [ms]
-  --------------------------------------------------------------------------------
+  boost::dynamic_bitset<> :     11938,     27350 [ms]      10334,     30573 [ms]
+        std::vector<bool> :     13275,     27192 [ms]      11431,     30518 [ms]
+        std::vector<char> :      5723,     58778 [ms]       4470,     57117 [ms]
+         std::vector<int> :      5404,     82234 [ms]       4745,     81819 [ms]
+  ------------------------------------------------------------------------------
 */
 
 #include <iostream>
