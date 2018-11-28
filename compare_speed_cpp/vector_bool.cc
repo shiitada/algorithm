@@ -15,6 +15,9 @@
 
   Result executed this code on my computer.
     - OS : Ubuntu 18.04.1 LTS (Bionic Beaver)
+    - Memory: 7.7 GiB
+    - Processor: Intel Core i7-5600U CPU @ 2.60GHz x 4
+    - Disk: SSD 491.2GB
     - Compiler : gcc version 7.3.0, clang version 6.0.0
   ==============================================================================
                                gcc version 7.3.0        clang version 6.0.0
