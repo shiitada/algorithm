@@ -70,7 +70,7 @@
   # Verified
     + Eulerian cycle
       - [AOJ 0225](http://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=0225)
-    + Eulerian cycle and Eulerian tour
+    + Eulerian cycle and Eulerian path
       - [POJ 1386](http://poj.org/problem?id=1386)
 */
 
