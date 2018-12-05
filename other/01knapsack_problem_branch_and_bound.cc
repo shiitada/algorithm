@@ -18,14 +18,18 @@
     とする限定操作を行う．
 
   # References
-    - 岡本吉央，最適化手法 第3回 整数計画法(3) : 緩和問題とその威力
-    - Taknori Maehara, Github algorithm/other/knapsack_expcore.cc
+    - [岡本吉央，最適化手法 第3回 整数計画法(3) : 緩和問題とその威力]
+      (http://dopal.cs.uec.ac.jp/okamotoy/lect/2013/opt/lect03.pdf)
+    - [Taknori Maehara, Github algorithm/other/knapsack_expcore.cc]
+      (https://github.com/spaghetti-source/algorithm/blob/master/other/knapsack_expcore.cc)
 
   # Verified
-    Case#34でTLE（他はAC）
     - [AOJ Combinatorial - 0-1 Knapsack Problem]
       (http://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=DPL_1_B)
-
+      Case#34でTLE（他はAC）
+    - [Instances of 0/1 Knapsack Problem]
+      (http://artemisa.unicauca.edu.co/~johnyortega/instances_01_KP/)
+      large_scale/knapPI_3_*_1 (2000 <= *) は10分以上かかったので打ち切り
 */
 
 #include <iostream>
@@ -43,7 +47,7 @@ public:
     Knapsack(const int _n, const T _c) :
         size(_n), opt_item(_n, false), capacity(_c), n(0), item(_n), used(_n, false) {}
 
-    void add_item(const int v, const int w) {
+    void add_item(const T v, const T w) {
         item[n].v = v;
         item[n++].w = w;
     }
@@ -134,4 +138,3 @@ int main() {
 
     return 0;
 }
-
