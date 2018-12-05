@@ -17,6 +17,7 @@ C++ implementations of algorithms
 ## Recognition Problem
 - [Tree isomorphism](graph/tree_isomorphism.cc)
 - [Recognition of chordal graph](graph/is_chordal.cc)
+- [Eulerian graph by hierholzer](graph/hierholzer_undirected.cc)
 - [Eulerian digraph by hierholzer](graph/hierholzer_directed.cc)
 
 ## Shortest Paths Problem
@@ -69,7 +70,6 @@ C++ implementations of algorithms
 
 # TODO Lists
 + Strongly connected components by Tarjan
-+ Eulerian path (Hierholzer's algorithm)
 + Max cut prolbme on planar graph by F. Hadlock (1975)
 + The Random Walk Construction of Uniform Spanning Trees and Uniform Labelled Trees
 
