@@ -17,8 +17,8 @@ C++ implementations of algorithms
 ## Recognition Problem
 - [Tree isomorphism](graph/tree_isomorphism.cc)
 - [Recognition of chordal graph](graph/is_chordal.cc)
-- [Eulerian graph by hierholzer](graph/hierholzer_undirected.cc)
-- [Eulerian digraph by hierholzer](graph/hierholzer_directed.cc)
+- [Eulerian graph by Hierholzer](graph/hierholzer_undirected.cc)
+- [Eulerian digraph by Hierholzer](graph/hierholzer_directed.cc)
 
 ## Shortest Paths Problem
 ### Single Source Shortest Paths Problem
@@ -32,7 +32,7 @@ C++ implementations of algorithms
 - [Floyd-Warshall algorithm: only distance](graph/floyd_warshall.cc)
 
 ## Connected Components
-- [Strongly connected components by kosaraju](graph/strongly_connected_component_kosaraju.cc)
+- [Strongly connected components by Kosaraju](graph/strongly_connected_component_kosaraju.cc)
 - [2-edge connected components (enumerating all bridges) by Hopcroft and Tarjan](graph/bridge.cc)
 - [2-vertex connected components (enumerating all articulation points)](graph/articulation_point.cc)
 
@@ -40,7 +40,7 @@ C++ implementations of algorithms
 # 3. Data Structure
 - [Fenwick tree (Binary Indexed Tree)](data_structure/fenwick_tree.cc)
 - [Union find](data_structure/union_find.cc)
-- [Initializable array by bentley](data_structure/initializable_array_bentley.cc)
+- [Initializable array by Bentley](data_structure/initializable_array_bentley.cc)
 
 # 4. Number Theory
 - [Basic Modular arithmetics](number_theory/modular_arithmetics.cc)
