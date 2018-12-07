@@ -40,7 +40,7 @@ C++ implementations of algorithms
 # 3. Data Structure
 - [Fenwick tree (Binary Indexed Tree)](data_structure/fenwick_tree.cc)
 - [Union find](data_structure/union_find.cc)
-
+- [Initializable array by bentley](data_structure/initializable_array_bentley.cc)
 
 # 4. Number Theory
 - [Basic Modular arithmetics](number_theory/modular_arithmetics.cc)
