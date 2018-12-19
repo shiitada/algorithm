@@ -15,10 +15,12 @@ C++ implementations of algorithms
 - [Diameter of a tree](graph/tree_diameter.cc)
 
 ## Recognition Problem
-- [Tree isomorphism](graph/tree_isomorphism.cc)
 - [Recognition of chordal graph](graph/is_chordal.cc)
 - [Eulerian graph by Hierholzer](graph/hierholzer_undirected.cc)
 - [Eulerian digraph by Hierholzer](graph/hierholzer_directed.cc)
+
+## Graph Isomorphism Problem
+- [Tree isomorphism](graph/tree_isomorphism.cc)
 
 ## Shortest Paths Problem
 ### Single Source Shortest Paths Problem
@@ -41,6 +43,7 @@ C++ implementations of algorithms
 - [Fenwick tree (Binary Indexed Tree)](data_structure/fenwick_tree.cc)
 - [Union find](data_structure/union_find.cc)
 - [Initializable array by Bentley](data_structure/initializable_array_bentley.cc)
+
 
 # 4. Number Theory
 - [Basic Modular arithmetics](number_theory/modular_arithmetics.cc)
