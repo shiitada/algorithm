@@ -1,7 +1,7 @@
 /*
-  Chordal Graph Recognition
-  弦グラフの同型性判定問題
-  =========================
+  Chordal Graph Recognition Problem
+  弦グラフの認識問題
+  =================================
 
   # Problem
     Input: Undirected Graph G = (V, E)
