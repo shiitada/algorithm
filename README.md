@@ -40,6 +40,8 @@ C++ implementations of algorithms
 - [2-edge connected components (enumerating all bridges) by Hopcroft and Tarjan](graph/bridge.cc)
 - [2-vertex connected components (enumerating all articulation points)](graph/articulation_point.cc)
 
+## Random Graph Generator
+- [Erdos-Renyi random graph](graph/erdos_renyi.cc)
 
 # 3. Data Structure
 - [Fenwick tree (Binary Indexed Tree)](data_structure/fenwick_tree.cc)
