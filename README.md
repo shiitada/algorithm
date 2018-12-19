@@ -16,6 +16,7 @@ C++ implementations of algorithms
 
 ## Recognition Problem
 - [Recognition of chordal graph](graph/is_chordal.cc)
+- [Recognition of cactus](graph/is_cactus.cc)
 - [Eulerian graph by Hierholzer](graph/hierholzer_undirected.cc)
 - [Eulerian digraph by Hierholzer](graph/hierholzer_directed.cc)
 
