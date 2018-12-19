@@ -15,6 +15,7 @@ C++ implementations of algorithms
 - [Diameter of a tree](graph/tree_diameter.cc)
 
 ## Recognition Problem
+- [Recognition of bipartite graph](graph/is_bipartite.cc)
 - [Recognition of chordal graph](graph/is_chordal.cc)
 - [Recognition of cactus](graph/is_cactus.cc)
 - [Eulerian graph by Hierholzer](graph/hierholzer_undirected.cc)

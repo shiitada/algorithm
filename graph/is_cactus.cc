@@ -43,7 +43,7 @@
     - [POJ2793 Cactus](http://poj.org/problem?id=2793)
 */
 
-#include <cstdio>
+#include <iostream>
 #include <vector>
 
 // -------------8<------- start of library -------8<------------------------
@@ -91,21 +91,16 @@ struct Graph {
 // -------------8<------- end of library ---------8-------------------------
 
 int main() {
-    int n, n_path;
-    scanf("%d %d", &n, &n_path);
+    int n, m, v[2];
+    std::cin >> n >> m;
 
     Graph g(n);
-    for (int i = 0, size, bf, cur; i < n_path; ++i) {
-        scanf("%d %d", &size, &bf);
-        while (--size) {
-            scanf("%d", &cur);
-            g.add_edge(cur - 1, bf - 1);
-            bf = cur;
-        }
+    for (int i = 0; i < m; ++i) {
+        std::cin >> v[0] >> v[1];
+        g.add_edge(v[0], v[1]);
     }
 
-    if (g.IsCactus()) puts("Yes");
-    else puts("No");
+    std::cout << (g.IsCactus() ? "Yes " : "No ") << "Cactus\n";
 
     return 0;
 }
