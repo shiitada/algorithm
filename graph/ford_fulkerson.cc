@@ -30,6 +30,7 @@
 
   # References
     - あり本. pp. 188--195
+    - [保坂和宏，ネットワークフロー入門](http://hos.ac/slides/20150319_flow.pdf)
 
   # Verified
     - [AOJ Network Flow - Maximum Flow]
