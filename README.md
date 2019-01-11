@@ -42,7 +42,7 @@ C++ implementations of algorithms
 - [2-vertex connected components (enumerating all articulation points)](graph/articulation_point.cc)
 
 ## Maximum Flow Problem
-- [Ford-Fulkerson algorithm](graph/ford_fulkerson.cc)
+- [Ford-Fulkerson algorithm](graph/maximum_flow_ford_fulkerson.cc)
 
 ## Random Graph Generator
 - [Erdos-Renyi random graph](graph/erdos_renyi.cc)
