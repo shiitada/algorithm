@@ -55,7 +55,7 @@ std::vector<bool> MinimalVertexCover(const Graph &g) {
     std::vector<bool> vc(g.n, false);
     for (int v = 0; v < g.n; ++v) {
         for (int u : g.adj[v])
-            if (!vc[v] & !vc[u]) vc[v] = vc[u] = true;
+            if (!vc[v] && !vc[u]) vc[v] = vc[u] = true;
     }
     return vc;
 }
@@ -63,7 +63,7 @@ std::vector<bool> MinimalVertexCover(const Graph &g) {
 bool CheckVertexCover(const Graph &g, const std::vector<bool> &vc) {
     for (int v = 0; v < g.n; ++v)
         for (int u : g.adj[v])
-            if (!vc[v] & !vc[u]) return false;
+            if (!vc[v] && !vc[u]) return false;
     return true;
 }
 // -------------8<------- end of library ---------8-------------------------
