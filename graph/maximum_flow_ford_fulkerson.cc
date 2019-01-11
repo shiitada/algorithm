@@ -1,6 +1,6 @@
 /*
-  Maximum flow problem (Ford-Fulkerson algorithm)
-  最大流問題（フォード・ファルカーソンのアルゴリズム）
+  Maximum flow problem (Ford-Fulkerson method)
+  最大流問題（フォード・ファルカーソン法）
   ===============================================
 
   # Problem
