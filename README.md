@@ -63,16 +63,16 @@ C++ implementations of algorithms
 - [Prime factorization - Trial division](number_theory/prime_fact.cc)
 
 
-# 5. Other
+# 5. Approximation Algorithms
+- [Vertex cover problem (using maximal matching): 2-approximation algorithm](approximation_algorithm/vertex_cover_by_maximal_matching_2apx.cc)
+
+# 6. Other
 - [Counting sort](other/counting_sort.cc)
 - [0-1 Knapsack problem (branch and bound method)](other/01knapsack_problem_branch_and_bound.cc)
 - [2-satisfiability problem](other/two_sat.cc)
 
 ## Pseudorandom Number Generator
 - [XorShift128 plus by Blackman and Vigna](other/xor_shift128_plus.cc)
-
-
-# 6. Complexity Theory
 
 
 # 7. Comparing speed in C++
