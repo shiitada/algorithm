@@ -1,5 +1,5 @@
 /*
-  Maximum flow problem (Ford-Fulkerson method)
+  Maximum Flow Problem (Ford-Fulkerson method)
   最大流問題（フォード・ファルカーソン法）
   ===============================================
 
