@@ -43,6 +43,7 @@ C++ implementations of algorithms
 
 ## Maximum Flow Problem
 - [Ford-Fulkerson algorithm](graph/maximum_flow_ford_fulkerson.cc)
+- [Dinic's algorithm](graph/maximum_flow_dinic.cc)
 
 ## Random Graph Generator
 - [Erdos-Renyi random graph](graph/erdos_renyi.cc)
