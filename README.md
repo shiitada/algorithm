@@ -11,9 +11,7 @@ C++ implementations of algorithms
 # 2. Graph
 - [Bipartite maximum matching](graph/bipartite_maximum_matching.cc)
 - [Lexicographic breadth first search](graph/lexicographic_bfs.cc)
-- [Lowest common ancestor by doubling](graph/lca_doubling.cc)
-- [Lowest common ancestor by euler tour](graph/lca_euler_tour.cc)
-- [Diameter of a tree](graph/tree_diameter.cc)
+- [Prüfer sequence](graph/prufer_sequence.cc)
 
 ## Recognition Problem
 - [Recognition of bipartite graph](graph/is_bipartite.cc)
@@ -40,6 +38,11 @@ C++ implementations of algorithms
 - [Strongly connected components by Kosaraju](graph/strongly_connected_component_kosaraju.cc)
 - [2-edge connected components (enumerating all bridges) by Hopcroft and Tarjan](graph/bridge.cc)
 - [2-vertex connected components (enumerating all articulation points)](graph/articulation_point.cc)
+
+## Tree Problems
+- [Lowest common ancestor by doubling](graph/lca_doubling.cc)
+- [Lowest common ancestor by euler tour](graph/lca_euler_tour.cc)
+- [Diameter of a tree](graph/tree_diameter.cc)
 
 ## Maximum Flow Problem
 - [Ford-Fulkerson algorithm](graph/maximum_flow_ford_fulkerson.cc)
