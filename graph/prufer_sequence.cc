@@ -87,7 +87,7 @@ std::vector<int> TreeToPruferSequence(const Graph &tree) {
     return seq;
 }
 
-Graph PruferSequenceToTree(const std::vector<int> seq) {
+Graph PruferSequenceToTree(const std::vector<int> &seq) {
     const int n = seq.size() + 2;
     std::vector<int> deg(n, 1);
     for (const int v : seq) ++deg[v];
