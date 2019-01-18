@@ -50,7 +50,10 @@ C++ implementations of algorithms
 
 ## Random Graph Generator
 - [Erdos-Renyi random graph](graph/erdos_renyi.cc)
-- [Random labelled tree using prüfer sequence](graph/random_labelled_tree_prufer_sequence.cc)
+
+### Random Labelled Tree
+- [Prüfer sequence](graph/random_labelled_tree_prufer_sequence.cc)
+- [Wilson's algorithm](graph/random_labelled_tree_wilson.cc)
 
 # 3. Data Structure
 - [Fenwick tree (Binary Indexed Tree)](data_structure/fenwick_tree.cc)
