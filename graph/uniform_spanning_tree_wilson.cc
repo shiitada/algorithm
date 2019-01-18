@@ -43,7 +43,7 @@
 
   # Note
     - 計算時間がよくわからないが期待値計算時間はたぶん多項式
-    - G の全域木の数の近似値を求めることができる
+    - G の全域木の数の近似値を求めることができる（サンプル数が多くなるので行列木定理を用いる方がよい）
 
   # References
     - [Kohei Ozaki, Random Walk Proof of Kirchhoff's Matrix Tree Theorem]
