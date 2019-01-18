@@ -13,9 +13,14 @@
 
   # Usage
     - Graph RandomLabelledTree(n): 頂点数 n のラベル付き木を一様ランダムに生成して返す
+
     - Edges ConvertEdges(g): g を辺の集合に変換（分布を調べるために）
+    - bool CheckSpanningTree(tree): tree が木かどうかを判定
 
   # Description
+    Aldous's algorithm はランダムウォークをして与えられた無向グラフの全域木を一様ランダムに生成する．
+    無向グラフが頂点数 n の完全グラフのとき，生成されるのは頂点数 n のラベル付き木となる．
+    ラベル付き木を一様ランダムに生成する場合は Aldous's algorithm をシンプルにでき線形時間となる．
 
   # Note
     - ラベルなし木を一様ランダムに生成しているわけではないので注意（スターと道の確率が異なる）
