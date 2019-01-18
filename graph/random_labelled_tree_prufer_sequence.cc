@@ -1,6 +1,6 @@
 /*
-  Generating Random Labelled Tree using Prüfer Sequence
-  ラベル付き木を一様ランダムに生成（Prüfer sequence を使用）
+  Generating Random Labelled Tree: Prüfer Sequence
+  ラベル付き木を一様ランダムに生成： Prüfer sequence
   =====================================================
 
   # Problem
@@ -13,9 +13,10 @@
 
   # Usage
     - Graph RandomLabelledTree(n): n 頂点のラベル付き木を一様ランダムに生成して返す
+    - Edges ConvertEdges(g): g を辺の集合に変換（分布を調べるために）
 
   # Description
-    n 頂点のラベル付き木はの数はケイリーの公式より n^{n-2} 個あるので，一様ランダムに生成するとは
+    n 頂点のラベル付き木の数はケイリーの公式より n^{n-2} 個あるので，一様ランダムに生成するとは
     各ラベル付き木が選ばれる確率を 1 / n^{n-2} に定めることである．
     prüfer sequence をランダムに生成してラベル付き木に変換して生成している．
 
@@ -29,22 +30,29 @@
 
 */
 
-#include <iostream>
+#include <cstdio>
+#include <map>
 #include <vector>
 #include <queue>
 #include <random>
+#include <algorithm>
 
 // -------------8<------- start of library -------8<------------------------
 struct Graph {
-    size_t n;
+    int n;
     std::vector<std::vector<int>> adj;
-
     Graph(size_t _n) : n(_n), adj(_n) {}
-    void add_edge(const int u, const int v) {
-        adj[u].push_back(v);
-        adj[v].push_back(u);
-    }
+    void add_edge(int u, int v) { adj[u].push_back(v); adj[v].push_back(u); }
 };
+
+using Edges = std::vector<std::pair<int, int>>;
+Edges ConvertEdges(const Graph &g) {
+    Edges edges;
+    for (int v = 0; v < g.n; ++v)
+        for (int u : g.adj[v]) if (v < u) edges.emplace_back(std::make_pair(v, u));
+    std::sort(edges.begin(), edges.end());
+    return edges;
+}
 
 Graph PruferSequenceToTree(const std::vector<int> &seq) {
     const int n = seq.size() + 2;
@@ -83,18 +91,18 @@ Graph RandomLabelledTree(const int n) {
 // -------------8<------- end of library ---------8-------------------------
 
 int main() {
-    std::cin.tie(0); std::ios::sync_with_stdio(false);
+    int n, sample_size;
+    scanf("%d %d", &n, &sample_size);
 
-    int n;
-    std::cin >> n;
+    // 非同型なラベル付き木の数を数える
+    std::map<Edges, int> cnt;
+    for (int i = 0; i < sample_size; ++i)
+        ++cnt[ConvertEdges(RandomLabelledTree(n))];
 
-    auto tree = RandomLabelledTree(n);
-    std::cout << "#vertices = " << tree.n << "\n";
-    for (size_t v = 0; v < tree.n; ++v) {
-        std::cout << v << ": ";
-        for (size_t u : tree.adj[v]) std::cout << u << " ";
-        std::cout << '\n';
-    }
+    printf("%zu (cayley's formula: %d)\n", cnt.size(), (int)std::pow(n, n - 2));
+    for (const auto &it : cnt) // 各ラベル付き木の生成確率を出力
+        printf("%.4f ", (double)it.second / sample_size);
+    puts("");
 
     return 0;
 }
