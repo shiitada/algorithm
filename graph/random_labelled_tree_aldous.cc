@@ -8,7 +8,7 @@
     Output: 頂点数 n のラベル付き木を一様ランダムに生成（各ラベル付き木が選ばれる確率が 1 / n^{n-2}）
 
   # Complexity
-    - Time: たぶん O(n)
+    - Time: O(n)
     - Space: O(n)
 
   # Usage
