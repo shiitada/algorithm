@@ -51,6 +51,9 @@ C++ implementations of algorithms
 ## Random Graph Generator
 - [Erdos-Renyi random graph](graph/erdos_renyi.cc)
 
+### Uniform Spanning Tree
+- [Wilson's algorithm](graph/uniform_spanning_tree_wilson.cc)
+
 ### Random Labelled Tree
 - [Prüfer sequence](graph/random_labelled_tree_prufer_sequence.cc)
 - [Wilson's algorithm](graph/random_labelled_tree_wilson.cc)
