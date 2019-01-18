@@ -55,6 +55,7 @@ C++ implementations of algorithms
 - [Wilson's algorithm](graph/uniform_spanning_tree_wilson.cc)
 
 ### Random Labelled Tree
+- [Aldous's algorithm](graph/random_labelled_tree_aldous.cc)
 - [Prüfer sequence](graph/random_labelled_tree_prufer_sequence.cc)
 - [Wilson's algorithm](graph/random_labelled_tree_wilson.cc)
 
