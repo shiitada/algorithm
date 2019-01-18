@@ -45,15 +45,6 @@ struct Graph {
     void add_edge(int u, int v) { adj[u].push_back(v); adj[v].push_back(u); }
 };
 
-using Edges = std::vector<std::pair<int, int>>;
-Edges ConvertEdges(const Graph &g) {
-    Edges edges;
-    for (int v = 0; v < g.n; ++v)
-        for (int u : g.adj[v]) if (v < u) edges.emplace_back(std::make_pair(v, u));
-    std::sort(edges.begin(), edges.end());
-    return edges;
-}
-
 Graph PruferSequenceToTree(const std::vector<int> &seq) {
     const int n = seq.size() + 2;
     std::vector<int> deg(n, 1);
@@ -89,6 +80,16 @@ Graph RandomLabelledTree(const int n) {
     return PruferSequenceToTree(seq);
 }
 // -------------8<------- end of library ---------8-------------------------
+
+// 非同型なラベル付き木の数を数えるため辺の集合に変換
+using Edges = std::vector<std::pair<int, int>>;
+Edges ConvertEdges(const Graph &g) {
+    Edges edges;
+    for (int v = 0; v < g.n; ++v)
+        for (int u : g.adj[v]) if (v < u) edges.emplace_back(std::make_pair(v, u));
+    std::sort(edges.begin(), edges.end());
+    return edges;
+}
 
 int main() {
     int n, sample_size;
