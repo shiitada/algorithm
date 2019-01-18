@@ -52,6 +52,7 @@ C++ implementations of algorithms
 - [Erdos-Renyi random graph](graph/erdos_renyi.cc)
 
 ### Uniform Spanning Tree
+- [Aldous's algorithm](graph/uniform_spanning_tree_aldous.cc)
 - [Wilson's algorithm](graph/uniform_spanning_tree_wilson.cc)
 
 ### Random Labelled Tree
