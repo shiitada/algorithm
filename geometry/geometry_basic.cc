@@ -113,6 +113,7 @@ enum CCW {
     ON_SEGMENT        = 0,     // a--c--b on line
     OTHER             = -3,
 };
+
 CCW ccw(const Point &a, Point b, Point c) {
     b -= a;  c -= a;
     if (sign(abs_cross(b, c)) == 1) return COUNTER_CLOCKWISE;
@@ -134,14 +135,17 @@ public:
         (*this)[1] = p2;
     }
 };
+
 // Input of a line
 std::istream& operator>>(std::istream &is, Line &l) {
     return is >> l[0] >> l[1];
 }
+
 // Output of a line
 std::ostream& operator<<(std::ostream &os, const Line &l) {
     return os << l[0] << ' ' << l[1];
 }
+
 inline CCW ccw(const Line &l, const Point &p) {
     return ccw(l[0], l[1], p);
 }
@@ -166,6 +170,7 @@ public:
     Circle() {}
     Circle(const Point &p, Number r = 0.0) : Point(p), r(r) {}
 };
+
 // Input of a circle
 std::istream& operator>>(std::istream &is, Circle &c) {
     return is >> c.x >> c.y >> c.r;
@@ -181,6 +186,7 @@ Point Projection(const Line &l, const Point &p) {
     Number t = dot(p - l[0], dir) / dir.abs2();
     return l[0] + dir * t;
 }
+
 inline Point Reflection(const Line &l, const Point &p) {
     return Projection(l, p) * 2.0 - p;
 }
@@ -188,6 +194,7 @@ inline Point Reflection(const Line &l, const Point &p) {
 inline bool IsOrthogonal(const Line &l1, const Line &l2) {
     return equal(dot(l1[0] - l1[1], l2[0] - l2[1]), 0.0);
 }
+
 inline bool IsParallel(const Line &l1, const Line &l2) {
     return equal(abs_cross(l1[0] - l1[1], l2[0] - l2[1]), 0.0);
 }
@@ -195,26 +202,33 @@ inline bool IsParallel(const Line &l1, const Line &l2) {
 inline bool IsIntersect(const Line &l, const Point &p) {
     return std::abs(ccw(l[0], l[1], p)) != 1;
 }
+
 inline bool IsIntersect(const Segment &s, const Point &p) {
     return ccw(s[0], s[1], p) == ON_SEGMENT;
 }
+
 inline bool IsIntersect(const Line &l1, const Line l2) {
     return !IsParallel(l1, l2) || IsParallel(l1, Line(l1[0], l2[0]));
 }
+
 inline bool IsIntersect(const Line &l, const Segment &s) {
     return sign(abs_cross(l[1] - l[0], s[0] - l[0]) *
                 abs_cross(l[1] - l[0], s[1] - l[0])) <= 0;
 }
+
 inline bool IsIntersect(const Segment &s1, const Segment &s2) {
     return ccw(s1[0], s1[1], s2[0]) * ccw(s1[0], s1[1], s2[1]) <= 0 &&
         ccw(s2[0], s2[1], s1[0]) * ccw(s2[0], s2[1], s1[1]) <= 0;
 }
+
 inline bool IsIntersect(const Circle &c, const Point &p) { // p is in interior or boundary
     return (c - p).abs() <= c.r + EPS;
 }
+
 inline bool IsIntersect(const Circle &c, const Line &l) {
     return IsIntersect(c, Projection(l, c));
 }
+
 inline bool IsIntersect(const Circle &c1, const Circle &c2) {
     return sign(c1.r + c2.r - (c1 - c2).abs()) >= 0 &&
         sign((c1 - c2).abs() - std::abs(c1.r - c2.r) >= 0);
@@ -227,21 +241,26 @@ inline bool IsIntersect(const Circle &c1, const Circle &c2) {
 inline Number Distance(const Point &p1, const Point &p2) {
     return (p1 - p2).abs();
 }
+
 inline Number Distance(const Line &l, const Point &p) {
     return (p - Projection(l, p)).abs();
 }
+
 inline Number Distance(const Segment &s, const Point &p) {
     if (sign(dot(s[1] - s[0], p - s[0])) == -1) return (p - s[0]).abs();
     if (sign(dot(s[0] - s[1], p - s[1])) == -1) return (p - s[1]).abs();
     return (p - Projection(s, p)).abs();
 }
+
 inline Number Distance(const Line &l1, const Line &l2) {
     return IsIntersect(l1, l2) ? 0 : Distance(l1, l2[0]);
 }
+
 inline Number Distance(const Line &l, const Segment &s) {
     if (IsIntersect(l, s)) return 0.0;
     return std::min(Distance(l, s[0]), Distance(l, s[1]));
 }
+
 inline Number Distance(const Segment &s1, const Segment &s2) {
     if (IsIntersect(s1, s2)) return 0.0;
     return std::min({Distance(s1, s2[0]), Distance(s1, s2[1]),
@@ -255,6 +274,7 @@ Point CrossPoint(const Line &l1, const Line &l2) {
     if (sign(std::abs(A)) == -1) assert(false);
     return l2[0] + (l2[1] - l2[0]) * B / A;
 }
+
 std::vector<Point> CrossPoint(const Circle &c, const Line &l) {
     if (!IsIntersect(c, l))
         return std::vector<Point>();
@@ -266,6 +286,7 @@ std::vector<Point> CrossPoint(const Circle &c, const Line &l) {
     Number len = sqrt(c.r * c.r - (mid - c).abs2());
     return {mid + e * len, mid - e * len};
 }
+
 std::vector<Point> CrossPoint(const Circle &c1, const Circle &c2) {
     if (!IsIntersect(c1, c2))
         return std::vector<Point>();
@@ -292,6 +313,7 @@ std::vector<Point> TangentPoint(const Circle &c, const Point &p) {
     if (q2 == Point(0, 0)) return {c + q1};
     return {c + q1 - q2, c + q1 + q2};
 }
+
 // common tangent lines to two circles
 std::vector<Line> CommonTangent(const Circle &c1, const Circle &c2) {
     // two circle contact one point internally
@@ -368,6 +390,7 @@ std::ostream& operator<<(std::ostream &os, const Polygon &poly) {
     for (auto p : poly) os << p << ", ";
     return os;
 }
+
 Number Polygon::Area() const {
     const int n = (*this).size();
     assert(1 < n);
@@ -377,6 +400,7 @@ Number Polygon::Area() const {
         area += abs_cross((*this)[i], (*this)[i + 1]);
     return 0.5 * area;
 }
+
 bool Polygon::IsConvex() const {
     // if given polygon is not simple polygon we should check for all (i-1, i, i+1)
     // (p[i].y <= p[i-1].y && p[i].y < p[i+1].y)
@@ -391,6 +415,7 @@ bool Polygon::IsConvex() const {
     }
     return true;
 }
+
 int Polygon::Contain(const Point &p) const {
     const int n = (*this).size();
     bool count = false;
@@ -405,6 +430,7 @@ int Polygon::Contain(const Point &p) const {
     }
     return count ? IN : OUT;
 }
+
 int Polygon::ConvexContain(const Point &p) const {
     const int n = (*this).size();
     Point g = ((*this)[0] + (*this)[n / 3] + (*this)[2 * n / 3]) / 3.0; // inner point
@@ -433,6 +459,7 @@ int Polygon::ConvexContain(const Point &p) const {
     int res = sign(abs_cross((*this)[a] - p, (*this)[b] - p));
     return (res == -1 ? OUT : (res == 1 ? IN : ON));
 }
+
 // Andrew's Monotone Chain Algorithm : O(n * log n)
 std::vector<Point> Polygon::ConvexHull() const {
     if ((*this).size() < 3) return (*this);
@@ -453,6 +480,7 @@ std::vector<Point> Polygon::ConvexHull() const {
     chain.resize(size - 1);
     return chain;
 }
+
 // rotating calipers algorithm : O(n)
 Number ConvexDiameter(const std::vector<Point> &poly) {
     const int n = poly.size();
@@ -483,6 +511,7 @@ Number ConvexDiameter(const std::vector<Point> &poly) {
 
     return max_d;
 }
+
 Polygon Polygon::ConvexCut(const Line &l) const {
     const int n = (*this).size();
     const Polygon &p = (*this);
@@ -499,11 +528,9 @@ Polygon Polygon::ConvexCut(const Line &l) const {
     return q;
 }
 
-int main()
-{
+int main() {
     std::cout << std::fixed << std::setprecision(10);
-    std::cin.tie(0);
-    std::ios::sync_with_stdio(false);
+    std::cin.tie(0); std::ios::sync_with_stdio(false);
 
     int n, q;
     Line l;
