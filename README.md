@@ -91,6 +91,9 @@ C++ implementations of algorithms
 # 7. Comparing speed in C++
 - [Is it true that std::vector\<bool\> is slow? (only flag usage)](compare_speed_cpp/vector_bool.cc)
 
+# 8. 2D Geometry
+- [2d geometry](geometry/geometry_basic.cc) (this is not arranged. Let's use CGAL)
+
 
 # TODO Lists
 + Strongly connected components by Tarjan
