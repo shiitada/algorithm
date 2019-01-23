@@ -12,6 +12,7 @@ C++ implementations of algorithms
 - [Bipartite maximum matching](graph/bipartite_maximum_matching.cc)
 - [Lexicographic breadth first search](graph/lexicographic_bfs.cc)
 - [Prüfer sequence](graph/prufer_sequence.cc)
+- [Maximum independent set problem (using branch and reduce): O*(1.4423) time](graph/maximum_independent_set_1.4423.cc)
 
 ## Recognition Problem
 - [Recognition of bipartite graph](graph/is_bipartite.cc)
