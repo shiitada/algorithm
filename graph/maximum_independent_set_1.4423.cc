@@ -40,6 +40,8 @@
 
   # Verified
     - 頂点数25以下のランダムグラフに対して全列挙と比較
+    - [CODE THANKS FESTIVAL 2017 G - Mixture Drug]
+      (https://code-thanks-festival-2017-open.contest.atcoder.jp/tasks/code_thanks_festival_2017_g)
 
 */
 
@@ -84,10 +86,12 @@ struct MaximumIndependentSet : public Graph {
         BranchAndReduce(num_selected + Select(min_deg_v));
         Undo(min_deg_v);
 
-        for (int u : adj[min_deg_v]) {
-            if (selected[u] != -1) continue;
-            BranchAndReduce(num_selected + Select(u));
-            Undo(u);
+        if (deg[min_deg_v] != 1) {
+            for (int u : adj[min_deg_v]) {
+                if (selected[u] != -1) continue;
+                BranchAndReduce(num_selected + Select(u));
+                Undo(u);
+            }
         }
     }
 
