@@ -65,6 +65,7 @@ C++ implementations of algorithms
 - [Fenwick tree (Binary Indexed Tree)](data_structure/fenwick_tree.cc)
 - [Union find](data_structure/union_find.cc)
 - [Initializable array by Bentley](data_structure/initializable_array_bentley.cc)
+- [Segment tree (update a single element / accumulate an interval)](data_structure/segment_tree_update_element.cc)
 
 
 # 4. Number Theory
