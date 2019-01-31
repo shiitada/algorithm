@@ -124,7 +124,7 @@ struct SegmentTree {
             d[idx] = Monoid::op(d[idx << 1], d[idx << 1 | 1]);
     }
 
-    T accumulate(std::size_t l, std::size_t r) {
+    T accumulate(std::size_t l, std::size_t r) const {
         T res_l = Monoid::unit(), res_r = Monoid::unit();
         for (l += sz, r += sz; l < r; l >>= 1, r >>= 1) {
             if (l & 1) res_l = Monoid::op(res_l, d[l++]);
