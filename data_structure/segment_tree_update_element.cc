@@ -18,6 +18,8 @@
       半群はモノイドにすることができる（半群に含まれない要素を単位元となるように加える）．
       モノイドに逆元の存在を加えたものを群（group)と呼ぶ．
       　・逆元の存在：任意の x \in M に対して，ある y \in M が存在して x * y = y * x = e
+      交換律を満たすな群を可換群（commutative group）またはアーベル群（abelian group）と呼ぶ．
+      　・可換律：任意の x, y \in M に対して x * y = y * x
 
       e.g. (R, +, 0), (R, max, -inf), (R, min, inf) はモノイド
       　　　（R は実数全体，3番目の要素は単位元）
@@ -34,9 +36,12 @@
   # Usage
     - SegmentTree<monoid<T>> seg(n): 要素数 n の T型の monoid からなる区間木を構築
     - SegmentTree<monoid<T>> seg(d): T型の配列 d の monoid からなる区間木を構築
-      + min_monoind<T>: 要素の型が T，二項演算子 min，単位元は型Tの最大値とするモノイド
-      + max_monoind<T>: 要素の型が T，二項演算子 max，単位元は型Tの最小値とするモノイド
-      + sum_monoind<T>: 要素の型が T，二項演算子 +，単位元は 0 とするモノイド
+      + min_monoind<T>:
+      　　要素の型が T，二項演算子 min，単位元は型Tの最大値とするモノイド（Range Minimum Query）
+      + max_monoind<T>:
+      　　要素の型が T，二項演算子 max，単位元は型Tの最小値とするモノイド（Range Maximum Query）
+      + sum_monoind<T>:
+      　　要素の型が T，二項演算子 +，単位元は 0 とするモノイド（Range Sum Query）
 
     - seg.fill(val): 列の要素をすべて val に初期化（O(n)時間）
     - seg.update(i, val): d_i に val を代入
@@ -56,6 +61,9 @@
     - 区間畳み込みという用語が適切かどうかは分からない
     　（accumulate という用語 は C++言語の std::accumulate から選択）
     - クエリのインデックスは 0-index だが，内部の実装では 1-index となっている（コンパクトになる）
+    - min_monoid，max_monoid や sum_monoid は可換（commutative）だが，
+    　非可換の演算に対応するために v の親から値を更新する演算 d[v >> 1] = Monoid::op(d[v], d[p ^ 1])
+    　から変更している．
 
   # References
     - [Efficient and easy segment trees @AI.Cash]
@@ -72,6 +80,8 @@
   # Verified
     - [AOJ DSL_2_A Range Query - Range Minimum Query (RMQ)]
       (http://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=DSL_2_A)
+    - [AOJ DSL_2_B Range Query - Range Sum Query (RSQ)]
+      (http://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=DSL_2_B)
 */
 
 #include <iostream>
@@ -109,18 +119,18 @@ struct SegmentTree {
         for (int i = sz - 1; 0 < i; --i) d[i] = Monoid::op(d[i << 1], d[i << 1 | 1]);
     }
 
-    void update(std::size_t idx, const T value) {
-        for (d[idx += sz] = value; idx > 1; idx >>= 1)
-            d[idx >> 1] = Monoid::op(d[idx], d[idx ^ 1]);
+    void update(std::size_t idx, const T &value) {
+        for (d[idx += sz] = value; idx >>= 1; )
+            d[idx] = Monoid::op(d[idx << 1], d[idx << 1 | 1]);
     }
 
     T accumulate(std::size_t l, std::size_t r) {
-        T res = Monoid::unit();
+        T res_l = Monoid::unit(), res_r = Monoid::unit();
         for (l += sz, r += sz; l < r; l >>= 1, r >>= 1) {
-            if (l & 1) res = Monoid::op(res, d[l++]);
-            if (r & 1) res = Monoid::op(res, d[--r]);
+            if (l & 1) res_l = Monoid::op(res_l, d[l++]);
+            if (r & 1) res_r = Monoid::op(d[--r], res_r);
         }
-        return res;
+        return Monoid::op(res_l, res_r); // for non-commutative
     }
 
     T operator[](std::size_t idx) const { return d[sz + idx]; }
@@ -154,11 +164,20 @@ int main() {
     int n, q;
     std::cin >> n >> q;
 
+    // AOJ DSL_2_A Range Query - Range Minimum Query (RMQ)
     SegmentTree<min_monoid<int>> rmq(n);
     for (int i = 0, com, x, y; i < q; ++i) {
         std::cin >> com >> x >> y;
         if (com == 0) rmq.update(x, y);
         else std::cout << rmq.accumulate(x, y + 1) << '\n';
+    }
+
+    // AOJ DSL_2_B Range Query - Range Sum Query (RSQ)
+    SegmentTree<sum_monoid<int>> rsq(n);
+    for (int i = 0, com, x, y; i < q; ++i) {
+        std::cin >> com >> x >> y;
+        if (com == 0) rsq.update(x - 1, rsq[x - 1] + y);
+        else std::cout << rsq.accumulate(x - 1, y) << '\n';
     }
 
     return 0;
