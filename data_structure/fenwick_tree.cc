@@ -1,8 +1,7 @@
 /*
-  Fenwick Tree [Peter M. Fenwick 1994]
-  (add a single element / accumulate an prefix)
+  Fenwick Tree [Peter M. Fenwick 1994] (add a single element / accumulate an prefix)
   フェニック木（点追加・接頭辞の畳み込み）
-  ==============================================
+  ===================================================================================
 
   # Problem
     Input: 可換モノイド（M, *）上の列 (d_0, d_1, ..., d_{n-1})
@@ -143,7 +142,7 @@ struct max_commutative_monoid {
 };
 
 template<typename T>
-struct sum_commutative_monoid {
+struct sum_commutative_group {
     using value_type = T;
     static constexpr T unit() { return 0; }
     static T op(const T &lhs, const T &rhs) { return lhs + rhs; }
@@ -156,7 +155,7 @@ int main() {
     int n, q;
     std::cin >> n >> q;
 
-    FenwickTree<sum_commutative_monoid<int>> bit(n);
+    FenwickTree<sum_commutative_group<int>> bit(n);
     for (int i = 0, com, x, y; i < q; ++i) {
         std::cin >> com >> x >> y;
         if (com == 0) bit.add(x - 1, y);
