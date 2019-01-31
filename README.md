@@ -62,7 +62,7 @@ C++ implementations of algorithms
 - [Wilson's algorithm](graph/random_labelled_tree_wilson.cc)
 
 # 3. Data Structure
-- [Fenwick tree (add a single element / accumulate a prefix)](data_structure/fenwick_tree.cc)
+- [Fenwick tree (add a single element / accumulate a prefix)](data_structure/fenwick_tree_add_element_accumulate_prefix.cc)
 - [Segment tree (update a single element / accumulate an interval)](data_structure/segment_tree_update_element_accumulate_interval.cc)
 - [Union find](data_structure/union_find.cc)
 - [Initializable array by Bentley](data_structure/initializable_array_bentley.cc)
