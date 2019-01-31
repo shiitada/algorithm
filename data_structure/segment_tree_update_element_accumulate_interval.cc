@@ -137,21 +137,21 @@ struct SegmentTree {
 };
 
 template<typename T>
-struct min_monoid {
+struct min_commutative_monoid {
     using value_type = T;
     static constexpr T unit() { return std::numeric_limits<T>::max(); }
     static T op(const T &lhs, const T &rhs) { return std::min(lhs, rhs); }
 };
 
 template<typename T>
-struct max_monoid {
+struct max_commutative_monoid {
     using value_type = T;
     static constexpr T unit() { return std::numeric_limits<T>::min(); }
     static T op(const T &lhs, const T &rhs) { return std::max(lhs, rhs); }
 };
 
 template<typename T>
-struct sum_monoid {
+struct sum_commutative_group {
     using value_type = T;
     static constexpr T unit() { return 0; }
     static T op(const T &lhs, const T &rhs) { return lhs + rhs; }
@@ -165,7 +165,7 @@ int main() {
     std::cin >> n >> q;
 
     // AOJ DSL_2_A Range Query - Range Minimum Query (RMQ)
-    SegmentTree<min_monoid<int>> rmq(n);
+    SegmentTree<min_commutative_monoid<int>> rmq(n);
     for (int i = 0, com, x, y; i < q; ++i) {
         std::cin >> com >> x >> y;
         if (com == 0) rmq.update(x, y);
@@ -173,7 +173,7 @@ int main() {
     }
 
     // AOJ DSL_2_B Range Query - Range Sum Query (RSQ)
-    SegmentTree<sum_monoid<int>> rsq(n);
+    SegmentTree<sum_commutative_group<int>> rsq(n);
     for (int i = 0, com, x, y; i < q; ++i) {
         std::cin >> com >> x >> y;
         if (com == 0) rsq.update(x - 1, rsq[x - 1] + y);
