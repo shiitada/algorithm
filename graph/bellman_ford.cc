@@ -45,15 +45,14 @@
 // -------------8<------- start of library -------8<------------------------
 template<class T>
 struct Graph {
-    const T INF;
+    const T INF = std::numeric_limits<T>::max();
     const int n, src;
     bool is_neg_cycle;
     std::vector<std::vector<std::pair<int, T>>> adj;
     std::vector<T> d;
 
     Graph(int _n, int _s)
-        : INF(std::numeric_limits<T>::max()), n(_n), src(_s),
-          is_neg_cycle(false), adj(n), d(n, INF) { }
+        : n(_n), src(_s), is_neg_cycle(false), adj(n), d(n, INF) { }
 
     void add_edge(int u, int v, T w) { adj[u].emplace_back(std::make_pair(v, w)); }
     T ShortestDistance(const int t) const { return d[t]; }
