@@ -33,7 +33,8 @@
     (http://hos.ac/slides/20140319_bit.pdf )
 
   # Verified
-
+    - [POJ3468 A Simple Problem with Integers]
+      (http://poj.org/problem?id=3468)
 */
 
 #include <iostream>
