@@ -48,14 +48,14 @@ struct Graph {
         Edge(int _d, T _w) : dst(_d), w(_w) {}
     };
 
-    const int n, INF;
+    const T INF = std::numeric_limits<T>::max();
+    const int n;
     int s, t;
     std::vector<std::vector<Edge>> adj;
     std::vector<T> dist;
 
     Graph(int _n, int _s, int _t = -1)
-        : n(_n), INF(std::numeric_limits<T>::max()), s(_s), t(_t),
-          adj(n), dist(n, INF) { }
+        : n(_n), s(_s), t(_t), adj(n), dist(n, INF) { }
 
     void add_edge(int u, int v, T w) { adj[u].emplace_back(Edge(v, w)); }
     T ShortestDistance(const int _t) const { return INF <= dist[_t] ? -1 : dist[_t]; }

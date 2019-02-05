@@ -38,14 +38,14 @@
 // -------------8<------- start of library -------8<------------------------
 template<class T>
 struct Graph {
-    const int n, INF;
+    const T INF = std::numeric_limits<T>::max();
+    const int n;
     int s, t;
     std::vector<std::vector<T>> adj;
     std::vector<T> d;
 
     Graph(int _n, int _s, int _t = -1)
-        : n(_n), INF(std::numeric_limits<T>::max()), s(_s), t(_t),
-          adj(n, std::vector<T>(n, INF)), d(n, INF) { }
+        : n(_n), s(_s), t(_t), adj(n, std::vector<T>(n, INF)), d(n, INF) { }
 
     void add_edge(int u, int v, T w) { adj[u][v] = w; }
     T ShortestDistance(const int _t) const { return INF <= d[_t] ? -1 : d[_t]; }
