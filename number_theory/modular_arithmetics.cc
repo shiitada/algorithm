@@ -4,8 +4,9 @@
   =========================
 
   # Description
-    ModInt::mod による剰余の基本的な演算を扱う（@tmaeharaさんの実装を参考）
+    剰余の基本的な演算を扱う（@tmaeharaさんの実装を参考）
 
+    - using ModInt = ModType<Int, mod>: 型 Int で除数 mod の剰余の基本的な演算を扱う型を定義
     - Int : 整数の型．実行時間がシビアでない場合はlong long型を使う
     - Int ModInt::mod : 除数．素数ならば[0, mod)の整数は逆元を持つ
     - Int ModInt::v : [0, mod) の範囲にある整数
@@ -17,7 +18,7 @@
                 O(log m) 時間．除算 / はこの演算を呼び出している．
     - x.pow(e) : 冪乗の剰余 x^e mod m を計算．
                  O(log e) 時間．繰り返し２乗法を用いている．
-    - vector<ModInt> Inverse(n) : 1, 2, ..., n までの逆元をO(n)時間で求める
+    - vector<ModInt> ModInt::Inverse(n) : 1, 2, ..., n までの逆元をO(n)時間で求める
 
   # Note
     C/C++ での /, % の仕様
@@ -63,69 +64,73 @@
 #include <vector>
 
 // -------------8<------- start of library -------8<------------------------
-using Int = int;
-
-struct ModInt {
-    static constexpr Int mod = 1e9 + 7;
+template<typename T, T MOD>
+struct ModType {
+    using Int = T;
+    static constexpr Int mod = MOD;
     Int v;
 
-    ModInt(long long _v = 0) : v(set(_v)) {}
-    ModInt(const ModInt &r) : v(set(r.v)) {}
+    ModType(long long _v = 0) : v(set(_v)) {}
+    ModType(const ModType &r) : v(set(r.v)) {}
 
-    inline static Int set(const auto x) { return x < 0 ? (x % mod) + mod : x % mod; }
+    inline static Int set(const Int x) { return x < 0 ? (x % mod) + mod : x % mod; }
     inline void set() { v = set(v); }
 
-    bool operator<(ModInt r) const { return v < r.v; }
-    bool operator>(ModInt r) const { return r.v < v; }
-    bool operator==(ModInt r) const { return v == r.v; }
-    bool operator!= (ModInt r) const { return v != r.v; }
+    bool operator<(ModType r) const { return v < r.v; }
+    bool operator>(ModType r) const { return r.v < v; }
+    bool operator==(ModType r) const { return v == r.v; }
+    bool operator!= (ModType r) const { return v != r.v; }
 
-    ModInt operator-() const { return ModInt(v ? mod - v : v); }
-    ModInt &operator=(const ModInt &r) { if (this != &r) v = set(r.v); return *this; }
-    ModInt &operator+=(ModInt r) { (v += r.v) %= mod; return *this; }
-    ModInt &operator-=(ModInt r) { (v -= r.v - mod) %= mod; return *this; }
-    // ModInt &operator*=(ModInt r) { v = (__uint128_t(v) * r.v) % mod; return *this; }
-    ModInt &operator*=(ModInt r) { v = 1ULL * v * r.v % mod; return *this; }
-    ModInt &operator/=(ModInt r) { *this *= r.inv(); return *this; }
-    ModInt operator+(ModInt r) const { return ModInt(*this) += r; }
-    ModInt operator-(ModInt r) const { return ModInt(*this) -= r; }
-    ModInt operator*(ModInt r) const { return ModInt(*this) *= r; }
-    ModInt operator/(ModInt r) const { return ModInt(*this) /= r; }
+    ModType operator-() const { return ModInt(v ? mod - v : v); }
+    ModType &operator=(const ModType &r) { if (this != &r) v = set(r.v); return *this; }
+    ModType &operator+=(ModType r) { (v += r.v) %= mod; return *this; }
+    ModType &operator-=(ModType r) { (v -= r.v - mod) %= mod; return *this; }
+    // ModType &operator*=(ModType r) { v = (__uint128_t(v) * r.v) % mod; return *this; }
+    ModType &operator*=(ModType r) { v = 1ULL * v * r.v % mod; return *this; }
+    ModType &operator/=(ModType r) { *this *= r.inv(); return *this; }
+    ModType operator+(ModType r) const { return ModType(*this) += r; }
+    ModType operator-(ModType r) const { return ModType(*this) -= r; }
+    ModType operator*(ModType r) const { return ModType(*this) *= r; }
+    ModType operator/(ModType r) const { return ModType(*this) /= r; }
 
-    ModInt inv() const {
+    ModType inv() const {
         long long a = v, b = mod, u = 1, w = 0;
         while (b) {
             long long t = a / b;
             std::swap(a -= t * b, b);
             std::swap(u -= t * w, w);
         }
-        return ModInt(u);
+        return ModType(u);
     }
 
-    ModInt pow(Int e) {
-        ModInt a = *this, x(1);
+    ModType pow(Int e) {
+        ModType a = *this, x(1);
         for ( ; 0 < e; e >>= 1) { if (e & 1) x *= a; a *= a; }
         return x;
     }
-    inline ModInt pow(ModInt &e) { return pow(e.v); }
-};
-std::ostream &operator<<(std::ostream &os, const ModInt &r) { return os << r.v; }
-std::istream &operator>>(std::istream &is, ModInt &r) { is >> r.v; r.set();return is; }
+    inline ModType pow(ModType &e) { return pow(e.v); }
 
-ModInt pow(const Int p, const Int e) { return ModInt(p).pow(e); }
-std::vector<ModInt> Inverse(const Int n = ModInt::mod - 1) {
-    constexpr Int mod = ModInt::mod;
-    std::vector<ModInt> inv(n + 1);
-    inv[1].v = 1;
-    for (Int a = 2; a <= n; ++a)
-        inv[a] = inv[mod % a] * ModInt(mod - mod / a);
-    return inv;
-}
+    friend std::ostream &operator<<(std::ostream &os, const ModType &r) { return os << r.v; }
+    friend std::istream &operator>>(std::istream &is, ModType &r) {
+        is >> r.v; r.set();return is;
+    }
+
+    static std::vector<ModType> Inverse(const Int n = mod - 1) {
+        std::vector<ModType> inv(n + 1);
+        inv[1].v = 1;
+        for (Int a = 2; a <= n; ++a)
+            inv[a] = inv[mod % a] * T(mod - mod / a);
+        return inv;
+    }
+};
+
+using ModInt = ModType<int, 1000000007>;
+
 // -------------8<------- end of library ---------8-------------------------
 
 int main() {
-    Int n;
     ModInt m;
+    ModInt::Int n;
     std::cin >> m >> n;
     std::cout << m.pow(n) << std::endl;
 
