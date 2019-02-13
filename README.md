@@ -82,7 +82,7 @@ C++ implementations of algorithms
 
 
 # 5. Numerical Analysis
-- [Gaussian elimination with pivoting](numerical_analysis/gaussian_elimination_with_pivoting.cc)
+- [Gaussian elimination with pivoting](numerical_analysis/gaussian_elimimination_with_pivoting.cc)
 
 
 # 6. Approximation Algorithms
