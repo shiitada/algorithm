@@ -81,10 +81,14 @@ C++ implementations of algorithms
 - [Prime factorization - Trial division](number_theory/prime_fact.cc)
 
 
-# 5. Approximation Algorithms
+# 5. Numerical Analysis
+- [Gaussian elimination with pivoting](numerical_analysis/gaussian_elimination_with_pivoting.cc)
+
+
+# 6. Approximation Algorithms
 - [Vertex cover problem (using maximal matching): 2-approximation algorithm](approximation_algorithm/vertex_cover_by_maximal_matching_2apx.cc)
 
-# 6. Other
+# 7. Other
 - [Counting sort](other/counting_sort.cc)
 - [0-1 Knapsack problem (branch and bound method)](other/01knapsack_problem_branch_and_bound.cc)
 - [2-satisfiability problem](other/two_sat.cc)
@@ -93,10 +97,10 @@ C++ implementations of algorithms
 - [XorShift128 plus by Blackman and Vigna](other/xor_shift128_plus.cc)
 
 
-# 7. Comparing speed in C++
+# 8. Comparing speed in C++
 - [Is it true that std::vector\<bool\> is slow? (only flag usage)](compare_speed_cpp/vector_bool.cc)
 
-# 8. 2D Geometry
+# 9. 2D Geometry
 - [2d geometry](geometry/geometry_basic.cc) (this is not arranged. Let's use CGAL)
 
 
