@@ -15,7 +15,7 @@
     - Graph<T> g(n, s): 辺重みの型T，頂点数 n
     - g.add_edge(u, v, w): 重み w の弧 (u, v) を追加
     - g.FloydWarshall(): フロイド・ワーシャル法で最短距離を求める
-    - g.ShortestDistance(u, v): u から v への最短距離を返す. g.INF と等しい場合は最短距離は存在しない
+    - g.distance(u, v): u から v への最短距離を返す. g.INF と等しい場合は最短距離は存在しない
     - g.CheckNegativeCycle(): g に負閉路が存在するか判定する (\exist v \in V, d[v][v] < 0)
 
   # Description
@@ -42,15 +42,15 @@
 // -------------8<------- start of library -------8<------------------------
 template<class T>
 struct Graph {
-    const int n, INF;
+    const int n, INF = std::numeric_limits<T>::max();
     bool is_neg_cycle;
     std::vector<std::vector<T>> d;
 
-    Graph(int _n) : n(_n), INF(std::numeric_limits<T>::max()), is_neg_cycle(false),
-                    d(n, std::vector<T>(n, INF)) { }
+    Graph(int _n) :
+        n(_n), is_neg_cycle(false), d(n, std::vector<T>(n, INF)) { }
 
     void add_edge(int src, int dst, T w) { d[src][dst] = w; }
-    T ShortestDistance(const int src, const int dst) const { return d[src][dst]; }
+    T distance(const int src, const int dst) const { return d[src][dst]; }
     bool CheckNegativeCycle() const { return is_neg_cycle; }
 
     void FloydWarshall() {
@@ -87,8 +87,8 @@ int main() {
     else {
         for (int src = 0; src < n; ++src) {
             for (int dst = 0; dst < n; ++dst) {
-                if (g.INF <= g.ShortestDistance(src, dst)) std::cout << "INF";
-                else std::cout << g.ShortestDistance(src, dst);
+                if (g.INF <= g.distance(src, dst)) std::cout << "INF";
+                else std::cout << g.distance(src, dst);
                 std::cout << " \n"[dst == n -1];
             }
         }
