@@ -42,7 +42,8 @@
 // -------------8<------- start of library -------8<------------------------
 template<class T>
 struct Graph {
-    const int n, INF = std::numeric_limits<T>::max();
+    const T INF = std::numeric_limits<T>::max();
+    const int n;
     bool is_neg_cycle;
     std::vector<std::vector<T>> d;
 

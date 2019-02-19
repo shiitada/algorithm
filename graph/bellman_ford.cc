@@ -16,7 +16,7 @@
                         2点間最短距離で終点 t が決まっている場合は g(n, src, t) とする
     - g.add_edge(u, v, w): 重み w の弧 (u, v) を追加
     - g.BellmanFord(): ベルマン・フォード法で最短距離を求める
-    - g.ShortestDistance(t): src から t への最短距離を返す. g.INF と等しい場合は最短距離は存在しない
+    - g.distance(t): src から t への最短距離を返す. g.INF と等しい場合は最短距離は存在しない
     - g.IsNegativeCycle(): src から到達可能な負閉路が存在するとき true を返す
 
     - g.CheckNegativeCycle(): g に負閉路が存在するか判定する（d は最短距離とは限らない値となる）
@@ -55,7 +55,7 @@ struct Graph {
         : n(_n), src(_s), is_neg_cycle(false), adj(n), d(n, INF) { }
 
     void add_edge(int u, int v, T w) { adj[u].emplace_back(std::make_pair(v, w)); }
-    T ShortestDistance(const int t) const { return d[t]; }
+    T distance(const int t) const { return d[t]; }
     bool IsNegativeCycleFromS() const { return is_neg_cycle; }
 
     bool CheckNegativeCycle() {
@@ -99,7 +99,7 @@ int main() {
         std::cout << "NEGATIVE CYCLE\n";
     else {
         for (int v = 0; v < n; ++v) {
-            int dist = g.ShortestDistance(v);
+            int dist = g.distance(v);
             if (dist == g.INF) std::cout << "INF\n";
             else std::cout << dist << '\n';
         }

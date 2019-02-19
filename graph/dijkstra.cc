@@ -16,7 +16,7 @@
                         2点間最短距離で終点 t が決まっている場合は g(n, s, t) とする
     - g.add_edge(u, v, w): 重み w の弧 (u, v) を追加
     - g.Dijkstra(): ダイクストラ法で最短距離を求める（t が定まっている場合はif文をコメントアウト）
-    - g.ShortestDistance(t): s から t への最短距離を返す. 経路が存在しない場合は -1 を返す
+    - g.distance(t): s から t への最短距離を返す. 経路が存在しない場合は INF を返す
 
   # Note
     - 負閉路が存在しない場合は有限回の反復で終了（それ以外の場合はベルマン・フォード法等を使用）
@@ -48,7 +48,7 @@ struct Graph {
         : n(_n), s(_s), t(_t), adj(n, std::vector<T>(n, INF)), d(n, INF) { }
 
     void add_edge(int u, int v, T w) { adj[u][v] = w; }
-    T ShortestDistance(const int _t) const { return INF <= d[_t] ? -1 : d[_t]; }
+    T distance(const int _t) const { return d[_t]; }
 
     void Dijkstra() {
         std::vector<bool> used(n, false);
@@ -86,7 +86,7 @@ int main() {
 
     g.Dijkstra();
     for (int v = 0; v < n; ++v)
-        std::cout << v << ' ' << g.ShortestDistance(v) << '\n';
+        std::cout << v << ' ' << g.distance(v) << '\n';
 
     return 0;
 }

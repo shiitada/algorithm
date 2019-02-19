@@ -16,7 +16,7 @@
                         2点間最短距離で終点 t が決まっている場合は g(n, s, t) とする
     - g.add_edge(u, v, w): 重み w の弧 (u, v) を追加
     - g.BinaryBfs(): 0-1 BFS を行う
-    - g.ShortestDistance(t): s から t への最短距離を返す. 経路が存在しない場合は -1 を返す
+    - g.distance(t): s から t への最短距離を返す. 経路が存在しない場合は INF を返す
 
   # Description
     弧重みが 1 だけの最短路問題は幅優先探索(Breadth First Search; BFS)を用いて O(n + m)時間で
@@ -42,17 +42,17 @@
 // -------------8<------- start of library -------8<------------------------
 template<class T>
 struct Graph {
-    const int n, INF;
+    const T INF = std::numeric_limits<T>::max();
+    const int n;
     int s, t;
     std::vector<std::vector<std::pair<int, int>>> adj;
     std::vector<T> d;
 
     Graph(int _n, int _s, int _t = -1)
-        : n(_n), INF(std::numeric_limits<T>::max()), s(_s), t(_t),
-          adj(n), d(n, INF) { }
+        : n(_n), s(_s), t(_t), adj(n), d(n, INF) { }
 
     void add_edge(int u, int v, T w) { adj[u].emplace_back(std::make_pair(v, w)); }
-    T ShortestDistance(const int _t) const { return INF <= d[_t] ? -1 : d[_t]; }
+    T distance(const int _t) const { return d[_t]; }
 
     void BinaryBfs() {
         std::deque<int> deq;
@@ -88,7 +88,7 @@ int main() {
 
     g.BinaryBfs();
     for (int v = 0; v < n; ++v)
-        std::cout << v << ' ' << g.ShortestDistance(v) << '\n';
+        std::cout << v << ' ' << g.distance(v) << '\n';
 
     return 0;
 }
