@@ -42,30 +42,34 @@
 #include <vector>
 #include <memory>
 
-using Graph = std::vector<std::vector<int>>;
-
 // ------------8<------- start of library -------8<-------------------------------
+struct Graph {
+    const int n;
+    std::vector<std::vector<int>> adj;
+    explicit Graph(int _n) : n(_n), adj(_n) {}
+    void add_edge(const int src, const int dst) { adj[src].push_back(dst); }
+};
+
 std::vector<int> LexBfs(const Graph &g) {
     struct Data {
-        Data(int _s) : prev(nullptr), nxt(nullptr), size(_s), size_new(0), item(_s) {}
-        std::shared_ptr<Data> prev, nxt;
-        int size, size_new;
+        explicit Data(int _s) : size(_s), item(_s) {}
+        std::shared_ptr<Data> prev = nullptr, nxt = nullptr;
+        int size, size_new = 0;
         std::vector<int> item;
     };
 
-    const int n = g.size();
-    std::vector<int> order(n, -1);
-    std::vector<char> visited(n, false); // vector<bool> is slow
-    std::vector<std::pair<std::shared_ptr<Data>, int>> ptr(n);
-    std::shared_ptr<Data> data = std::make_shared<Data>(n);
-    for (int i = 0;  i < n; ++i) {
+    std::vector<int> order(g.n, -1);
+    std::vector<char> visited(g.n, false); // vector<bool> is slow
+    std::vector<std::pair<std::shared_ptr<Data>, int>> ptr(g.n);
+    std::shared_ptr<Data> data = std::make_shared<Data>(g.n);
+    for (int i = 0;  i < g.n; ++i) {
         ptr[i] = std::make_pair(data, i);
         data->item[i] = i;
     }
 
     std::shared_ptr<Data> head(data);
     int size_order = 0;
-    while (size_order < n) {
+    while (size_order < g.n) {
         // choosing a pivot
         const int pivot = order[size_order++] = head->item[0];
         visited[pivot] = true;
@@ -75,7 +79,7 @@ std::vector<int> LexBfs(const Graph &g) {
         if (head->size == 0) head = head->nxt;
 
         // selecting vertices to partition
-        for (const auto u : g[pivot]) {
+        for (const auto u : g.adj[pivot]) {
             if (visited[u]) continue;
 
             std::shared_ptr<Data> cur(ptr[u].first);
@@ -88,7 +92,7 @@ std::vector<int> LexBfs(const Graph &g) {
         }
 
         // partitioning
-        for (const auto u : g[pivot]) {
+        for (const auto u : g.adj[pivot]) {
             if (visited[u]) continue;
 
             std::shared_ptr<Data> cur(ptr[u].first);
@@ -132,8 +136,8 @@ int main() {
     Graph g(n);
     for (int i = 0; i < m; ++i) {
         std::cin >> v[0] >> v[1];
-        for (int j = 0; j <= 1; ++j)
-            g[v[j]].push_back(v[1 - j]);
+        g.add_edge(v[0], v[1]);
+        g.add_edge(v[1], v[0]);
     }
 
     // Output LBFS ordering of vertices V

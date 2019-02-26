@@ -44,7 +44,7 @@
 struct Graph {
     int n, m;
     std::vector<std::vector<int>> adj;
-    Graph(int _n) : n(_n), m(0), adj(n) {}
+    explicit Graph(int _n) : n(_n), m(0), adj(n) {}
     void add_edge(int u, int v) { ++m; adj[u].push_back(v), adj[v].push_back(u); }
 };
 

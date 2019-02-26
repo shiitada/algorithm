@@ -88,7 +88,7 @@ struct Graph {
     std::vector<std::vector<int>> adj;
     std::vector<int> deg;
 
-    Graph(int _n) : n(_n), adj(_n), deg(_n) {}
+    explicit Graph(int _n) : n(_n), adj(_n), deg(_n) {}
 
     void add_edge(int src, int dst) {
         ++deg[src]; --deg[dst];

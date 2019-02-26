@@ -43,7 +43,7 @@ struct Combination {
     std::vector<ModInt> fact, inv_f;
 
     // MultiChoose を使用する場合は N = 2 * _n とする
-    Combination(int _n) : N(_n < mod ? _n : mod - 1), fact(N + 1), inv_f(N + 1) {
+    explicit Combination(int _n) : N(_n < mod ? _n : mod - 1), fact(N + 1), inv_f(N + 1) {
         fact[0] = 1;
         for (int i = 1; i <= N; ++i) fact[i] = fact[i - 1] * i;
         inv_f[N] = fact[N].inv();

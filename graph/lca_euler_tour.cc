@@ -65,7 +65,7 @@ struct LowestCommonAncestor {
     std::vector<int> idx;
     std::vector<std::pair<int, int>> dep;
 
-    LowestCommonAncestor(int _n, int _r = 0) :
+    explicit LowestCommonAncestor(int _n, int _r = 0) :
         root(_r), n(_n), INF(INT_MAX), adj(n), idx(n) {}
 
     void add_edge(int u, int v) { adj[u].push_back(v); adj[v].push_back(u); }

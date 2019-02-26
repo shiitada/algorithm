@@ -76,6 +76,5 @@ int main() {
         else if (c == 'H') printf("%d\n", MultiChoose(n, k).v);
     }
 
-
     return 0;
 }

@@ -55,7 +55,7 @@ struct Graph {
     std::vector<std::vector<Edge>> adj;
     const Weight INF;
 
-    Graph(int _n, Weight inf = std::numeric_limits<Weight>::max() / 10)
+    explicit Graph(int _n, Weight inf = std::numeric_limits<Weight>::max() / 10)
         : n(_n), adj(n), INF(inf) {}
 
     void add_edge(const int src, const int dst, const Weight cap) {

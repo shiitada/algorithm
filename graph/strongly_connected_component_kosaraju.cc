@@ -59,11 +59,13 @@ struct Graph {
     std::vector<std::vector<int>> adj, radj;
     std::vector<int> scc;
 
-    Graph(int _n) : n(_n), adj(n), radj(n), scc(n, false) {}
+    explicit Graph(int _n) : n(_n), adj(n), radj(n), scc(n, false) {}
 
-    void add_edge(int src, int dst) { adj[src].push_back(dst); radj[dst].push_back(src); }
+    void add_edge(const int src, const int dst) {
+        adj[src].push_back(dst); radj[dst].push_back(src);
+    }
 
-    void Dfs(const int cur, auto &ord) {
+    void Dfs(const int cur, std::vector<int> &ord) {
         scc[cur] = true;
         for (auto dst : adj[cur])
             if (!scc[dst]) Dfs(dst, ord);

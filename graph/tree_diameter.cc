@@ -57,7 +57,7 @@ struct Tree {
     int n;
     std::vector<std::vector<std::pair<int, W>>> adj;
 
-    Tree(int _n) : n(_n), adj(_n) {}
+    explicit Tree(int _n) : n(_n), adj(_n) {}
     void add_edge(const int v1, const int v2, const W w) {
         adj[v1].emplace_back(std::make_pair(v2, w));
         adj[v2].emplace_back(std::make_pair(v1, w));

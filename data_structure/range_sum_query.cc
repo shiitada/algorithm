@@ -46,8 +46,8 @@ struct RangeSumQuery {
     std::size_t sz;
     std::vector<T> d1, d2;
 
-    RangeSumQuery() : sz(0) {}
-    RangeSumQuery(int _n) : sz(_n + 1), d1(sz), d2(sz) {}
+    explicit RangeSumQuery() : sz(0) {}
+    explicit RangeSumQuery(int _n) : sz(_n + 1), d1(sz), d2(sz) {}
 
     void add(std::size_t l, std::size_t r, const T &value) {
         for (std::size_t i = l; i < sz; i |= i + 1) d1[i] -= value * l;

@@ -22,7 +22,9 @@
     - [AOJ NTL_1_A](udge.u-aizu.ac.jp/onlinejudge/description.jsp?id=NTL_1_A)
 */
 
-#include <bits/stdc++.h> // Replace needed headers for speed up
+#include <iostream>
+#include <vector>
+#include <tuple>
 
 // -------------8<------- start of library -------8<------------------------
 template<class T>

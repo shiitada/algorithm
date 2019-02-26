@@ -26,7 +26,7 @@ inline Number to_degree(const Number radian) { return radian * 180.0 / PI; }
 struct Point {
     Number x, y;
 
-    Point() {}
+    explicit Point() {}
     Point(Number x, Number y) : x(x), y(y) {}
 
     // Arithmetic operator between points
@@ -129,7 +129,7 @@ CCW ccw(const Point &a, Point b, Point c) {
  */
 class Line : public std::array<Point, 2> {
 public:
-    Line() {}
+    explicit Line() {}
     Line(const Point &p1, const Point &p2) {
         (*this)[0] = p1;
         (*this)[1] = p2;
@@ -156,7 +156,7 @@ inline CCW ccw(const Line &l, const Point &p) {
  */
 class Segment : public Line {
 public:
-    Segment() {}
+    explicit Segment() {}
     Segment(const Point &p1, const Point &p2) : Line(p1, p2) {}
 };
 
@@ -167,7 +167,7 @@ public:
 class Circle : public Point {
 public:
     Number r;
-    Circle() {}
+    explicit Circle() {}
     Circle(const Point &p, Number r = 0.0) : Point(p), r(r) {}
 };
 
@@ -368,9 +368,9 @@ std::vector<Line> CommonTangent(const Circle &c1, const Circle &c2) {
  */
 class Polygon : public std::vector<Point> {
 public:
-    Polygon() {}
-    Polygon(int size) : std::vector<Point>(size){}
-    Polygon(std::initializer_list<Point> p) : std::vector<Point>(p) {}
+    explicit Polygon() {}
+    explicit Polygon(int size) : std::vector<Point>(size){}
+    explicit Polygon(std::initializer_list<Point> p) : std::vector<Point>(p.begin(), p.end()) {}
 
     Number Area() const; // area of polygon : O(n)
     bool IsConvex() const; // Test whether it's convex polygon : O(n)

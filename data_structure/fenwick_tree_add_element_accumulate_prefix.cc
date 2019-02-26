@@ -90,8 +90,8 @@ struct FenwickTree {
     std::size_t sz;
     std::vector<T> d;
 
-    FenwickTree() : sz(0) {}
-    FenwickTree(int _n) : sz(_n), d(_n, CM::unit()) {}
+    explicit FenwickTree() : sz(0) {}
+    explicit FenwickTree(int _n) : sz(_n), d(_n, CM::unit()) {}
 
     void initialize(const std::size_t n, const T &value = CM::unit()) {
         sz = n;

@@ -96,7 +96,7 @@ struct SegmentTree {
     std::size_t sz;
     std::vector<T> d;
 
-    SegmentTree(std::size_t n = 0) {
+    explicit SegmentTree(std::size_t n = 0) {
         for (sz = 1; sz < n; ) sz <<= 1;
         d.resize(2 * sz, Monoid::unit());
     }

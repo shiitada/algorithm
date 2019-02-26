@@ -55,7 +55,7 @@ struct Graph {
     std::vector<int> ord, low;
     std::vector<std::pair<int, int>> bridge;
 
-    Graph(int _n) : n(_n), adj(n), ord(n, -1), low(n, -1) {}
+    explicit Graph(int _n) : n(_n), adj(n), ord(n, -1), low(n, -1) {}
 
     void add_edge(int u, int v) { adj[u].push_back(v); adj[v].push_back(u); }
 

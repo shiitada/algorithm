@@ -68,7 +68,7 @@ struct TwoSat {
     std::vector<bool> val;
     Graph g;
 
-    TwoSat(int _n) : n(_n), val(n + 1), g(2 * n) {}
+    explicit TwoSat(int _n) : n(_n), val(n + 1), g(2 * n) {}
 
     void add_clause(int lt1, bool ng1, int lt2, bool ng2) {
         g.add_edge(lt1 + (ng1 ? n : 0), lt2 + (ng2 ? 0 : n));

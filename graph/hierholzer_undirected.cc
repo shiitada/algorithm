@@ -72,7 +72,7 @@ struct Graph {
     std::vector<std::vector<Edge>> adj;
     std::vector<int> deg;
 
-    Graph(int _n) : n(_n), adj(_n), deg(_n) {}
+    explicit Graph(int _n) : n(_n), adj(_n), deg(_n) {}
 
     void add_edge(int src, int dst) {
         adj[src].emplace_back(Edge(dst, deg[dst]++));

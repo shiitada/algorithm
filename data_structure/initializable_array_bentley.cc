@@ -45,11 +45,11 @@
 template <class T>
 struct InitializableArray {
     T initv;
-    size_t n, b;
+    size_t n, b = 0;
     std::vector<T> value;
     std::vector<size_t> from, to;
 
-    InitializableArray(int _n) : n(_n), b(0), value(n), from(n), to(n) {}
+    explicit InitializableArray(int _n) : n(_n), value(n), from(n), to(n) {}
 
     bool chain(const size_t i) const { return from[i] < b && to[from[i]] == i; }
     T operator[](const size_t i) const { return chain(i) ? value[i] : initv; }

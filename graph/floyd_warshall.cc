@@ -47,7 +47,7 @@ struct Graph {
     bool is_neg_cycle;
     std::vector<std::vector<T>> d;
 
-    Graph(int _n) :
+    explicit Graph(int _n) :
         n(_n), is_neg_cycle(false), d(n, std::vector<T>(n, INF)) { }
 
     void add_edge(int src, int dst, T w) { d[src][dst] = w; }

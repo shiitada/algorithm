@@ -51,7 +51,7 @@
 #include <vector>
 #include <algorithm>
 
-//  @require ./data_structure/union_find.cc 👇👇
+//  @require ./data_structure/union_find.cc
 
 // -------------8<------- start of library -------8<------------------------
 struct Graph {
@@ -59,7 +59,7 @@ struct Graph {
     std::vector<std::vector<int>> adj;
     std::vector<int> ord, low, art;
 
-    Graph(int _n) : n(_n), adj(n), ord(n, -1), low(n, -1) {}
+    explicit Graph(int _n) : n(_n), adj(n), ord(n, -1), low(n, -1) {}
 
     void add_edge(int u, int v) { adj[u].push_back(v); adj[v].push_back(u); }
 

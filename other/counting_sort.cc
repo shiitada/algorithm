@@ -26,7 +26,7 @@
 
 // -------------8<------- start of library -------8<------------------------
 template<class RandomIt>
-constexpr void CountingSort(RandomIt first, RandomIt last) {
+void CountingSort(RandomIt first, RandomIt last) {
     const std::size_t size = distance(first, last);
     if (size <= 1) return ;
 

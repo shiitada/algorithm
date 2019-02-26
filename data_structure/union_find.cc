@@ -33,8 +33,8 @@
 struct UnionFind {
     std::vector<int> data;
 
-    UnionFind() {}
-    UnionFind(int size) : data(size, -1) {}
+    explicit UnionFind() {}
+    explicit UnionFind(int size) : data(size, -1) {}
 
     bool unite(int x, int y) {
         x = root(x); y = root(y);

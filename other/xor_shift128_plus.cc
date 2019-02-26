@@ -42,7 +42,7 @@ public:
     static constexpr result_type max() { return UINT_FAST64_MAX; }
     result_type operator() () { return next(); }
 
-    XorShift128(result_type seed = 0) : s{0, 0} { init(seed); }
+    explicit XorShift128(result_type seed = 0) : s{0, 0} { init(seed); }
 
     // 整数の場合に uniform_int_distribution を使うと10倍ぐらい遅い
     result_type range(const result_type lb, const result_type ub) {

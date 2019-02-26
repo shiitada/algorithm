@@ -65,15 +65,14 @@
 #include <queue>
 #include <algorithm>
 
-// @require algorithm/other/counting_sort.cc 👇👇
-
+// @require algorithm/other/counting_sort.cc
 
 // -------------8<------- start of library -------8<------------------------
 struct Tree {
     const int n;
     std::vector<std::vector<int>> adj;
 
-    Tree(int _n) : n(_n), adj(_n) {}
+    explicit Tree(int _n) : n(_n), adj(_n) {}
     void add_edge(const int v1, const int v2) {
         adj[v1].push_back(v2);
         adj[v2].push_back(v1);
@@ -127,8 +126,9 @@ struct Tree {
     }
 };
 
-void RadixSort(auto &idx, const int len, const int ub,
-               const auto &lcS, const auto &lcT) {
+void RadixSort(std::vector<std::pair<bool, int>> &idx, const int len,
+               const int ub, const std::vector<std::vector<int>> &lcS,
+               const std::vector<std::vector<int>> &lcT) {
     const int n = idx.size();
 
     // counting sort

@@ -19,14 +19,14 @@
     comprision with wikipedia ``List of prime numbers''
 */
 
-#include <bits/stdc++.h>
+#include <iostream>
 
 // -------------8<------- start of library -------8<------------------------
 template<int N>
 struct Prime {
     bool is_p[N + 1]; // 素数表
 
-    constexpr Prime() : is_p() {
+    explicit constexpr Prime() : is_p() {
         for (int i = 2; i <= N; ++i) is_p[i] = true;
         is_p[0] = is_p[1] = false;
         for (long long i = 2; i <= N; ++i) {

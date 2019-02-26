@@ -60,7 +60,7 @@ struct LowestCommonAncestor {
     std::vector<std::vector<int>> adj, par;
     std::vector<int> dep;
 
-    LowestCommonAncestor(int _n, int _r = 0) :
+    explicit LowestCommonAncestor(int _n, int _r = 0) :
         root(_r), UB(log2(_n) + 1), n(_n), adj(n),
         par(UB, std::vector<int>(n)), dep(n) {}
 

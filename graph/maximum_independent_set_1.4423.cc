@@ -53,7 +53,7 @@
 struct Graph {
     int n;
     std::vector<std::vector<int>> adj;
-    Graph(int _n) : n(_n), adj(_n) {}
+    explicit Graph(int _n) : n(_n), adj(_n) {}
     void add_edge(const int u, const int v) { adj[u].push_back(v); adj[v].push_back(u); }
 };
 
@@ -62,7 +62,7 @@ struct MaximumIndependentSet : public Graph {
     Solution sol, opt_sol;
     std::vector<int> deg, selected;
 
-    MaximumIndependentSet(int _n) :
+    explicit MaximumIndependentSet(int _n) :
         Graph(_n), sol(0, std::vector<bool>(_n, false)),
         opt_sol(0, std::vector<bool>(_n, false)), deg(n), selected(n, -1) {}
 
