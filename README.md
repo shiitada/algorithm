@@ -13,6 +13,7 @@ C++ implementations of algorithms
 - [Lexicographic breadth first search](graph/lexicographic_bfs.cc)
 - [Prüfer sequence](graph/prufer_sequence.cc)
 - [Maximum independent set problem (using branch and reduce): O*(1.4423) time](graph/maximum_independent_set_1.4423.cc)
+- [Hamiltonian path problem in hypercube graph](graph/hamiltonian_path_hypercube_graph.cc)
 
 ## Recognition Problem
 - [Recognition of bipartite graph](graph/is_bipartite.cc)
