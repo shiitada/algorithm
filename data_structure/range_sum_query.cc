@@ -19,7 +19,7 @@
   # Usage
     - RangeSumQuery<T> rsq(n): 型T で要素数 n の列を作成（各要素は 0 で初期化）
     - rsq.add(l, r, v): d_i += v (i \in [l, r))
-    - rsq.prefix(i): d_0 + d_1 + ... + d_i を返す
+    - rsq.prefix(i): d_0 + d_1 + ... + d_{i-1} を返す
     - rsq.sum(l, r): d_l + d_{l+1} + ... + d_{r-1} を返す
 
   # Description

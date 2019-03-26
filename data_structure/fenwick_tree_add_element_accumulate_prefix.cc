@@ -9,7 +9,7 @@
       1. 点変更: d_i に w を加える (d_i = d_i * w)
       2. 接頭辞の畳み込み: d_0 + d_1 + ... + d_i を求める
 
-      3. 区間畳み込み： d_l * d_{l+1} * ... * d_{r-1} （(M, *) が可換群のときのみ）
+      3. 区間畳み込み： d_l * d_{l+1} * ... * d_r （(M, *) が可換群のときのみ）
 
     Def. モノイド（monoid）
       集合 M と M 上の２項演算子 * の組 (M, *) が以下の条件を満たすときモノイドと呼ぶ
@@ -49,18 +49,21 @@
           可換群 (T, +, 0) (Range Sum Query)
           要素の型が T，二項演算子 +，単位元は 0 とする可換モノイド（Range Sum Query）
 
-    - bit.initialize(n, v): bit のサイズを n に変更して，全ての要素を v に初期化
+    - bit.resize(n, v): bit のサイズを n に変更して，全ての要素を v に初期化
     - bit.initialize(data): コンテナクラスのオブジェクト data で初期化
 
     - bit.add(i, v): d_i = d_i * v
     - bit.prefix(i): d_0 * d_1 * ... d_i を返す
-    - bit.accumulate(l, r): d_l * d_{l+1} * ... * d_{r-1} を返す（可換群のみ）
+    - bit.accumulate(l, r): d_l * d_{l+1} * ... * d_r を返す（可換群のみ）
 
   # Description
     フェニック木は可換モノイド上の列に対して，値の追加（d_i *= d_i）と
     接頭辞の畳み込み（d_0 * d_1 * ... * d_i）がそれぞれ O(log n) 時間で求まるデータ構造．
-    区間の畳み込み（d_l * ... d_{r-1}）は可換群のみなので，非可換モノイドに対して行いたいときは
+    区間の畳み込み（d_l * ... d_r）は可換群のみなので，非可換モノイドに対して行いたいときは
     セグメント木を使うのがよい．
+
+    TODO: bit.resize(n, v) のメソッド名を bit.initialize(n, v) にしたいが，
+    　　　　テンプレートの方が呼び出されるので修正したい．
 
   # Note
     - Binary Indexed Tree とも呼ばれる
@@ -80,6 +83,8 @@
 #include <iostream>
 #include <vector>
 #include <limits>
+#include <iterator>
+#include <algorithm>
 
 // -------------8<------- start of library -------8<------------------------
 template <typename CommutativeMonoid>
@@ -93,7 +98,7 @@ struct FenwickTree {
     explicit FenwickTree() : sz(0) {}
     explicit FenwickTree(int _n) : sz(_n), d(_n, CM::unit()) {}
 
-    void initialize(const std::size_t n, const T &value = CM::unit()) {
+    void resize(const std::size_t n, const T &value = CM::unit()) {
         sz = n;
         d.resize(sz, value);
         setup();
@@ -109,22 +114,23 @@ struct FenwickTree {
 
     void setup() {
         for (std::size_t i = 0; i < sz; ++i)
-            d[i | (i + 1)] = CM::op(d[i | (i + 1)], d[i]);
+            if ((i | (i + 1)) < sz)
+                d[i | (i + 1)] = CM::op(d[i | (i + 1)], d[i]);
     }
 
-    void add(std::size_t idx, const T &value) {
-        for (; idx < sz; idx |= idx + 1) d[idx] = CM::op(d[idx], value);
+    void add(std::size_t idx, const T &value = CM::unit()) {
+        for ( ; idx < sz; idx |= idx + 1) d[idx] = CM::op(d[idx], value);
     }
 
     T prefix(int idx) const {
         T res = CM::unit();
-        for (idx = idx - 1; idx >= 0; idx = (idx & (idx + 1)) - 1)
+        for ( ; idx >= 0; idx = (idx & (idx + 1)) - 1)
             res = CM::op(res, d[idx]);
         return res;
     }
 
     // only accumulate group
-    T accumulate(const int l, const int r) const { return prefix(r) - prefix(l); }
+    T accumulate(const int l, const int r) const { return prefix(r) - prefix(l - 1); }
 };
 
 template<typename T>
@@ -159,7 +165,7 @@ int main() {
     for (int i = 0, com, x, y; i < q; ++i) {
         std::cin >> com >> x >> y;
         if (com == 0) bit.add(x - 1, y);
-        else if (com == 1) std::cout << bit.accumulate(x - 1, y) << '\n';
+        else if (com == 1) std::cout << bit.accumulate(x - 1, y - 1) << '\n';
     }
 
     return 0;
