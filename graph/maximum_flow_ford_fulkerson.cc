@@ -12,8 +12,8 @@
     - Space: O(n + m)
 
   # Usage
-    - Graph<T> g(n, inf): 弧重みの型 T, 頂点数 n, 容量無限大の値が inf の有向グラフを構築
-    - Graph<T> g(n): 弧重みの型 T，頂点数 n の有向グラフを構築（容量無限大は T の最大値 / 10 に設定）
+    - FordFulkerson<T> g(n, inf): 弧重みの型 T, 頂点数 n, 容量無限大の値が inf の有向グラフを構築
+    - FordFulkerson<T> g(n): 弧重みの型 T，頂点数 n の有向グラフを構築（容量無限大は T の最大値 / 10 に設定）
     - g.add_arc(u, v, c): 容量 c の弧 (u, v) を追加
     - g.add_edge(u, v, c): 容量 c の辺 {u, v} を追加
     - g.MaximumFlow(s, t): s から t へ至る最大流の値
@@ -25,10 +25,10 @@
   　存在しなくなるまで繰り返す方法を 増加道法（augmenting path method） と呼ぶ．
 
   # Note
-  　- g.INF の値を問題ごとに適切に割り当てないとオーバーフローする可能性がある
-  　- 多項式時間アルゴリズムではなく，容量に無理数が含まれると有限ステップで終了しない．
+    - g.INF の値を問題ごとに適切に割り当てないとオーバーフローする可能性がある
+    - 多項式時間アルゴリズムではなく，容量に無理数が含まれると有限ステップで終了しない．
     　また，収束先が最大流になるとも限らないので注意
-    　  - 無向辺を加えるときは，両方向に容量 c の弧を加える（add_edge を使用）
+    - 無向辺を加えるときは，両方向に容量 c の弧を加える（add_edge を使用）
 
   # References
     - あり本. pp. 188--195
@@ -45,7 +45,7 @@
 
 // -------------8<------- start of library -------8<------------------------
 template<typename Weight>
-struct Graph {
+struct FordFulkerson {
     using weight_type = Weight;
 
     struct Edge {
@@ -59,14 +59,14 @@ struct Graph {
     std::vector<std::vector<Edge>> adj;
     const Weight INF;
 
-    explicit Graph(int _n, Weight inf = std::numeric_limits<Weight>::max() / 10)
+    explicit FordFulkerson(int _n, Weight inf = std::numeric_limits<Weight>::max() / 10)
         : n(_n), adj(n), INF(inf) {}
 
     void add_arc(const int src, const int dst, const Weight cap) {
         adj[src].emplace_back(Edge(src, dst, cap, adj[dst].size()));
         adj[dst].emplace_back(Edge(dst, src, 0, adj[src].size() - 1));
     }
-    
+
     void add_edge(const int src, const int dst, const Weight cap) {
         adj[src].emplace_back(Edge(src, dst, cap, adj[dst].size()));
         adj[dst].emplace_back(Edge(dst, src, cap, adj[src].size() - 1));
@@ -108,12 +108,12 @@ int main() {
     int n, m;
     std::cin >> n >> m;
 
-    Graph<long long> g(n);
+    FordFulkerson<long long> ford_fulkerson(n);
     for (int i = 0, u, v, c; i < m; ++i) {
         std::cin >> u >> v >> c;
-        g.add_arc(u, v, c);
+        ford_fulkerson.add_arc(u, v, c);
     }
-    std::cout << g.MaximumFlow(0, n - 1) << std::endl;
+    std::cout << ford_fulkerson.MaximumFlow(0, n - 1) << std::endl;
 
     return 0;
 }

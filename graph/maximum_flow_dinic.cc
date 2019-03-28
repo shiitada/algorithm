@@ -12,8 +12,8 @@
     - Space: O(n + m)
 
   # Usage
-    - Graph<T> g(n, inf): 弧重みの型 T, 頂点数 n, 容量無限大の値が inf の有向グラフを構築
-    - Graph<T> g(n): 弧重みの型 T，頂点数 n の有向グラフを構築（容量無限大は T の最大値 / 10 に設定）
+    - Dinic<T> g(n, inf): 弧重みの型 T, 頂点数 n, 容量無限大の値が inf の有向グラフを構築
+    - Dinic<T> g(n): 弧重みの型 T，頂点数 n の有向グラフを構築（容量無限大は T の最大値 / 10 に設定）
     - g.add_arc(u, v, c): 容量 c の弧 (u, v) を追加
     - g.add_edge(u, v, c): 容量 c の辺 {u, v} を追加
     - g.MaximumFlow(s, t): s から t へ至る最大流の値
@@ -29,9 +29,9 @@
   　ディニッツのアルゴリズムはフォード・ファルカーソン法と異なり強多項式時間アルゴリズムである．
 
   # Note
-  　- g.INF の値を問題ごとに適切に割り当てないとオーバーフローする可能性がある
-  　- 容量がすべて1ならば計算時間は O(min{n^{2/3}, m^{1/2}} m)
-　  - 無向辺を加えるときは，両方向に容量 c の弧を加える（add_edge を使用）
+    - g.INF の値を問題ごとに適切に割り当てないとオーバーフローする可能性がある
+    - 容量がすべて1ならば計算時間は O(min{n^{2/3}, m^{1/2}} m)
+    - 無向辺を加えるときは，両方向に容量 c の弧を加える（add_edge を使用）
 
   # References
     - あり本. pp. 188--195
@@ -51,7 +51,7 @@
 
 // -------------------8<------- start of library -------8<------------------------
 template<typename Weight>
-struct Graph {
+struct Dinic {
     using weight_type = Weight;
 
     struct Edge {
@@ -65,7 +65,7 @@ struct Graph {
     std::vector<std::vector<Edge>> adj;
     const Weight INF;
 
-    explicit Graph(int _n, Weight inf = std::numeric_limits<Weight>::max() / 10)
+    explicit Dinic(int _n, Weight inf = std::numeric_limits<Weight>::max() / 10)
         : n(_n), adj(n), INF(inf) {}
 
     void add_arc(const int src, const int dst, const Weight cap) {
@@ -132,13 +132,13 @@ int main() {
     int n, m;
     std::cin >> n >> m;
 
-    Graph<long long> g(n);
+    Dinic<long long> dinic(n);
     for (int i = 0, u, v, c; i < m; ++i) {
         std::cin >> u >> v >> c;
-        g.add_arc(u, v, c);
+        dinic.add_arc(u, v, c);
     }
 
-    std::cout << g.MaximumFlow(0, n - 1) << std::endl;
+    std::cout << dinic.MaximumFlow(0, n - 1) << std::endl;
 
     return 0;
 }
