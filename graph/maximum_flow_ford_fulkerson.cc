@@ -66,6 +66,7 @@ struct Graph {
         adj[src].emplace_back(Edge(src, dst, cap, adj[dst].size()));
         adj[dst].emplace_back(Edge(dst, src, 0, adj[src].size() - 1));
     }
+    
     void add_edge(const int src, const int dst, const Weight cap) {
         adj[src].emplace_back(Edge(src, dst, cap, adj[dst].size()));
         adj[dst].emplace_back(Edge(dst, src, cap, adj[src].size() - 1));
