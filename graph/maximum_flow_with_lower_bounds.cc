@@ -24,6 +24,7 @@
 
   # Note
     - Ford-Fulkerson method を使うとエラーが発生するので Dinic's algorithm を使用
+    - 弧重みが浮動小数点数のときは，MaximumFlowメソッド内の != を適切なものに変更する必要あり
     - 問題名の和訳が正しいのか不明
 
   # References
@@ -70,11 +71,16 @@ struct MaximumFlowWithLowerBound {
     }
 
     Weight MaximumFlow(const int s, const int t) {
+        // Weight が浮動小数点数型なら != に注意
         const Weight f1 = algo.MaximumFlow(SuperSource, SuperSink);
         const Weight f2 = algo.MaximumFlow(s, SuperSink);
+        if (f1 + f2 != sum_lb) return -1;
+
         const Weight f3 = algo.MaximumFlow(SuperSource, t);
+        if (f1 + f3 != sum_lb) return -1;
+
         const Weight f4 = algo.MaximumFlow(s, t);
-        return (f1 + f3 == sum_lb && f1 + f2 == sum_lb) ? f2 + f4 : -1;
+        return f2 + f4;
     }
 };
 // ------------------8<------- end of library ---------8-------------------------
