@@ -52,6 +52,8 @@
 // -------------------8<------- start of library -------8<------------------------
 template<typename Weight>
 struct Graph {
+    using weight_type = Weight;
+
     struct Edge {
         int src, dst, rev;
         Weight weight;
