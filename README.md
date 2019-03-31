@@ -74,7 +74,7 @@ C++ implementations of algorithms
 
 
 # 4. Number Theory
-- [Basic Modular arithmetics](number_theory/modular_arithmetics.cc)
+- [Basic modular arithmetics](number_theory/modular_arithmetics.cc)
 - [Binomial coefficient modulo prime (memorization)](number_theory/choose_mod_memo.cc)
 - [Binomial coefficient modulo prime (naive method)](number_theory/choose_mod.cc)
 - [GCD (greatest common divisor) and LCM (least common multiple)](number_theory/gcd_lcm.cc)
