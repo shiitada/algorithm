@@ -1,5 +1,5 @@
 Tree Isomorphism Problem (Aho, Hopcroft, Ullman)  
-木の同型性判定問題
+木の同型性判定問題  
 ========================================
 [Source Code](tree_isomorphism.cc)
 
@@ -53,7 +53,7 @@ SPOJ では tmaeharaさんの O(n log n) 時間のアルゴリズムの方が高
 # References
 - A. V. Aho, J. E. Hopcroft, and J. D. Ullman (1974):
 The Design and Analysis of Computer Algorithms.Addison-Wesley.
-- [@tmaehara spagetthi-soucr/algorithm/tree_isomorphism.cc](https://github.com/spaghetti-source/algorithm/blob/master/graph/tree_isomorphism.cc)
+- [@tmaehara: spagetthi-soucr/algorithm/tree_isomorphism.cc](https://github.com/spaghetti-source/algorithm/blob/master/graph/tree_isomorphism.cc)
 
 # Verified
 - [SPOJ 7826 : TREEISO - Tree Isomorphism](https://www.spoj.com/problems/TREEISO/)
