@@ -1,7 +1,7 @@
 Tree Isomorphism Problem (Aho, Hopcroft, Ullman)  
 木の同型性判定問題
 ========================================
-## [Source Code](tree_isomorphism.cc)
+Source Code: [Click here](tree_isomorphism.cc)
 
 # Problem
 **Input**: 木 T, S  
