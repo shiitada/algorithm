@@ -23,7 +23,7 @@ C++ implementations of algorithms
 - [Eulerian digraph by Hierholzer](graph/hierholzer_directed.cc)
 
 ## Graph Isomorphism Problem
-- [Tree isomorphism](graph/tree_isomorphism.md)
+- [Tree isomorphism](graph/tree_isomorphism.cc)
 
 ## Shortest Paths Problem
 ### Single Source Shortest Paths Problem
