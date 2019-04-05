@@ -13,7 +13,8 @@
 
   # Usage
     - Graph<T> g(n, s): 辺重みの型T，頂点数 n
-    - g.add_edge(u, v, w): 重み w の弧 (u, v) を追加
+    - g.add_arc(u, v, w): 重み w の弧 (u, v) を追加
+    - g.add_edge(u, v, w): 重み w の辺 {u, v} を追加
     - g.FloydWarshall(): フロイド・ワーシャル法で最短距離を求める
     - g.distance(u, v): u から v への最短距離を返す. g.INF と等しい場合は最短距離は存在しない
     - g.CheckNegativeCycle(): g に負閉路が存在するか判定する (\exist v \in V, d[v][v] < 0)
@@ -50,7 +51,8 @@ struct Graph {
     explicit Graph(int _n) :
         n(_n), is_neg_cycle(false), d(n, std::vector<T>(n, INF)) { }
 
-    void add_edge(int src, int dst, T w) { d[src][dst] = w; }
+    void add_arc(int src, int dst, T w) { d[src][dst] = w; }
+    void add_edge(int src, int dst, T w) { d[src][dst] = d[dst][src] = w; }
     T distance(const int src, const int dst) const { return d[src][dst]; }
     bool CheckNegativeCycle() const { return is_neg_cycle; }
 
