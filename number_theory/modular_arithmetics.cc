@@ -73,7 +73,7 @@ struct ModType {
     static constexpr Int mod = MOD;
     Int v;
 
-    explicit ModType(long long _v = 0) : v(set(_v)) {}
+    ModType(long long _v = 0) : v(set(_v)) {}
     ModType(const ModType &r) : v(set(r.v)) {}
 
     inline static Int set(const Int x) { return x < 0 ? (x % mod) + mod : x % mod; }
