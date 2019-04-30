@@ -35,7 +35,7 @@
 
   # Usage
     - SegmentTree<monoid<T>> seg(n): 要素数 n の T型の monoid からなる区間木を構築
-    - SegmentTree<monoid<T>> seg(d): T型の配列 d の monoid からなる区間木を構築
+    - SegmentTree<monoid<T>> seg(first, last): 指定された範囲 [first, last] の要素で区間木を構築
       + min_monoind<T>:
       　　要素の型が T，二項演算子 min，単位元は型Tの最大値とするモノイド（Range Minimum Query）
       + max_monoind<T>:
@@ -43,6 +43,7 @@
       + sum_monoind<T>:
       　　要素の型が T，二項演算子 +，単位元は 0 とするモノイド（Range Sum Query）
 
+    - seg.resize(first, last): 指定された範囲 [first, last] の要素で区間木を再構築
     - seg.fill(val): 列の要素をすべて val に初期化（O(n)時間）
     - seg.update(i, val): d_i に val を代入
     - seg.accumulate(l, r): d_l * d_{l+1} * ... * d_{r - 1} を返す（クエリ区間は[l, r) ）
@@ -102,7 +103,10 @@ struct SegmentTree {
     }
 
     template<typename InputIterator>
-    SegmentTree(InputIterator first, InputIterator last) {
+    SegmentTree(InputIterator first, InputIterator last) { resize(first, last); }
+
+    template<typename InputIterator>
+    void resize(InputIterator first, InputIterator last) {
         std::size_t n = std::distance(first, last);
         for (sz = 1; sz < n; ) sz <<= 1;
         d.resize(2 * sz, Monoid::unit());
