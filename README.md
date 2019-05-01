@@ -70,7 +70,11 @@ C++ implementations of algorithms
 - [Initializable array by Bentley](data_structure/initializable_array_bentley.cc)
 
 ## Query Problems Using Data Structure
-- [Range Sum Query Problem](data_structure/range_sum_query.cc)
+### Range Sum Query
+- [Fenwick tree](data_structure/fenwick_tree_range_sum_query.cc)
+
+### Range Minimum Query and Range Maximum Query
+- [Sparse table (preprocessing : O(n log n) time, query: O(1) time)](data_structure/sparse_table_RmQ_RMQ.cc)
 
 
 # 4. Number Theory
