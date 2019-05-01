@@ -119,6 +119,7 @@ struct SparseTable {
                 d[p][i] = IdempotentMonoid::op(d[p - 1][i], d[p - 1][i + (1 << (p - 1))]);
     }
 
+    // d[l] * ... * d[r - 1]
     T accumulate(std::size_t l, std::size_t r) const {
         const size_t p = log2[r - l];
         return IdempotentMonoid::op(d[p][l], d[p][r - (1 << p)]);
