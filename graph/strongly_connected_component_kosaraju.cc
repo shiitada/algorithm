@@ -19,9 +19,10 @@
 
   # Usage
     - Graph g(n): 頂点数 n の有向グラフを構成
-    - g.add_edge(u, v): g に弧 (u, v) を追加
-    - g.StronglyConnectedComponents(): g の強連結成分分解を行う
+    - g.add_arc(u, v): g に弧 (u, v) を追加
+    - int g.StronglyConnectedComponents(): g の強連結成分分解を行って，強連結成分のサイズを返す
     - g.scc[v]: v が属する強連結成分の番号(成分グラフのトポロジカルソート順)
+    - g.resize(n): 頂点数 n に変更（今までの弧集合はリセット）
 
   # Description
     1. G の深さ優先探索を行い post order で各頂点 v の訪れた順番 p(v) を記録する．
@@ -55,13 +56,19 @@
 
 // -------------8<------- start of library -------8<------------------------
 struct Graph {
-    const int n;
+    int n = 0, num_comp = 0;
     std::vector<std::vector<int>> adj, radj;
     std::vector<int> scc;
 
+    Graph() {}
     explicit Graph(int _n) : n(_n), adj(n), radj(n), scc(n, false) {}
 
-    void add_edge(const int src, const int dst) {
+    void resize(const int _n) {
+        n = _n; num_comp = 0;
+        adj.resize(n); radj.resize(n); scc.resize(n, false);
+    }
+
+    void add_arc(const int src, const int dst) {
         adj[src].push_back(dst); radj[dst].push_back(src);
     }
 
@@ -77,14 +84,16 @@ struct Graph {
             if (scc[dst] == -1) RevDfs(id, dst);
     }
 
-    void StronglyConnectedComponents() {
+    int StronglyConnectedComponents() {
       std::vector<int> ord; ord.reserve(n);
         for (int v = 0; v < n; ++v)
             if (!scc[v]) Dfs(v, ord);
 
         std::fill(scc.begin(), scc.end(), -1);
-        for (int i = n - 1, no = 0; 0 <= i; --i)
-            if (scc[ord[i]] == -1) RevDfs(no++, ord[i]);
+        for (int i = n - 1; 0 <= i; --i)
+            if (scc[ord[i]] == -1) RevDfs(num_comp++, ord[i]);
+
+        return num_comp;
     }
 };
 // -------------8<------- end of library ---------8-------------------------
@@ -99,7 +108,7 @@ int main() {
     Graph g(n);
     for (int i = 0; i < m; ++i) {
         std::cin >> v[0] >> v[1];
-        g.add_edge(v[0], v[1]);
+        g.add_arc(v[0], v[1]);
     }
 
     g.StronglyConnectedComponents();
