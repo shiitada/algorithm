@@ -98,6 +98,7 @@ C++ implementations of algorithms
 - [Counting sort](other/counting_sort.cc)
 - [0-1 Knapsack problem (branch and bound method)](other/01knapsack_problem_branch_and_bound.cc)
 - [2-satisfiability problem](other/two_sat.cc)
+- [Longest increasing subsequence problem](other/longest_increasing_subsequence.cc)
 
 ## Pseudorandom Number Generator
 - [XorShift128 plus by Blackman and Vigna](other/xor_shift128_plus.cc)
