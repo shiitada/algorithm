@@ -64,6 +64,7 @@ std::vector<int> longestIncreasingSubsequence(const std::vector<T> &a) {
 
         // 単調増加： a_i <= a_j
         // idx[i] = std::distance(dp.begin(), upper_bound(dp.begin(), dp.end(), a[i]));
+        
         dp[idx[i]] = a[i];
     }
 
