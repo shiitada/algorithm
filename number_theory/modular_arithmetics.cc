@@ -52,10 +52,10 @@
 
   # References
     - [@保坂和宏 プログラミングコンテストでの数え上げ&整数論テクニック]
-      (http://hos.ac/slides/20130319_enumeration.pdf)
-    - [@tubo28 MOD取り構造体](http://tubo28.me/algorithm/mint/)
+      (http://hos.ac/slides/20130319_enumeration.pdf )
+    - [@tubo28 MOD取り構造体](http://tubo28.me/algorithm/mint/ )
     - [@tmaehara spagetthi-source modular_arithmetics.cc]
-      (https://github.com/spaghetti-source/algorithm/blob/master/number_theory/modular_arithmetics.cc)
+      (https://github.com/spaghetti-source/algorithm/blob/master/number_theory/modular_arithmetics.cc )
 
   # Verified
     - x.pow() の Verified
@@ -69,28 +69,33 @@
 // -------------8<------- start of library -------8<------------------------
 template<typename T, T MOD>
 struct ModType {
+public:
     using Int = T;
-    static constexpr Int mod = MOD;
-    Int v;
 
     ModType(long long _v = 0) : v(set(_v)) {}
     ModType(const ModType &r) : v(set(r.v)) {}
 
-    inline static Int set(const Int x) { return x < 0 ? (x % mod) + mod : x % mod; }
-    inline void set() { v = set(v); }
+    Int get_val() const { return v; }
 
     bool operator<(ModType r) const { return v < r.v; }
-    bool operator>(ModType r) const { return r.v < v; }
+    bool operator>(ModType r) const { return v > r.v; }
+    bool operator<=(ModType r) const { return v <= r.v; }
+    bool operator>=(ModType r) const { return v >= r.v; }
     bool operator==(ModType r) const { return v == r.v; }
     bool operator!= (ModType r) const { return v != r.v; }
 
     ModType operator-() const { return ModInt(v ? mod - v : v); }
     ModType &operator=(const ModType &r) { if (this != &r) v = set(r.v); return *this; }
+
+    ModType operator++(){ if (++v == mod) v = 0; return *this; }
+    ModType operator--(){ v = (v == 0 ? mod - 1 : v - 1); return *this; }
+
     ModType &operator+=(ModType r) { (v += r.v) %= mod; return *this; }
     ModType &operator-=(ModType r) { (v -= r.v - mod) %= mod; return *this; }
     // ModType &operator*=(ModType r) { v = (__uint128_t(v) * r.v) % mod; return *this; }
     ModType &operator*=(ModType r) { v = 1ULL * v * r.v % mod; return *this; }
     ModType &operator/=(ModType r) { *this *= r.inv(); return *this; }
+
     ModType operator+(ModType r) const { return ModType(*this) += r; }
     ModType operator-(ModType r) const { return ModType(*this) -= r; }
     ModType operator*(ModType r) const { return ModType(*this) *= r; }
@@ -125,6 +130,13 @@ struct ModType {
             inv[a] = inv[mod % a] * T(mod - mod / a);
         return inv;
     }
+
+private:
+    static constexpr Int mod = MOD;
+    Int v;
+
+    inline static Int set(const Int x) { return x < 0 ? (x % mod) + mod : x % mod; }
+    inline void set() { v = set(v); }
 };
 
 using ModInt = ModType<int, 1000000007>;
