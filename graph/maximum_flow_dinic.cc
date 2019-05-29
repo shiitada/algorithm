@@ -74,8 +74,8 @@ struct Dinic {
     }
 
     void add_edge(const int src, const int dst, const Weight cap) {
-        adj[src].emplace_back(Edge(src, dst, cap, adj[dst].size()));
-        adj[dst].emplace_back(Edge(dst, src, cap, adj[src].size() - 1));
+        add_arc(src, dst, cap);
+        add_arc(dst, src, cap);
     }
 
     Weight MaximumFlow(const int s, const int t) {
