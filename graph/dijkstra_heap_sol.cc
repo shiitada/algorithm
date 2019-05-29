@@ -15,7 +15,7 @@
   # Usage
     - Graph<T> g(n, s): 辺重みの型T，頂点数 n, 始点 s のグラフを構築．
                         2点間最短距離で終点 t が決まっている場合は g(n, s, t) とする
-    - g.add_edge(u, v, w): 重み w の弧 (u, v) を追加
+    - g.add_arc(u, v, w): 重み w の弧 (u, v) を追加
     - g.Dijkstra(): ダイクストラ法で最短距離を求める（t が定まっている場合はif文をコメントアウト）
     - g.distance(t): s から t への最短距離を返す. 経路が存在しない場合は INF を返す
     - g.ShortestPath(t): s から t への最短路を返す
@@ -58,7 +58,7 @@ struct Graph {
     Graph(int _n, int _s, int _t = -1)
         : n(_n), s(_s), t(_t), adj(n), dist(n, INF), prev(n, -1) { }
 
-    void add_edge(int u, int v, T w) { adj[u].emplace_back(Edge(v, w)); }
+    void add_arc(int u, int v, T w) { adj[u].emplace_back(Edge(v, w)); }
     T distance(const int _t) const { return dist[_t]; }
 
     std::vector<int> ShortestPath(int _t) {
@@ -104,7 +104,7 @@ int main() {
     for (int i = 0; i < m; ++i) {
         int v[2], w;
         std::cin >> v[0] >> v[1] >> w;
-        g.add_edge(v[0], v[1], w);
+        g.add_arc(v[0], v[1], w);
     }
 
     g.Dijkstra();

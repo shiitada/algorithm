@@ -14,7 +14,7 @@
   # Usage
     - Graph<T> g(n, s): 辺重みの型T，頂点数 n, 始点 s のグラフを構築．
                         2点間最短距離で終点 t が決まっている場合は g(n, s, t) とする
-    - g.add_edge(u, v, w): 重み w の弧 (u, v) を追加
+    - g.add_arc(u, v, w): 重み w の弧 (u, v) を追加
     - g.Dijkstra(): ダイクストラ法で最短距離を求める（t が定まっている場合はif文をコメントアウト）
     - g.distance(t): s から t への最短距離を返す. 経路が存在しない場合は INF を返す
     - g.ChangeSource(s): 始点を変更して再度ダイクストラ法（TODO: 計算量を減らす方法があるかも）
@@ -57,7 +57,7 @@ struct Graph {
     Graph(int _n, int _s, int _t = -1)
         : n(_n), s(_s), t(_t), adj(n), dist(n, INF) { }
 
-    void add_edge(int u, int v, T w) { adj[u].emplace_back(Edge(v, w)); }
+    void add_arc(int u, int v, T w) { adj[u].emplace_back(Edge(v, w)); }
     T distance(const int _t) const { return dist[_t]; }
     void ChangeSource(const int _s) {
         s = _s; std::fill(dist.begin(), dist.end(), INF); Dijkstra();
@@ -100,7 +100,7 @@ int main() {
         std::cin >> deg >> deg;
         while (deg--) {
             std::cin >> u >> w;
-            g.add_edge(v, u, w);
+            g.add_arc(v, u, w);
         }
     }
 
