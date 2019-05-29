@@ -86,13 +86,13 @@ struct FordFulkerson {
     Weight Dfs(int v, Weight f, const int t, std::vector<bool> &visited) {
         if (v == t) return f;
 
+        visited[v] = true;
         for (auto &&e : adj[v]) {
             if (!visited[e.dst] && 0 < e.cap) {
                 Weight d = Dfs(e.dst, std::min(f, e.cap), t, visited);
                 if (0 < d) {
                     e.cap -= d;
                     adj[e.dst][e.rev].cap += d;
-                    visited[v] = false;
                     return d;
                 }
             }
