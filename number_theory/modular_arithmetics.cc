@@ -71,6 +71,7 @@ template<typename T, T MOD>
 struct ModType {
 public:
     using Int = T;
+    static constexpr Int mod = MOD;
 
     ModType(long long _v = 0) : v(set(_v)) {}
     ModType(const ModType &r) : v(set(r.v)) {}
@@ -132,7 +133,6 @@ public:
     }
 
 private:
-    static constexpr Int mod = MOD;
     Int v;
 
     inline static Int set(const Int x) { return x < 0 ? (x % mod) + mod : x % mod; }
