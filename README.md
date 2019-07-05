@@ -3,7 +3,6 @@ C++ implementations of algorithms
 
 # 1. Template
 - [Template for competitive programming](template/template.cc)
-- [Simple template](template/short_template.cc)
 - [Template for algorithm](template/algorithm_template.cc)
 - [Template for marathon](template/marathon_template.cc)
 
