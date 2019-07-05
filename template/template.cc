@@ -3,21 +3,13 @@
 using namespace std;
 
 using ll = long long;
+using ld = long double;
 
 const double PI = acos(-1);
 
-inline void INITIOS() {
-    cin.tie(0);
-    ios::sync_with_stdio(false);
-    // cout << setw(4); // printf("%4d", x);
-    // cout << setw(4) << setfill('0'); // printf("%04d", x);
-    // cout << setprecision(4) << setiosflags(ios::fixed); // printf("%.4f", x);
-    // cout << hex << nouppercase; // printf("%x", x);
-}
-
-
 int main() {
-    INITIOS();
+    cin.tie(0); ios::sync_with_stdio(false);
+    // cout << setprecision(8) << setiosflags(ios::fixed);
 
     return 0;
 }
