@@ -39,15 +39,29 @@
 
 // -------------8<------- start of library -------8<------------------------
 struct Combination {
-    const ModInt::Int mod = ModInt::mod, N;
+    const ModInt::Int mod = ModInt::mod;
+    ModInt::Int N = 0;
     std::vector<ModInt> fact, inv_f;
+
+    Combination() {}
 
     // MultiChoose を使用する場合は N = 2 * _n とする
     explicit Combination(int _n) : N(_n < mod ? _n : mod - 1), fact(N + 1), inv_f(N + 1) {
+        set();
+    }
+
+    void set() {
         fact[0] = 1;
         for (int i = 1; i <= N; ++i) fact[i] = fact[i - 1] * i;
         inv_f[N] = fact[N].inv();
         for (int i = N; 1 <= i; --i) inv_f[i - 1] = inv_f[i] * i;
+    }
+
+    void resize(int _n) {
+        N = (_n < mod ? _n : mod - 1);
+        fact.resize(N + 1);
+        inv_f.resize(N + 1);
+        set();
     }
 
     ModInt factorial(const int n) const { return fact[n]; }
@@ -69,7 +83,9 @@ struct Combination {
 // -------------8<------- end of library ---------8-------------------------
 
 int main() {
-    Combination cm(2 * 1e6);
+    // Combination cm(2 * 1e6);
+    Combination cm;
+    cm.resize(2 * 1e6);
 
     int T, n, k;
     char c;
@@ -77,9 +93,9 @@ int main() {
 
     while (T--) {
         scanf("%c(%d,%d)\n", &c, &n, &k);
-        if (c == 'C') printf("%d\n", cm.choose(n, k).v);
-        else if (c == 'P') printf("%d\n", cm.permutation(n, k).v);
-        else if (c == 'H') printf("%d\n", cm.multiChoose(n, k).v);
+        if (c == 'C') printf("%d\n", cm.choose(n, k).get_val());
+        else if (c == 'P') printf("%d\n", cm.permutation(n, k).get_val());
+        else if (c == 'H') printf("%d\n", cm.multiChoose(n, k).get_val());
     }
 
     return 0;
